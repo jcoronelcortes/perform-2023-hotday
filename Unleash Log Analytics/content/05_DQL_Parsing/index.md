@@ -41,6 +41,7 @@ fetch logs, scanLimitGBytes: 500, samplingRatio: 1000, from: now() -2h
 | filter status == "ERROR"
 | sort timestamp desc
 ```
-**Note: field values are case-sensitve**
+**Useful links**
+[Log processing grammar]([https://www.google.com](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-grammar) "Grammar")
 
-Combine filters with AND/OR logic:
+
