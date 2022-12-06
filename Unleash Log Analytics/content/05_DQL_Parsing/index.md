@@ -1,11 +1,11 @@
 ## DQL Parsing
 
-This is just a sample of a text block
+Dynatrace Pattern Language (DPL) is a pattern language that allows you to describe patterns using matchers, where a matcher is a mini-pattern that matches a certain type of data. For example, IPADDR matches IPv4 or IPv6 addresses. There are matchers available to handle all kinds of data types.
 
-### Step 1
-Login to the provided Dynatrace Tenant. Using the left-hand navigation panel, expand 'Observe & Explore' and select 'Logs'.
+### Matching vs Parsing
+A matcher will extract data only when it has been assigned an export name - this is an arbitrary name of your choice, which becomes the name of the field you use in query statements. In this example, the pattern has 11 matchers in total, 4 of which are extracting data
 
-![Logs & Events Viewer](../../assets/images/Log%20viewer.png)
+![Logs & Events Viewer](../../assets/images/parsingExample.png)
 
 Once in the advanced mode you'll find the default query producing the content in the table. All DQL queries will begin with a `fetch` for the type of data to query. Right now there are two options available:
 ```
