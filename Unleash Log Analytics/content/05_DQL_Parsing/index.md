@@ -42,6 +42,7 @@ fetch logs, scanLimitGBytes: 500, samplingRatio: 1000, from: now() -2h
 | sort timestamp desc
 ```
 **Useful links**
-[Log processing grammar]([https://www.google.com](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-grammar) "Grammar")
+
+[Log processing grammar](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-grammar "Grammar")
 
 
