@@ -44,9 +44,7 @@ fetch logs, scanLimitGBytes: 500, samplingRatio: 1000, from: now() -2h
 **Useful links**
 
 [Log processing grammar](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-grammar "Grammar")
-
 [Log processing modifiers](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-modifiers "Modifiers")
-
 [Log processing JSON objects](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-json-object "JSON Object")
 
 
