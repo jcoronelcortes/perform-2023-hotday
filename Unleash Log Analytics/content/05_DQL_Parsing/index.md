@@ -5,7 +5,7 @@ Dynatrace Pattern Language (DPL) is a pattern language that allows you to descri
 ### Matching vs Parsing
 A matcher will extract data only when it has been assigned an export name - this is an arbitrary name of your choice, which becomes the name of the field you use in query statements. In this example, the pattern has 11 matchers in total, 4 of which are extracting data. The matchers extracting data are defined by a colon (:) followed by the exporter name.
 
-![Logs & Events Viewer](../../assets/images/parsingExample.png)
+![Parsing Example](../../assets/images/parsingExample.png)
 
 ### JSON Parsing
 
@@ -84,15 +84,33 @@ fetch logs
 |limit 10
 ```
 
-### Extra - Pure parsing exercise
+## Additional exercise - Parsing only
 
-If this is not too much, I can add a similar exercise as the one we used for the enablement session, where we parse multiple different parameters and just report those as a field, no extra logic added. I can add a screen of the end result to let them attempt it on their own. Or if needed, can also provide the full query.
+As we saw before, we can use Dynatrace's parsing capabilities to access JSON content to be able to retrieve values in a dynamic way.
+On top of that, we can use the same capabilities to be able to parse values out of text responses, parsing puts the result into one or more fields as specified in the pattern. This is especially useful when defining log processing rules, which eventually can be used to define custom log attributes that can be leveraged as dimensions in custom metrics.
+
+### Step 1 - Accessing sample data
+
+Using the following query will provide you with a sample string, that can be parsed into multiple different fields using different type of matchers, like LD (Line data matcher), IPADDR (for matching IPv4 and IPV6 addresses), INT (integral numbers) and TIMESTAMP.
+
+```
+fetch logs
+| limit 1
+| fields contentToParse = "Feb 13 2023 17:29:01 ip-10-1-92-64 kernel: [526784.068581] [UFW AUDIT] IN=ens5 OUT=eth1 MAC=0e:16:b3:b8:e3:4f:0e:06:f6:c1:0c:7c:08:00 SRC=169.254.169.254 DST=10.1.92.64 LEN=52 TOS=0x00 PREC=0x00 TTL=255 ID=0 PROTO=TCP SPT=80 DPT=60350 WINDOW=493 RES=0x00 ACK URGP=0 "
+```
+
+The goal is to breakdown the provided entry into individual fields, the result should look something like this:
+
+![Parse result](../../assets/images/parseResult.png)
+
+This is a query that you can use to completely breakdown this sample string. This same logic can be implemented to results provided by fetching logs.
 
 ```
 fetch logs
 | limit 1
 | fields contentToParse = "Feb 13 2023 17:29:01 ip-10-1-92-64 kernel: [526784.068581] [UFW AUDIT] IN=ens5 OUT=eth1 MAC=0e:16:b3:b8:e3:4f:0e:06:f6:c1:0c:7c:08:00 SRC=169.254.169.254 DST=10.1.92.64 LEN=52 TOS=0x00 PREC=0x00 TTL=255 ID=0 PROTO=TCP SPT=80 DPT=60350 WINDOW=493 RES=0x00 ACK URGP=0 "
 | parse contentToParse, "TIMESTAMP('MMM d YYYY HH:mm:ss'):Timestamp SPACE LD:hostName SPACE LD '['LD:Kernel']' LD 'IN='LD:IN SPACE 'OUT='LD:OUT SPACE 'MAC='LD:MAC SPACE 'SRC='IPADDR:SRC SPACE 'DST='IPADDR:DST SPACE 'LEN='INT:LEN SPACE 'TOS='LD:TOS SPACE 'PREC='LD:PREC SPACE 'TTL='INT:TTL SPACE 'ID='INT:ID SPACE 'PROTO='LD:PROTO SPACE 'SPT='INT:SPT SPACE 'DPT='INT:DPT SPACE 'WINDOW='INT:Window SPACE 'RES='LD:RES SPACE LD 'URGP='INT:URGP"
+| fieldsRemove contentToParse
 ```
 
 **Useful links**
