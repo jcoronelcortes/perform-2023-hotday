@@ -43,7 +43,7 @@ Content
 
 ### Step 2 - Parsing the JSON response
 
-Now that we have an example of the data that we are looking to use for summarizing critical sessions, we will be using http.resp.bytes, http.resp.took_ms and session parameters. In order to extract this information using JSON convention, we first need to parse the JSON response. In this case we will use the __json__ variable to store the parsed result
+Now that we have an example of the data that we are looking to use for summarizing critical sessions, we will be using http.resp.bytes, http.resp.took_ms and session parameters. In order to extract this information using JSON convention, we first need to parse the JSON response. In this case we will use the __json__ variable to store the parsed result. Doing this will enumerate all elements, transform them into Log processing data type from their defined type in JSON and returns a variant_object with parsed elements.
 
 ```
 fetch logs
