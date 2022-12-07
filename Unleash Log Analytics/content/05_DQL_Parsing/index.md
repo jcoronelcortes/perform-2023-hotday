@@ -7,15 +7,19 @@ A matcher will extract data only when it has been assigned an export name - this
 
 ![Logs & Events Viewer](../../assets/images/parsingExample.png)
 
-### Step 1 - JSON Parsing
+### JSON Parsing
 
-As it is most likely that you have worked with JSON before, that is the first exercise that we will go through. Our hipstershop application is logging very useful data in JSON format. Running the following simple query, we can see some of the useful parameters that we can use, like the response size in KB, response status code and response time of each one of the received requests:
+As it is most likely that you have worked with JSON before, that is the first exercise that we will go through. Our hipstershop application is logging very useful data in JSON format. 
+
+### Step 1 - Understanding the data
+
+The following query gives us an idea of the useful parameters that we can use, like the response size in KB, response status code and response time of each one of the received requests:
 
 ```
 fetch logs
 |filter k8s.deployment.name == "frontend-*" AND matchesPhrase(content, "http.resp.took_ms")
 |fields content
-|limit 5
+|limit 3
 ```
 This will give you sample information of log entries with the information that we are looking for:
 ```
@@ -36,13 +40,54 @@ Content
   "timestamp": "2022-12-07T15:51:25.641940916Z"
 }
 ```
-Now that we have an example of the data that we are looking to use for summarizing critical sessions, we will be using http.resp.bytes, http.resp.took_ms and session parameters.
+
+### Step 2 - Parsing the JSON response
+
+Now that we have an example of the data that we are looking to use for summarizing critical sessions, we will be using http.resp.bytes, http.resp.took_ms and session parameters. In order to extract this information using JSON convention, we first need to parse the JSON response. In this case we will use the __json__ variable to store the parsed result
 
 ```
-fetch logs, scanLimitGBytes: 500, samplingRatio: 1000, from: now() -2h
-| filter status == "ERROR"
-| sort timestamp desc
+fetch logs
+|filter k8s.deployment.name == "frontend-*" AND matchesPhrase(content, "http.resp.took_ms")
+|parse content, "JSON:json"
+|fields json
+|limit 3
 ```
+
+### Step 3 - Accessing JSON parameters from the parsed result
+
+Now that we can refer the JSON result using the __json__ identifier, we can use the normal JSON key:value convention to access parameters from the result. Also take a look at the conditional in the fourth row, we are going to work only with entries that had a JSON response and the session ID is not the _x-liveness-probe_ or _x-readiness-probe_, optimizing our query.
+
+```
+fetch logs
+|filter k8s.deployment.name == "frontend-*" AND matchesPhrase(content, "http.resp.took_ms")
+|parse content, "JSON:json"
+|filter isNotNull(json[session]) AND NOT(startsWith(json[session], "x-"))
+|fields responseTime = json[http.resp.took_ms], requestSize = json[http.resp.bytes], session = json[session], actionTime = toLong(timestamp)/1000000000
+|limit 3
+```
+
+### Step 4 - Summarizing sessions based on important information
+
+With the new fields that we extracted from parsing the JSON response, now we can start implementing some functions and logix to summarize the top 10 longest sessions, and report the total size in KB for the session, along with the total response time per session.
+The logic to get the total duration time can be found in line 6, we are getting the first action time (taken from the timestamp reported per request) along with the last action time, once we have this information per session ID, we just substract the last action time minus the first action time, giving us the efective session duration.
+
+```
+fetch logs
+|filter k8s.deployment.name == "frontend-*" AND matchesPhrase(content, "http.resp.took_ms")
+|parse content, "JSON:json"
+|filter isNotNull(json[session]) AND NOT(startsWith(json[session], "x-"))
+|fields responseTime = json[http.resp.took_ms], requestSize = json[http.resp.bytes], session = json[session], actionTime = toLong(timestamp)/1000000000
+|summarize firstAction = first(actionTime), lastAction = last(actionTime), sessionSizeKBs = sum(requestSize/1024), sessionResponsetimeInMs = sum(responseTime), by:session
+|fieldsAdd sessionDurationInMinutes = (lastAction - firstAction)/60
+|fieldsRemove firstAction, lastAction
+|sort sessionDurationInMinutes desc
+|limit 10
+```
+
+### Extra - Pure parsing exercise
+
+If this is not too much, I can add a similar exercise as the one we used for the enablement session, where we parse multiple different parameters and just report those as a field, no extra logic added.
+
 **Useful links**
 
 [Log processing grammar](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-grammar "Grammar")
