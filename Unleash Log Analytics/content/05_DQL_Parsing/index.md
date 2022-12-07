@@ -86,7 +86,7 @@ fetch logs
 
 ### Extra - Pure parsing exercise
 
-If this is not too much, I can add a similar exercise as the one we used for the enablement session, where we parse multiple different parameters and just report those as a field, no extra logic added.
+If this is not too much, I can add a similar exercise as the one we used for the enablement session, where we parse multiple different parameters and just report those as a field, no extra logic added. I can add a screen of the end result to let them attempt it on their own. Or if needed, can also provide the full query.
 
 **Useful links**
 
