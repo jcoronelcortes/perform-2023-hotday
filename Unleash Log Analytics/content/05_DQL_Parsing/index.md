@@ -103,6 +103,8 @@ The goal is to breakdown the provided entry into individual fields, the result s
 
 ![Parse result](../../assets/images/parseResult.png)
 
+### Step 2 - End result
+
 This is a query that you can use to completely breakdown this sample string. This same logic can be implemented to results provided by fetching logs.
 
 ```
