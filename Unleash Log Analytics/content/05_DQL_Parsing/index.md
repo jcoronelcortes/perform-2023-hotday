@@ -7,34 +7,36 @@ A matcher will extract data only when it has been assigned an export name - this
 
 ![Logs & Events Viewer](../../assets/images/parsingExample.png)
 
-Once in the advanced mode you'll find the default query producing the content in the table. All DQL queries will begin with a `fetch` for the type of data to query. Right now there are two options available:
+### Step 1 - JSON Parsing
+
+As it is most likely that you have worked with JSON before, that is the first exercise that we will go through. Our hipstershop application is logging very useful data in JSON format. Running the following simple query, we can see some of the useful parameters that we can use, like the response size in KB, response status code and response time of each one of the received requests:
+
 ```
 fetch logs
+|filter k8s.deployment.name == "frontend-*" AND matchesPhrase(content, "http.resp.took_ms")
+|fields content
+|limit 5
 ```
-and
+This will give you sample information of log entries with the information that we are looking for:
 ```
-fetch events
+Content
+{
+  "dt.span_id": "8918cd9f31a4168b",
+  "dt.trace_id": "a36d00ed72aac309ea2dd697bd139595",
+  "dt.trace_sampled": "true",
+  "http.req.id": "7b0459a5-21b3-46eb-8650-15d188d122e7",
+  "http.req.method": "GET",
+  "http.req.path": "/product/9SIQT8TOJO",
+  "http.resp.bytes": 8142,
+  "http.resp.status": 200,
+  "http.resp.took_ms": 14,
+  "message": "request complete",
+  "session": "444e8080-9164-48fb-8693-9f5c912b8404",
+  "severity": "debug",
+  "timestamp": "2022-12-07T15:51:25.641940916Z"
+}
 ```
-The for the purposes of these hands on labs we will always begin with `fetch logs` unless otherwise provided.
-
-The default query also uses limits agains the data - `scanLimitGBytes` and `samplingRatio` each of these options can be used independantly or togther. While devloping your query it is best practice to use them until the final result requires precise results.
-
-
-
-Since commands are chained together with a `|` (pipe); the results are also sorted by the timestamp field in DESC order.
-
-### Step 2 - Timeframe and basic filters
-
-Timeframe can optionally be directly included in the query. If it is excluded the global timeframe selector will be inherited by the log viewer. 
-
-To override the global timeframe selector try the following query using `from:`
-
-```
-fetch logs, scanLimitGBytes: 500, samplingRatio: 1000, from: now() -2h
-| sort timestamp desc
-```
-
-Now, let's try finding all log records where the 'status' = error:
+Now that we have an example of the data that we are looking to use for summarizing critical sessions, we will be using http.resp.bytes, http.resp.took_ms and session parameters.
 
 ```
 fetch logs, scanLimitGBytes: 500, samplingRatio: 1000, from: now() -2h
