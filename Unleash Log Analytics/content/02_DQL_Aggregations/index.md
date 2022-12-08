@@ -48,6 +48,7 @@ Edit the query to include the `by:` aggregate as shown below:
 ```
 |summarize `Total Bookings` = count(), by:{bin(timestamp, 5m)}
 ```
+What is binning? Binning is a way to group a number of more or less continous values into a smaller number of 'bins'.
 
 In the results select the visualization 'Bar' and then click 'Actions' and 'Pin to Dashboard' to create a new tile on the same dashboard you just created.
 
