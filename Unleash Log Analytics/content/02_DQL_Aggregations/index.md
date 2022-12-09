@@ -48,10 +48,11 @@ Edit the query to include the `by:` aggregate as shown below:
 ```
 |summarize `Total Bookings` = count(), by:{bin(timestamp, 5m)}
 ```
+What is binning? Binning is a way to group a number of more or less continous values into a smaller number of 'bins'.
 
 In the results select the visualization 'Bar' and then click 'Actions' and 'Pin to Dashboard' to create a new tile on the same dashboard you just created.
 
-Your dashboard should now look similar to the image below (your numbers maybe different):
+Your dashboard should now look similar to the image below (your numbers may be different):
 
 ![DashboardResults](../../assets/images/lab2dashboard.png)
 
@@ -63,7 +64,7 @@ Your dashboard should now look similar to the image below (your numbers maybe di
 
 ![statuscategories](../../assets/images/statuscounts.png)
 
-2. Build a DQL query that finds the top process name with the most error records in the last 24 hours (using dql to specify the timeframe). Sort the table by descending order.
+2. Build a DQL query that finds the top process name with the most error records in the last 24 hours (using dql to specify the timeframe). Sort the table by descending order. Hint - your filter should be ERROR (case sensitive).
 
 *Note that values and process names in the image below are expected to differ from your results.*
 
