@@ -74,8 +74,8 @@ vi exercice/03_Fluent/cluster_filter_parser_template.yaml
 Add the lines underneath to apply our filter on the message field of the logs coming from the traefik logs :
 ```yaml
 - parser:
-  keyName: message
-  parser: kubernetes-parser-traefik
+    keyName: message
+    parser: kubernetes-parser-traefik
 ```
 
 Let's apply our new filter and look a the logs of ouf fluenbit agents :
