@@ -43,15 +43,19 @@ Content
 
 ### Step 2 - Parsing the JSON response
 
-Now that we have an example of the data that we are looking to use for summarizing critical sessions, we will be using http.resp.bytes, http.resp.took_ms and session parameters. In order to extract this information using JSON convention, we first need to parse the JSON response. In this case we will use the __json__ variable to store the parsed result. Doing this will enumerate all elements, transform them into Log processing data type from their defined type in JSON and returns a variant_object with parsed elements.
+Now that we have example log entry with some interesting data parameters, let's use the parse command to extract the data values for http.resp.bytes, http.resp.took_ms, and session parameters. Since this log is already in JSON format, DQL offers a convenient way to parse it. In this case we will use the __json__ variable to store the parsed result. Doing this will enumerate all elements, transform them into Log processing data type from their defined type in JSON and returns a variant_object with parsed elements. 
+Now that we have the JSON object parsed, we can access individual parameters and list those as fields
 
 ```
 fetch logs
 |filter k8s.deployment.name == "frontend-*" AND matchesPhrase(content, "http.resp.took_ms")
 |parse content, "JSON:json"
-|fields json
+|fields json, json[http.req.path], json[http.req.id], json[http.resp.status]
 |limit 3
 ```
+
+![JSON parse](../../assets/images/jsonParse.png)
+
 
 ### Step 3 - Accessing JSON parameters from the parsed result
 
@@ -68,8 +72,8 @@ fetch logs
 
 ### Step 4 - Summarizing sessions based on important information
 
-With the new fields that we extracted from parsing the JSON response, now we can start implementing some functions and logix to summarize the top 10 longest sessions, and report the total size in KB for the session, along with the total response time per session.
-The logic to get the total duration time can be found in line 6, we are getting the first action time (taken from the timestamp reported per request) along with the last action time, once we have this information per session ID, we just substract the last action time minus the first action time, giving us the efective session duration.
+With the new fields that we extracted from parsing the JSON response, now we can start implementing some functions and logic to summarize the top 10 longest sessions, and report the total size in KB for the session, along with the total response time per session.
+We can perform calculations, such as generate a total duration time (sessionDurationInMinutes) as shown in line 6 of the query below. Here we take the first action time (taken from the timestamp reported per request) and subtract that from the with the last action time, once the information is available per session ID
 
 ```
 fetch logs
