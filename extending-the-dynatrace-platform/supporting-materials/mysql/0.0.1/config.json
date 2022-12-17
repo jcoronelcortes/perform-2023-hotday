@@ -1,0 +1,22 @@
+{
+	"enabled": true,
+	"description": "MySQL Local",
+	"version": "0.0.1",
+	"featureSets": [
+		"basic"
+	],
+	"sqlMySqlRemote": {
+		"endpoints": [
+			{
+				"host": "localhost",
+				"port": 3306,
+				"databaseName": null,
+				"authentication": {
+					"scheme": "basic",
+					"username": "dynatrace",
+					"password": "password"
+				}
+			}
+		]
+	}
+}
