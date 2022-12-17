@@ -11,4 +11,4 @@ Let's start by creating our extension directories.
 Note how the Dynatrace Copilot extension will create the basic files for you.
 
 
-![structure](../../../assets/mysql-01-structure.png)
+![structure](../../../assets/images/mysql-01-structure.png)
