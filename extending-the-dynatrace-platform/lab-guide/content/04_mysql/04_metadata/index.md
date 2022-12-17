@@ -22,3 +22,13 @@ metrics:
 ```
 
 Note that this is optional, but it makes for a better user experience.
+
+A metric without metadata:
+
+![metric without metadata](../../../assets/images/mysql-02-metadata-01.png)
+
+A metric with metadata:
+
+![metric with metadata](../../../assets/images/mysql-02-metadata-02.png)
+
+The metadata can be used in other places, like dashboards, data explorer and alerts.

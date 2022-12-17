@@ -51,6 +51,7 @@ sqlMySql:
     metrics:
       - key: mysql.statements.count
         value: col:count_star
+        type: Count
     dimensions:
       - key: statement_type
         value: col:event_name
@@ -61,3 +62,4 @@ This is declaring:
 1. Run the query every minute (default, we could have set an interval as well)
 2. Extract a dimension called `statement_type` from the column `event_name`
 3. Extract a metric called `mysql.statements.count` from the column `count_star`
+4. This metric is a `Count` type, meaning it is a monotonically increasing value and we want Dynatrace to calculate the delta for us.
