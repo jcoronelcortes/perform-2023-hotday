@@ -1,0 +1,45 @@
+name: custom:mysql-queries
+version: 0.0.4
+minDynatraceVersion: 1.256.0
+author:
+  name: David Lopes
+sqlMySql:
+  - group: Global Status
+    query: |
+      SELECT EVENT_NAME, COUNT_STAR
+      FROM performance_schema.events_statements_summary_global_by_event_name
+      WHERE EVENT_NAME IN (
+                          'statement/sql/select', 
+                          'statement/sql/insert', 
+                          'statement/sql/update', 
+                          'statement/sql/delete' 
+                          )
+    metrics:
+      - key: mysql.statements.count
+        value: col:count_star
+        type: Count
+    dimensions:
+      - key: statement_type
+        value: col:event_name
+metrics:
+  - key: mysql.statements.count
+    metadata:
+      displayName: Statements
+      description: The number of statements executed for each type (select, insert, update, etc)
+      unit: Count
+      dimensions:
+        - key: statement_type
+          displayName: Statement Type
+      tags:
+        - mysql
+topology:
+  types:
+    - name: mysql:instance
+      displayName: MySQL Instance
+      rules:
+        - idPattern: mysql_instance_{device}
+          instanceNamePattern: MySQL @ {device}
+          iconPattern: database
+          sources:
+            - sourceType: Metrics
+              condition: $prefix(mysql.)

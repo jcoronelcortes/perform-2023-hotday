@@ -1,0 +1,1 @@
+&"C:\Program Files\dynatrace\remotepluginmodule\agent\res\dsruntime\java\bin\java.exe" -cp "C:\Program Files\dynatrace\remotepluginmodule\agent\res\java\commonjars\dynatracesourcesql.jar;C:\Program Files\dynatrace\remotepluginmodule\agent\res\java\libs\*"  com.dynatrace.datasource.SQL --actConfig "config.json" --extConfig "extension\extension.yaml"
