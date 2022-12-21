@@ -1,12 +1,11 @@
 name: custom:mysql-queries
-version: "0.0.2"
-minDynatraceVersion: "1.256.0"
+version: 0.0.4
+minDynatraceVersion: 1.256.0
 author:
   name: David Lopes
-
 sqlMySql:
   - group: Global Status
-    query: | 
+    query: |
       SELECT EVENT_NAME, COUNT_STAR
       FROM performance_schema.events_statements_summary_global_by_event_name
       WHERE EVENT_NAME IN (
@@ -22,8 +21,6 @@ sqlMySql:
     dimensions:
       - key: statement_type
         value: col:event_name
-
-
 metrics:
   - key: mysql.statements.count
     metadata:
@@ -35,4 +32,14 @@ metrics:
           displayName: Statement Type
       tags:
         - mysql
-      
+topology:
+  types:
+    - name: mysql:instance
+      displayName: MySQL Instance
+      rules:
+        - idPattern: mysql_instance_{device}
+          instanceNamePattern: MySQL @ {device}
+          iconPattern: database
+          sources:
+            - sourceType: Metrics
+              condition: $prefix(mysql.)

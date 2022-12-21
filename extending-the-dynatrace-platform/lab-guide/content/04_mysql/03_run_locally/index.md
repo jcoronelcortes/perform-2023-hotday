@@ -3,6 +3,22 @@
 There is a way to locally run this extension if you have an Activegate installed on the current machine.  
 This can significantly speed up development time, and we are looking to add this feature to the `Dynatrace Copilot Extension` as well.
 
+### Creating the database user
+
+1. Open `MySQL 8.0 Command Line Client` from the start menu
+2. Password is `root`
+
+Let's create a user called `dynatrace` with password `password`
+
+```sql
+CREATE USER 'dynatrace'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+```
+
+Let's give dynatrace permission to query the performance schema
+
+```sql
+GRANT SELECT ON performance_schema.* TO 'dynatrace'@'%';
+```
 
 ### Local Configuration
 
