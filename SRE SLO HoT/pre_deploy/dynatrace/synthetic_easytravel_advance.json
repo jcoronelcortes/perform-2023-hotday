@@ -1,0 +1,308 @@
+{
+    "name": "prod easytravel bookTrip",
+    "frequencyMin": 5,
+    "enabled": true,
+    "type": "BROWSER",
+    "createdFrom": "GUI",
+    "script": {
+      "type": "clickpath",
+      "version": "1.0",
+      "configuration": {
+        "device": {
+          "deviceName": "Desktop",
+          "orientation": "landscape"
+        },
+        "chromiumStartupFlags": {
+          "disable-web-security": false
+        }
+      },
+      "events": [
+        {
+          "type": "navigate",
+          "description": "Loading of \"http://easytravel.DTUID.dynatrace.training/\"",
+          "url": "http://easytravel.DTUID.dynatrace.training/",
+          "wait": {
+            "waitFor": "page_complete"
+          }
+        },
+        {
+          "type": "click",
+          "description": "click on \"loginForm:loginLink\"",
+          "target": {
+            "locators": [
+              {
+                "type": "css",
+                "value": "#loginForm\\:loginLink"
+              },
+              {
+                "type": "css",
+                "value": "a:contains(\"Login\")"
+              },
+              {
+                "type": "css",
+                "value": "div:contains(\"Login\"):eq(4)"
+              },
+              {
+                "type": "css",
+                "value": ".iceCmdLnk:eq(0)"
+              },
+              {
+                "type": "css",
+                "value": "#loginForm div:nth-child(6) a"
+              }
+            ]
+          },
+          "button": 0,
+          "wait": {
+            "waitFor": "network"
+          }
+        },
+        {
+          "type": "click",
+          "description": "click on \"loginForm:j_idt58\"",
+          "target": {
+            "locators": [
+              {
+                "type": "css",
+                "value": "#loginForm\\:j_idt58"
+              },
+              {
+                "type": "css",
+                "value": "input[type=\"image\"][src$=\"img/privacypolicy_lock.png\"][name=\"loginForm:j_idt58\"]"
+              },
+              {
+                "type": "css",
+                "value": ".iceCmdBtn:eq(0)"
+              },
+              {
+                "type": "css",
+                "value": "#loginForm\\:j_idt51 input:nth-child(7)"
+              }
+            ]
+          },
+          "button": 0,
+          "wait": {
+            "waitFor": "network"
+          }
+        },
+        {
+          "type": "click",
+          "description": "click on \"loginForm:j_idt63:0:j_idt64\"",
+          "target": {
+            "locators": [
+              {
+                "type": "css",
+                "value": "#loginForm\\:j_idt63\\:0\\:j_idt64"
+              },
+              {
+                "type": "css",
+                "value": "a:contains(\"aadolfsch\"):eq(1)"
+              },
+              {
+                "type": "css",
+                "value": "div:contains(\"bartholomeussal\"):eq(7)"
+              },
+              {
+                "type": "css",
+                "value": ".iceCmdLnk:eq(21)"
+              },
+              {
+                "type": "css",
+                "value": "#loginForm\\:j_idt63 a"
+              }
+            ]
+          },
+          "button": 0,
+          "wait": {
+            "waitFor": "network"
+          }
+        },
+        {
+          "type": "click",
+          "description": "click on \"Book Now\"",
+          "target": {
+            "locators": [
+              {
+                "type": "css",
+                "value": "a:contains(\"Book Now\"):eq(1)"
+              },
+              {
+                "type": "css",
+                "value": "div:contains(\"If you wish to stay in a hotel that has friendly staff and an inviting ambience that reminds you of home, then head to the Grand Hotel.\"):eq(4)"
+              },
+              {
+                "type": "css",
+                "value": ".commonButton:eq(5)"
+              },
+              {
+                "type": "css",
+                "value": "#recommendation div div:nth-child(2) div:nth-child(2) a:nth-child(5)"
+              },
+              {
+                "type": "css",
+                "value": "#recommendation div.icePnlPos div.icePnlGrp div.icePnlGrp a.commonButton:eq(0)"
+              }
+            ]
+          },
+          "button": 0,
+          "wait": {
+            "waitFor": "page_complete"
+          }
+        },
+        {
+          "type": "click",
+          "description": "click on \"iceform:bookReviewNext\"",
+          "target": {
+            "locators": [
+              {
+                "type": "css",
+                "value": "#iceform\\:bookReviewNext"
+              },
+              {
+                "type": "css",
+                "value": "a:contains(\"Next\")"
+              },
+              {
+                "type": "css",
+                "value": "div:contains(\"To look for a different journey please press the\"):eq(4)"
+              },
+              {
+                "type": "css",
+                "value": ".commonButton:eq(5)"
+              },
+              {
+                "type": "css",
+                "value": "#iceform div:nth-child(6) a:nth-child(7)"
+              }
+            ]
+          },
+          "button": 0,
+          "wait": {
+            "waitFor": "page_complete"
+          }
+        },
+        {
+          "type": "click",
+          "description": "click on \"iceform:j_idt118\"",
+          "target": {
+            "locators": [
+              {
+                "type": "css",
+                "value": "#iceform\\:j_idt118"
+              },
+              {
+                "type": "css",
+                "value": "input[type=\"image\"][src$=\"img/privacypolicy_lock.png\"][name=\"iceform:j_idt118\"]"
+              },
+              {
+                "type": "css",
+                "value": ".iceCmdBtn:eq(3)"
+              },
+              {
+                "type": "css",
+                "value": "#iceform div:nth-child(6) div:nth-child(5) input"
+              }
+            ]
+          },
+          "button": 0,
+          "wait": {
+            "waitFor": "network"
+          }
+        },
+        {
+          "type": "click",
+          "description": "click on \"Next\"",
+          "target": {
+            "locators": [
+              {
+                "type": "css",
+                "value": "#iceform\\:bookPaymentNext"
+              },
+              {
+                "type": "css",
+                "value": "input[type=\"submit\"][name=\"iceform:bookPaymentNext\"]"
+              },
+              {
+                "type": "css",
+                "value": ".iceCmdBtn:eq(4)"
+              },
+              {
+                "type": "css",
+                "value": "#iceform div:nth-child(6) input:nth-child(7)"
+              }
+            ]
+          },
+          "button": 0,
+          "wait": {
+            "waitFor": "page_complete"
+          }
+        },
+        {
+          "type": "click",
+          "description": "click on \"Finish\"",
+          "target": {
+            "locators": [
+              {
+                "type": "css",
+                "value": "#iceform\\:bookFinishFinish"
+              },
+              {
+                "type": "css",
+                "value": "input[type=\"submit\"][name=\"iceform:bookFinishFinish\"]"
+              },
+              {
+                "type": "css",
+                "value": ".iceCmdBtn:eq(3)"
+              },
+              {
+                "type": "css",
+                "value": "#iceform div:nth-child(6) input:nth-child(6)"
+              }
+            ]
+          },
+          "button": 0,
+          "wait": {
+            "waitFor": "page_complete"
+          }
+        }
+      ]
+    },
+    "locations": [
+      "GEOLOCATION-5B3CDE358F4D4B31"
+    ],
+    "anomalyDetection": {
+      "outageHandling": {
+        "globalOutage": true,
+        "globalOutagePolicy": {
+          "consecutiveRuns": 1
+        },
+        "localOutage": false,
+        "localOutagePolicy": {
+          "affectedLocations": null,
+          "consecutiveRuns": null
+        },
+        "retryOnError": true
+      },
+      "loadingTimeThresholds": {
+        "enabled": true,
+        "thresholds": []
+      }
+    },
+    "tags": [
+      {
+        "source": "USER",
+        "context": "CONTEXTLESS",
+        "key": "easytravel-advanced"
+      }
+    ],
+    "managementZones": [
+    ],
+    "automaticallyAssignedApps": [],
+    "manuallyAssignedApps": [],
+    "keyPerformanceMetrics": {
+      "loadActionKpm": "VISUALLY_COMPLETE",
+      "xhrActionKpm": "VISUALLY_COMPLETE"
+    },
+    "events": [
+    ]
+  }

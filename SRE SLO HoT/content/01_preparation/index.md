@@ -19,16 +19,45 @@ Access your Dynatrace environment at www.dynatrace.com and click 'SaaS login'.
 Use your HOT session credentials to login to your tenant.
 
 ### Setup
-#### Management Zone
-- We need to create a management zone that we can use later as an SLO filter criteria.
-- For this scenario, we will use a very simple management zone that simply checks if a service name exists. 
-1. In your tenant, navigate to Settings > Preferences > Management Zones
-2. Click the button 'Add new management zone'
-3. Name this management zone 'Services' and leave the optional description field blank. 
-4. Click the 'Add a new rule' button.
-5. Under conditions, click the drop-down and select 'Service name'. Next, select the drop-down menu to the right of Service Name and select 'exists'.
-6. Apply to both underlying hosts and process groups of the matching services.
-7. Finally, preview your changes and make sure services and hosts show up in the preview section. Your final rule should look like the example image below.
-</br></br>
+#### PRE-Deployment
+- We'll execute a bashscript to deploy some pre-defined configurations.
+1. Identify your DTUID. Navigate to 'Environment' tab in Dynatrace University.
+> - Open the EKS Bastion Host </br>
+> - Copy the ID between from the Easytravel URL.
 
-![Example Management Zone](../../assets/images/simple_management_zone.png)
+![](../../assets/images/pre_deploy_2.png)
+
+2. Create an API-TOKEN
+> Navigate to your Dynatrace Enviornment > Manage > Access Tokens
+
+> The following permissions are required: </br>
+> - Access problem and event feed, metrics and topology</br>
+> - ExternalSyntheticIntegration</br>
+> - Read configuration</br>
+> - Write Configuration</br>
+
+![](../../assets/images/pre_deploy_1.png)
+
+3. Retireve the predeploy repo:
+
+```
+git clone https://github.com/ajzenuni/sre_hot_predeploy
+```
+
+4. Navigate to the sre_hot_redeploy
+
+```
+cd sre_hot_predeploy/
+```
+
+5. Adjust permissions of the *deployment.sh*
+
+```
+chmod 777 deployment.sh
+```
+
+6. Execute the predeploy script. (Replace the parameters with your own):
+
+```
+./deployment.sh --environment-url "https://{your-environment-id}.live.dynatrace.com" --dtu-id "dtulab123456789" --api-token "TOKEN" --email "EMAIL"
+```

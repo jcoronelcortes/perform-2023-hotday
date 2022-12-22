@@ -1,0 +1,9 @@
+{
+    "metadata": null,
+    "applicationIdentifier": "APPID",
+    "filterConfig": {
+      "pattern": "easytravel.DTUID.dynatrace.training",
+      "applicationMatchType": "CONTAINS",
+      "applicationMatchTarget": "DOMAIN"
+    }
+}

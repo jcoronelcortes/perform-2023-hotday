@@ -5,31 +5,45 @@
 #### Define an SLO with success as the numerator and total count as denominator. 
 
 1. Navigate to Services in the left-hand menu. The request we need to build an SLO for is inside our easyTravel Customer Frontend service.
-2. Find and click on easyTravel Customer Frontend. (Tip: You can search for the service in the filter bar)
-3. CLick on View dynamic requests so we can find the function we're looking for.
-4. Scroll down on this new page and identify the /CalculateRecommendations transaction.
-5. Click the analysis button to the right of the transaction, shown in the image below.
-</br></br>
 
-![](../../assets/images/Ex2Im1.png)
+2. calculateRecommendations key request
 
-</br></br>
-6. This will navigate you to the multidimensional analysis view. Under 'Configure View', change the Metric dropdown to 'Request count". This counts the <b>total</b> number of requests for this transaction. 
-7. Click on Create metric. Name your metric 'CalculateRecommendationsCount' and click create metric at the bottom of the create metric box.
-</br></br>
+3. Navigate to the Service-level Objectives page and add a new SLO. 
 
-![](../../assets/images/Ex2Im2.png)
+![](../../assets/images/handson4_2.png)
 
-</br></br>
-8. For the second metric, change the dropdown to 'Successful request count". Name this metric 'Calculate Recommendations Success Count". Create the metric.
-9. Return to the SLO page by either navigating to a previous tab, or selecting 'Service-Level Objectives' from the left-hand menu. Click 'Add new SLO'.
-10. Name the new SLO. 
-11. To calculate this SLO, we will divide our success metric count by the total metric count. Your metric definition will look something like this (using your own metric IDs in place of the example):
+4. Provide a meaningful name/metric for the SLO. *{ENV}_{APP NAME}_{HoT#}_{ENTITY TYPE}_{TYPE}*
 
 ```
-((100)*(calc:service.validatecreditcardsuccesscount:sum)/(calc:service.validatecreditcardtotalcount))
+SLO Name : Prod - calculateRecommendations - HoT3 - Key Request - Availability
+SLO Metric : prod_calculateRecommendations_hot3_KeyRequest_availability
 ```
 
-12. Because we specific scope by selecting a specific service, we do not need to define it under the Entity Selector section. We can keep this field blank.
-13. For our success criteria, we can use a target of 99.75 and a warning of 99.95. 
-14. Evaluate the newly minted SLO and click create.
+![](../../assets/images/handson4_4.png)
+
+
+5. Next, let's set the filters for the SLO.
+> - Time Frame - the evaluation period of SLO. *last 30 minutes* </br>
+> - Entity Selector - the entities from where SLI is calculated. *easytravel tag*</br>
+
+```
+timeFrame : -30m
+entitySelector : type("SYNTHETIC_TEST"),tag(easytravel)
+```
+
+![](../../assets/images/handson4_5.png)
+
+6. Next, let's set our SLO target.
+
+```
+Target - 99.99
+Warning - 99.999
+```
+
+![](../../assets/images/handson4_6.png)
+
+7. Finally, preview the SLO and hit 'Create'
+
+8. Navigate to *Dashboards* and identify the following dashboard : *Perform 2023 HoT*
+
+9. Edit the SLO tile of the current Hands-On, and select the SLO we just created: *Prod - calculateRecommendations - HoT4 - Key Request - Availability*
