@@ -1,5 +1,5 @@
 name: custom:mysql-queries
-version: 0.0.4
+version: 0.0.6
 minDynatraceVersion: 1.256.0
 author:
   name: David Lopes
@@ -43,3 +43,5 @@ topology:
           sources:
             - sourceType: Metrics
               condition: $prefix(mysql.)
+dashboards:
+  - path: dashboards/overview_dashboard.json
