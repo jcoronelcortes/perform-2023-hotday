@@ -1,6 +1,6 @@
 {
   "dashboardMetadata": {
-    "name": "Extension Overview",
+    "name": "MySQL Overview",
     "shared": true,
     "owner": "Dynatrace",
     "tags": [
@@ -23,7 +23,7 @@
         "height": 76
       },
       "tileFilter": {},
-      "markdown": "# Extension Monitoring Overview\n***"
+      "markdown": "# MySQL Monitoring Overview\n***"
     },
     {
       "name": "Image",
