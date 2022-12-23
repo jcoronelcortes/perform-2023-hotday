@@ -2,32 +2,52 @@
 
 #### You are a SRE tasked with tracking the uptime of your teams' applications and most important workflows from an outside-in view. You should provide an overall perspective as well as availability SLOs for specific applications and application groups.
 
-1. Navigate to the <b>Synthetic</b> page found on your side menu and click 'Create synthetic monitor button'. 
-2. Click 'Create a browser monitor' button.
-3. Type in www.google.com or any generic, easy to access address. Hit 'next'.
-4. Select <b>5min</b> as a frequency and <b>one location</b> (for example, Johannesburg), then click 'Next'.
-5. Review the synthetic test summary, then click 'Create Monitor'.
-6. Navigate back to the synthetic monitors list using the breadcrumb navigation or the side menu. Click the checkbox next to your monitor and select 'Duplicate' in the prompt box below. Enable the duplicated monitor.
+1. Navigate to the <b>Synthetic</b> page found on your side menu.
+> - Evaluate the 2 Synthetic Monitors.</br>
+> 1. prod easytravel homepage </br>
+> 2. httpstat 503 </br>
 
-![](../../assets/images/ex3im1.png)
+2. Navigate to the Service-level Objectives page and add a new SLO. 
 
-![](../../assets/images/ex3im2.png)
+![](../../assets/images/handson5_2.png)
 
-7. Create one more monitor, this time against a different URL. We want this monitor to simulate a failure: http://httpstat.us/503. Once complete, you should have 3 monitors.
+3. Click the 'Synthetic Availability' button to populate the fields below.
 
-![](../../assets/images/ex3im3.png)
+![](../../assets/images/handson5_3.png)
 
-8. Select the two browser monitors running against google and click <b>Edit</b>.
-9. Click the 'Add tags to these monitors' checkbox. Add key: Sitetype and value: Search
-
-![](../../assets/images/ex3im4.png)
-
-10. Navigate to the Service-level Objectives page and add a new SLO. Click the 'Synthetic Availability' button to populate the fields below. 
-11. Remove the "mzName" filter, verify and create the SLO. Pin this to a dashboard to see results in real time. 
-Note: You should see type("SYNTHETIC_TEST") in the entity selector once you remove the management zone filter.
-12. Create a new SLO, following the steps outlined above in #10-11. This time, after removing the management zone filter, add the tag filter for the sitetype:search field we added earlier. Your entity selector should look like the following:
+4. Provide a meaningful name/metric for the SLO. *{ENV}_{APP NAME}_{HoT#}_{ENTITY TYPE}_{TYPE}*
 
 ```
-type("SYNTHETIC_TEST"),tag("Sitetype:Search")
+SLO Name : Prod - Easytravel - HoT5 - Synthetic - Availability
+SLO Metric : prod_easytravel_hot5_synthetic_availability
 ```
-13. Evaluate, create, and pin this new SLO to your dashboard.
+
+![](../../assets/images/handson5_4.png)
+
+
+5. Next, let's set the filters for the SLO.
+> - Time Frame - the evaluation period of SLO. *last 30 minutes* </br>
+> - Entity Selector - the entities from where SLI is calculated. *easytravel tag*</br>
+
+```
+timeFrame : -30m
+entitySelector : type("SYNTHETIC_TEST"),tag(easytravel)
+```
+
+![](../../assets/images/handson5_5.png)
+
+6. Next, let's set our SLO target.
+> #### *Step 7 of the SLO Framework* </br>
+
+```
+Target - 99.99
+Warning - 99.999
+```
+
+![](../../assets/images/handson5_6.png)
+
+7. Finally, preview the SLO and hit 'Create'
+
+8. Navigate to *Dashboards* and identify the following dashboard : *Perform 2023 HoT*
+
+9. Edit the SLO tile of the current Hands-On, and select the SLO we just created: *Prod - Easytravel - HoT5 - Synthetic - Availability*

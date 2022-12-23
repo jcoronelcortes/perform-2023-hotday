@@ -1,0 +1,68 @@
+{
+    "name": "prod easytravel homepage",
+    "frequencyMin": 5,
+    "enabled": true,
+    "type": "BROWSER",
+    "createdFrom": "GUI",
+    "script": {
+      "type": "availability",
+      "version": "1.0",
+      "configuration": {
+        "device": {
+          "deviceName": "Desktop",
+          "orientation": "landscape"
+        },
+        "chromiumStartupFlags": {
+          "disable-web-security": false
+        }
+      },
+      "events": [
+        {
+          "type": "navigate",
+          "description": "Loading of \"http://easytravel.DTUID.dynatrace.training/\"",
+          "url": "http://easytravel.DTUID.dynatrace.training/",
+          "wait": {
+            "waitFor": "page_complete"
+          }
+        }
+      ]
+    },
+    "locations": [
+      "GEOLOCATION-E632D7F0FABC058C"
+    ],
+    "anomalyDetection": {
+      "outageHandling": {
+        "globalOutage": true,
+        "globalOutagePolicy": {
+          "consecutiveRuns": 1
+        },
+        "localOutage": false,
+        "localOutagePolicy": {
+          "affectedLocations": null,
+          "consecutiveRuns": null
+        },
+        "retryOnError": true
+      },
+      "loadingTimeThresholds": {
+        "enabled": true,
+        "thresholds": []
+      }
+    },
+    "tags": [
+      {
+        "source": "USER",
+        "context": "CONTEXTLESS",
+        "key": "easytravel"
+      }
+    ],
+    "managementZones": [],
+    "automaticallyAssignedApps": [
+    ],
+    "manuallyAssignedApps": [],
+    "keyPerformanceMetrics": {
+      "loadActionKpm": "VISUALLY_COMPLETE",
+      "xhrActionKpm": "VISUALLY_COMPLETE"
+    },
+    "events": [
+    ]
+  }
