@@ -18,20 +18,20 @@ Let's go through the datasource and discuss new concepts:
 
 ```yaml
 prometheus:
-  - group: system
-    interval: 1m
+  - group: windows
     subgroups:
-      - subgroup: Logical disks
+      # Additional subgroups defined
+      - subgroup: disk
+        featureSet: Windows Disk Metrics
         dimensions:
           - key: volume
             value: label:volume
+            filter: var:volume
         metrics:
           - key: windows_logical_disk_free_bytes
             value: metric:windows_logical_disk_free_bytes
             type: gauge
-          - key: windows_logical_disk_size_bytes
-            value: metric:windows_logical_disk_size_bytes
-            type: gauge
+          # Additional metrics defined
 ```
 
 Let's break it down...

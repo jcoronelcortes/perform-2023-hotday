@@ -2,13 +2,14 @@
 
 Inside VS Code open a new windows and select to open the `prometheus-demo-extension` folder. Then open up the command palette (ctrl + shift + p) and search for "Dynatrace" and choose the `Dynatrace: Build Extension` option. 
 
-![TODO](../../../assets/images/...)
+![Build Extension](../../../assets/images/03_prometheus_build_extension.png)
 
 This will sign and package your extension into a zip file called custom_prometheus.demo-1.0.0.zip
 
-The Dynatrace Extension CoPilot will then offer you to upload and activate this new version of the extension. 
+The Dynatrace Extension Copilot will then offer you to upload and activate this new version of the extension. 
 
-![TODO](../../../assets/images/...)
+![Upload Extension](../../../assets/images/03_prometheus_upload_extension.png)
+![Activate Extension](../../../assets/images/03_prometheus_activate_extension.png)
 
 Inside the Dynatrace UI -> Dynatrace Hub -> Manage & upload extensions -> custom:prometheus.demo -> Add a monitoring configuration
 
@@ -34,6 +35,6 @@ We can see and verify data by going to **Data Explorer**, **Metrics**, or the **
 
 ![Data explorer](../../../assets/images/03_prometheus_data_explorer.png)
 
-![TODO](../../../assets/images/...)
+![Host Screen](../../../assets/images/03_prometheus_host_screen.png)
 
 We are done!

@@ -57,20 +57,17 @@ windows_service_info{display_name="DevQuery Background Discovery Broker",name="d
 ```
 
 ```yaml
-  - group: services
-    interval: 1m
-    dimensions:
-      - key: category
-        value: Service
+  - group: windows
     subgroups:
-      - subgroup: Services
-        featureSet: Running services
+      # Additional subgroups defined
+      - subgroup: running_services
+        featureSet: Windows Running Service Info
         dimensions:
-          - key: display_name
-            value: label:display_name
           - key: process_id
             value: label:process_id
             filter: const:$not($eq(0))
+          - key: display_name
+            value: label:display_name
         metrics:
           - key: windows_service_info
             value: metric:windows_service_info
@@ -96,31 +93,28 @@ In your yaml, similar to the `prometheus:` section, a `vars:` section can be add
 
 ```yaml
 vars:
-  - id: volume_name
+  - id: service_pid
     type: text
-    displayName: Volume (Disk) Name
-    description: "Filter which Volumes that should be captured"
+    displayName: Service Process ID(s)
+    description: "Filter which PIDs should be captured"
     required: false
 ```
 
-Once defined, the variable can be used similar to the `const:` within a `filter:` statement (`filter: var:volume_name`)
+Once defined, the variable can be used similar to the `const:` within a `filter:` statement (`filter: var:service_pid`)
 
 ```yaml
 prometheus:
   - group: services
-    interval: 1m
-    dimensions:
-      - key: category
-        value: Service
     subgroups:
-      - subgroup: Services
-        featureSet: Running services
+      # Additional subgroups defined
+      - subgroup: running_services
+        featureSet: Windows Running Service Info
         dimensions:
-          - key: display_name
-            value: label:display_name
           - key: process_id
             value: label:process_id
-            filter: var:volume_name # converted this line from const to var
+            filter: var:service_pid # converted this line from const to var
+          - key: display_name
+            value: label:display_name
         metrics:
           - key: windows_service_info
             value: metric:windows_service_info

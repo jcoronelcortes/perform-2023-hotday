@@ -73,4 +73,4 @@ screens:
                 - metricSelector: windows_logical_disk_size_bytes:splitBy("volume")
 ```
 
-![TODO](../../../assets/images/...)
+![Host Screen](../../../assets/images/03_prometheus_host_screen.png)
