@@ -1,5 +1,5 @@
 name: custom:mysql-queries
-version: 0.0.6
+version: 0.0.19
 minDynatraceVersion: 1.256.0
 author:
   name: David Lopes
@@ -45,3 +45,42 @@ topology:
               condition: $prefix(mysql.)
 dashboards:
   - path: dashboards/overview_dashboard.json
+screens:
+  - entityType: mysql:instance
+    listSettings:
+      staticContent:
+        showGlobalFilter: true
+      layout:
+        autoGenerate: false
+        cards:
+          - type: ENTITIES_LIST
+            key: mysqlinstance_list_self
+    
+    entitiesListCards:
+      - key: mysqlinstance_list_self
+        pageSize: 15 
+        displayName: List of MySQL Instances
+        displayCharts: false
+        enableDetailsExpandability: true
+        numberOfVisibleCharts: 3
+        displayIcons: true
+        hideEmptyCharts: true
+        filtering: 
+              entityFilters:
+                - displayName: Filter by
+                  filters:
+                    - type: entityName
+                      displayName: Name
+                      freeText: true
+                      modifier: contains
+                      defaultSearch: true
+                      distinct: false
+                      entityTypes:
+                        - mysql:instance
+        columns: []
+        charts: 
+          - displayName: Chart
+            visualizationType: GRAPH_CHART
+            graphChartConfig:
+              metrics:
+                - metricSelector: mysql.statements.count
