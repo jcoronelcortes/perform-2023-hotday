@@ -76,9 +76,33 @@ topology:
 
 Copilot even increases your version number automatically between builds!
 
+## Create configuration
+Your extension is ready to be used. Create a configuration to test it.  
+Go to your tenant, Dynatrace Hub, Manage & upload extensions, click on custom:my.awesome.extension  
+Click Add monitoring configuration.  
+The extension must be signed and the certificate must be deployed on the active gate. Copilot took care of it, so just press Next step.  
+Add device.  
+IP address: 127.0.0.1  
+Port: 1024  
+SNMP version: v2c  
+community string: network/firewall/paloalto-pa-5000  
+Next step  
+Enter a description for your configuration such as "perform config".  
+Press activate
 
+Wait a few minutes. Refresh the screen until the state changes to OK.  
+Your extension is deployed.
 
+## View data
+Go to Observe and explore -> Data explorer.  
+Under metric type uptime to select our new metric.  
+Split by Palo Alto Networks System.  
+Run query.  
+To view the device, hover on the chart and click on view palo alto networks system.  
+Click on properties and tags.  
 
-      
+Congratulations, you have successfully build and deployed your first SNMP extension!  
+
+     
 
 
