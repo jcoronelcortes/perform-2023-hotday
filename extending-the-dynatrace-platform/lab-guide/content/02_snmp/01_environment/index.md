@@ -47,6 +47,8 @@ Copilot saves a lot of time by automating tedious development stages such as SSL
 13. Description, perform
 14. Do you want to distribute to OneAgents and Active gates, select yes
 
+Note: If you need to re-run any steps, use ctrl+shitf+P and search for the relevant step. Type Dynatrace to only return Dynatrace commands such as distribute certificate.
+
 You are ready to write a new extension
 
 
