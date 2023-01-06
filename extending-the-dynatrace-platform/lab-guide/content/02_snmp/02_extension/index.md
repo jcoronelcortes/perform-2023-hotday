@@ -5,6 +5,10 @@ What's required?
 2. certificate
 3. package
 4. deploy
+5. An smnp device to test
+
+Start the test device to generate data.  
+From your desktop, double click the training icon, scripts and run start_snmpsim.bat  
 
 Copilot takes care of most steps!  
 In visual studio code via explorer (icon top left), open extension.yaml and replace the content of the file with the following.
