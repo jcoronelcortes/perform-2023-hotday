@@ -7,7 +7,7 @@ What's required?
 4. deploy
 
 Copilot takes care of most steps!  
-In your explorer, open extension.yaml and replace the content of the file with the following.
+In visual studio code via explorer (icon top left), open extension.yaml and replace the content of the file with the following.
 
 ```yaml
 name: custom:my.awesome.extension
