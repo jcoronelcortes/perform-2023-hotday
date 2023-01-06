@@ -12,7 +12,7 @@
 
 ![](../../assets/images/handson4_2.png)
 
-4. Provide a meaningful name/metric for the SLO. *{ENV}_{APP NAME}_{HoT#}_{ENTITY TYPE}_{TYPE}*
+4. Provide a meaningful name/metric for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
 ```
 SLO Name : Prod - calculateRecommendations - HoT3 - Key Request - Availability

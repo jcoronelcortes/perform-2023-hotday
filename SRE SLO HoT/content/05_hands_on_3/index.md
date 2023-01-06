@@ -22,7 +22,7 @@
 
 ![](../../assets/images/handson3_2.png)
 
-3. Provide a meaningful name/metric for the SLO. *{ENV}_{APP NAME}_{HoT#}_{ENTITY TYPE}_{TYPE}*
+3. Provide a meaningful name/metric for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
 ```
 SLO Name : Prod - checkCreditCard - HoT3 - Key Request - Latency

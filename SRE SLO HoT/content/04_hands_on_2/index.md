@@ -2,9 +2,9 @@
 
 #### Situation: You are a SRE tasked with defining and tracking a SLO for the user experience of the frontend.
 
-1. Under <b>'Digital Experience'</b> on the left-hand menu, find <b>'Web'</b> and navigate to the Applications screen.
+1. Under *Digital Experience* on the left-hand menu, find *Web* and navigate to the Applications screen.
 
-2. You will note the <b>'[Prod] Easytravel'</b>
+2. You will note the *[Prod] Easytravel*
 > - Remember this name, we will be using it later.
 
 ![](../../assets/images/handson2_1.png)
@@ -13,7 +13,7 @@
 
 4. Click the *User Experience* button to populate the metric selector field.
 
-5. Provide a meaningful name/metric for the SLO. *{ENV}_{APP NAME}_{HoT#}_{ENTITY TYPE}_{TYPE}*
+5. Provide a meaningful name/metric for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
 ```
 SLO Name : Prod - Easytravel - HoT2 - Application - Availability

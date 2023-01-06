@@ -11,12 +11,6 @@ During this hands on session, you will learn how to:
 
 Projects used for this session
 - [EasyTravel](https://github.com/Dynatrace/easyTravel-Docker)
-- [JMeter Service](https://github.com/keptn/keptn/tree/master/jmeter-service#workloads)
-- [Keptn](https://keptn.sh/)
-
-Access your Dynatrace environment at www.dynatrace.com and click 'SaaS login'.
-
-Use your HOT session credentials to login to your tenant.
 
 ### Setup
 #### PRE-Deployment
@@ -32,31 +26,19 @@ Use your HOT session credentials to login to your tenant.
 
 > The following permissions are required: </br>
 > - Access problem and event feed, metrics and topology</br>
-> - ExternalSyntheticIntegration</br>
+> - Create and Read synthetic monitors, locations, and nodes</br>
 > - Read configuration</br>
 > - Write Configuration</br>
 
 ![](../../assets/images/pre_deploy_1.png)
 
-3. Retireve the predeploy repo:
+3. In DTU Bastion Host, navigate to the *SRE\_HOT\_PREDEPLOY*
 
 ```
-git clone https://github.com/ajzenuni/sre_hot_predeploy
+cd /home/dtu_training/SRE_HOT_PREDEPLOY/
 ```
 
-4. Navigate to the sre_hot_redeploy
-
-```
-cd sre_hot_predeploy/
-```
-
-5. Adjust permissions of the *deployment.sh*
-
-```
-chmod 777 deployment.sh
-```
-
-6. Execute the predeploy script. (Replace the parameters with your own):
+4. Execute the predeploy script. (Replace the parameters with your own):
 
 ```
 ./deployment.sh --environment-url "https://{your-environment-id}.live.dynatrace.com" --dtu-id "dtulab123456789" --api-token "TOKEN" --email "EMAIL"

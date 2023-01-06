@@ -40,7 +40,7 @@ type(~"CLOUD_APPLICATION~"),entityName.equals(~"easytravel-backend~"))")))
 
 5. Navigate to the Service-level Objectives page and add a new SLO. 
 
-6. Provide a meaningful name/metric for the SLO. *{ENV}_{APP NAME}_{HoT#}_{ENTITY TYPE}_{TYPE}*
+6. Provide a meaningful name/metric for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
 ```
 SLO Name : Prod - Easytravel Backend - HoT7 - Container - Saturation

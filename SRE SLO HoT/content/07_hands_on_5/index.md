@@ -2,7 +2,7 @@
 
 #### You are a SRE tasked with tracking the uptime of your teams' applications and most important workflows from an outside-in view. You should provide an overall perspective as well as availability SLOs for specific applications and application groups.
 
-1. Navigate to the <b>Synthetic</b> page found on your side menu.
+1. Navigate to the *Synthetic* page found on your side menu.
 > - Evaluate the 2 Synthetic Monitors.</br>
 > 1. prod easytravel homepage </br>
 > 2. httpstat 503 </br>
@@ -15,7 +15,7 @@
 
 ![](../../assets/images/handson5_3.png)
 
-4. Provide a meaningful name/metric for the SLO. *{ENV}_{APP NAME}_{HoT#}_{ENTITY TYPE}_{TYPE}*
+4. Provide a meaningful name/metric for the SLO. **{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
 ```
 SLO Name : Prod - Easytravel - HoT5 - Synthetic - Availability
