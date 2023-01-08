@@ -44,7 +44,7 @@ Performance – Is the service stable, fast and able to meet demand?
 
 > - We’ve now entered the Dynatrace SLO configuration wizard.
 
-8. Provide a meaningful name/metric for the SLO. *{ENV}_{APP NAME}_{HoT#}_{ENTITY TYPE}_{TYPE}*
+8. Provide a meaningful name/metric for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
 ```
 SLO Name : Prod - Easytravel - HoT1 - Service - Availability

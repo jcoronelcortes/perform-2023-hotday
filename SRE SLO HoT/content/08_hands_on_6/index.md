@@ -1,63 +1,51 @@
 ## Hands on #6 - Advanced SLO - Synthetic
 
-#### You are investigating an issue with an ecommerce site. To track the current state, you create a test transaction (clickpath) to monitor the process. Based on the transaction you define two an SLO proving the availability for the shopping cart vs. checkout page.
+#### You are investigating an issue with an ecommerce site. To track the current state, you create a test transaction (clickpath) to monitor the process. Based on the transaction you define two an SLO proving the performance of the checkout page.
 
-1. Start by creating a browser monitor. Switch to script mode.
+1. Navigate to the Service-level Objectives page and add a new SLO. 
 
-![](../../assets/images/ex3im6.png)
+![](../../assets/images/handson6_1.png)
 
-3. **Paste** the [provided script](../../assets/Addtocart.txt) and rename the monitor to 'Amazon Add to Cart'. Add one or two locations and set the frequency to the lowest value to start collecting data ASAP.
-4. **Paste** the [provided script](../../assets/GoToCart.txt) and rename the monitor to 'Amazon Go to Cart'. Use similar locations and frequency settings to the test above.
+2. Provide a meaningful name/metric for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
-2. Navigate to the Service-level Objectives page and add a new SLO. 
+```
+SLO Name : Prod - Easytravel - HoT6 - Synthetic - Performance
+SLO Metric : prod_easytravel_hot6_synthetic_performance
+```
 
+3. Set the Metric Selector
+> Goal - measure the performance of the checkout page of, where checkouts take less than or equal to 2 seconds. </br>
+> - SLI = synthetic event action duration paritioned with *good* results <= 2000ms or (2 sec).
+
+```
+(builtin:synthetic.browser.event.actionDuration.load:avg:partition("latency",value("good",lt(2000))):splitBy():count:default(0))/(builtin:synthetic.browser.event.actionDuration.load:avg:splitBy():count:default(0))*(100)
+```
 ![](../../assets/images/handson6_2.png)
 
-3. Click the 'Synthetic Availability' button to populate the fields below.
+4. Next, let's set the filters for the SLO.
+> - Time Frame - the evaluation period of SLO.</br>
+> - Entity Selector - the entities from where SLI is calculated. </br>
+
+```
+timeFrame : -30m
+entitySelector : type("SYNTHETIC_TEST_STEP"),entityName(click on "Finish")
+```
 
 ![](../../assets/images/handson6_3.png)
 
-4. Provide a meaningful name/metric for the SLO. *{ENV}_{APP NAME}_{HoT#}_{ENTITY TYPE}_{TYPE}*
+5. Next, let's set our SLO target.
 
 ```
-SLO Name : Prod - Easytravel - HoT5 - Synthetic - Availability
-SLO Metric : prod_easytravel_hot5_synthetic_availability
+Target - 85.0
+Warning - 90.0
 ```
 
 ![](../../assets/images/handson6_4.png)
 
+6. Finally, preview the SLO and hit 'Create'
 
-5. Next, let's set the filters for the SLO.
-> - Time Frame - the evaluation period of SLO. *last 30 minutes* </br>
-> - Entity Selector - the entities from where SLI is calculated. *easytravel tag*</br>
+7. Navigate to *Dashboards* and identify the following dashboard : *Perform 2023 HoT*
 
-```
-timeFrame : -30m
-entitySelector : type("SYNTHETIC_TEST"),tag(easytravel-advanced)
-```
+8. Edit the SLO tile of the current Hands-On, and select the SLO we just created: *Prod - Easytravel - HoT6 - Synthetic - Performance*
 
 ![](../../assets/images/handson6_5.png)
-
-6. Next, let's set our SLO target.
-> #### *Step 7 of the SLO Framework* </br>
-
-```
-Target - 95.0
-Warning - 97.5
-```
-
-![](../../assets/images/handson6_6.png)
-
-7. Finally, preview the SLO and hit 'Create'
-
-8. Navigate to *Dashboards* and identify the following dashboard : *Perform 2023 HoT*
-
-9. Edit the SLO tile of the current Hands-On, and select the SLO we just created: *Prod - Easytravel - HoT6 - Synthetic - Availability*
-
-
-
-6. Dynatrace does not offer an out of the box availability metric for synthetic events (steps). So, we add the following:
-
-``
-(builtin:synthetic.browser.event.success)/(builtin:synthetic.browser.event.total)*(100):(splitBy())
-``
