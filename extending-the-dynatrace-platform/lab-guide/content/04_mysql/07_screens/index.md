@@ -114,3 +114,61 @@ The screen will now look like this:
 Note that you can also add columns for the properties and any other metrics you want to display.
 
 ![mysql-08-screens-list.png](../../../assets/images/mysql-08-screens-list.png)
+
+### Entity Detail Screens
+
+Another type of screen is the detail screen.  
+This is what the user sees when they drilldown to a specific entity.  
+
+Let's create a detail screen for our `mysql:instance` entity.  
+First, add `detailsSettings`  on the same level as `listSettings` in our screen definition.  A `<TAB>` should autocomplete the fields for us.  
+Change `autoGenerate` under layout to `false` and add a card of type `CHART_GROUP` with the key `mysql-charts`.
+
+
+```yaml
+    detailsSettings:
+      staticContent:
+        showProblems: true
+        showProperties: true
+        showTags: true
+        showGlobalFilter: true
+        showAddTag: true
+      layout:
+        autoGenerate: false
+        cards:
+          - type: CHART_GROUP
+            key: mysql-charts
+```
+
+Then add a `chartsCards` element on the same level as `entitiesListCards` and add a card with the key `mysql-charts`.  
+We want:
+
+* 2 possible charts visibile
+* Hide empty charts
+* One chart called `Statements`
+  * Metric `mysql.statements.count` split by `statement_type`
+  * Stacked
+  * Column chart
+  
+
+```yaml
+    chartsCards:
+      - key: mysql-charts
+        numberOfVisibleCharts: 2
+        displayName: MySQL Charts
+        hideEmptyCharts: true
+        charts:
+          - displayName: Statements
+            visualizationType: GRAPH_CHART
+            graphChartConfig:
+              stacked: true
+              metrics:
+                - metricSelector: mysql.statements.count:splitBy(statement_type)
+                  visualization:
+                    seriesType: COLUMN
+```
+
+This can be repeated several times if you have a lot of metrics to show on the screen.  
+This config will generate a screen like so:
+
+![mysql-09-screens-details.png](../../../assets/images/mysql-09-screens-details.png)
