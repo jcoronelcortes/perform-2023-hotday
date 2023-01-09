@@ -1,6 +1,6 @@
 {
   "dashboardMetadata": {
-    "name": "MySQL Overview",
+    "name": "Extension Overview",
     "shared": true,
     "owner": "Dynatrace",
     "tags": [
@@ -23,7 +23,7 @@
         "height": 76
       },
       "tileFilter": {},
-      "markdown": "# MySQL Monitoring Overview\n***"
+      "markdown": "# Extension Monitoring Overview\n***"
     },
     {
       "name": "Image",
@@ -80,6 +80,131 @@
       "markdown": "## MySQL Instance"
     },
     { 
+      "name": "MySQL Instance", 
+      "tileType": "DATA_EXPLORER", 
+      "configured": true, 
+      "bounds": { 
+        "top": 190,
+        "left": 0,
+        "width": 152,
+        "height": 152
+      }, 
+      "tileFilter": {}, 
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "timeAggregation": "DEFAULT",
+          "metricSelector": "mysql.statements.count:splitBy(\"dt.entity.mysql:instance\"):auto:splitBy():count",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "COLUMN"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [ "A" ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {},
+        "singleValueSettings": {
+          "showSparkLine": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              { "color": "#7dc540" },
+              { "color": "#f5d30f" },
+              { "color": "#dc172a" }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {},
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {}
+      }
+    },
+    {
+      "name": "Statements",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 418,
+        "left": 570,
+        "width": 418,
+        "height": 266
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "mysql.statements.count",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": ["dt.entity.mysql:instance"],
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {"color": "DEFAULT"},
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {"visible": true},
+          "yAxes": []
+        },
+        "heatmapSettings": {},
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {"color": "#7dc540"},
+              {"color": "#f5d30f"},
+              {"color": "#dc172a"}
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {},
+        "graphChartSettings": {"connectNulls": false},
+        "honeycombSettings": {}
+      }
+    },
+    { 
       "name": "MySQL Instance",
       "tileType": "DATA_EXPLORER",
       "configured": true,
@@ -92,7 +217,14 @@
       "tileFilter": {},
       "customName": "Table",
       "queries": [
-        
+                {
+          "id": "A",
+          "metric": "mysql.statements.count",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [ "dt.entity.mysql:instance" ],
+          "enabled": true
+        }
       ],
       "visualConfig": {
         "type": "TABLE",
