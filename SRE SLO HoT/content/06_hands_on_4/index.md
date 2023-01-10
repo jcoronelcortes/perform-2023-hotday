@@ -1,4 +1,4 @@
-## Hands on #3 - Advanced SLO - key request - CalculateRecommendations
+## Hands on #4 - Advanced SLO - key request - CalculateRecommendations
 
 #### The business and dev teams have recently introduced a new function in the application that calculates travel recrecommendations for customers visiting the website. The business has determined that they want a separate, and granular SLO to track this single function, instead of the service overall (which is what we just did in the previous hands on). They want to track an SLO with a .2% error budget.In order to do this, we’ll need to: 
 #### Create 2 custom metrics for our new request: Total count, and success count
