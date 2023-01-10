@@ -5,24 +5,26 @@
 
 ### We'll utilize the *7-steps SLO Framework* to establish an effective SLO for understanding realiability of application.
 
+1. Open conversation with all stakeholders; DevOps, SREs, Developers, and App Owners, about the terminology & app architecture. 
+> #### *Step 1 of SLO Framework*
 
-1. In a new browser tab, open the Easytravel App. Perform a couple interactions.
+2. In a new browser tab, open the Easytravel App. Perform a couple interactions.
 > - Easytravel URL can be found in the *DTU event > EKS Bastion Host > Open Terminal*. Should look like - http://easytravel.dtulabID.dynatrace.training/</br>
 > - Identify the type of customer groups *Frontend Service* services. </br>
 > #### *Step 2 of SLO Framework*
 
-2. In a new browser tab, navigate to Dynatrace environment and access *Services*. 
+3. In a new browser tab, navigate to Dynatrace environment and access *Services*. 
 
 ![](../../assets/images/handson1_2.png)
 
-3. Navigate to the nginx service *:80*, then click on *View Service Flow*. 
+4. Navigate to the nginx service *:80*, then click on *View Service Flow*. 
 > - This is the transaction flow processed by the *Frontend Service* </br>
 > - We'll use this to identify services. </br>
 > #### *Step 3 & 4 of the SLO Framework*
 
 ![](../../assets/images/handson1_3.png)
 
-4. Next, Navigate back to the Easytravel App, and focus on the *Your Journey* Feature.
+5. Next, Navigate back to the Easytravel App, and focus on the *Your Journey* Feature.
 > - Key function of application. </br>
 > #### *Step 5 of the SLO Framework* </br>
 > - Apply the following statements to the *Your Journey* feature: 
@@ -37,7 +39,7 @@ Performance – Is the service stable, fast and able to meet demand?
 
 > - This will help identify our focused indicator.
 
-5. Next, Navigate back to Dynatrace environment and access Service-level Objectives.
+6. Next, Navigate back to Dynatrace environment and access Service-level Objectives.
 7. Click on add new SLO
 
 ![](../../assets/images/handson1_1.png)
@@ -83,13 +85,13 @@ Warning - 97.5
 
 ![](../../assets/images/handson1_6.png)
 
-13. Finally, preview the SLO and hit 'Create'
+12. Finally, preview the SLO and hit 'Create'
 
 ![](../../assets/images/handson1_7.png)
 
-14. Navigate to *Dashboards* and identify the following dashboard : *Perform 2023 HoT*
+13. Navigate to *Dashboards* and identify the following dashboard : *Perform 2023 HoT*
 
-15. Edit the SLO tile of the current Hands-On, and select the SLO we just created: *Prod - Easytravel - HoT1 - Service - Availability*
+14. Edit the SLO tile of the current Hands-On, and select the SLO we just created: *Prod - Easytravel - HoT1 - Service - Availability*
 
 ![](../../assets/images/handson1_9.png)
 
