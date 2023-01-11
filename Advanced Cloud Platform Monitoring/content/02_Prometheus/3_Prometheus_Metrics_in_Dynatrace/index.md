@@ -2,7 +2,7 @@
 In this step, we will annotate the pods to start pushing the prometheus metrics to Dynatrace.
 Identify the mongodb-exporter name by running the following command:
 ```
-$ kubectl get pods -n model-app
+$ kubectl get pods -n samplebank
 ```
 ![image](../../../assets/images/identify_mongo_exporter.png)
 
@@ -10,11 +10,11 @@ Keep the exporter name handy in a notepad which you can refer to later. Further,
 
 Copy the mongodb-exporter pod name and annotate them using command below. **Replace** the mongodb-exporter string with the actual pod name.
 ```bash
-$ kubectl annotate pod mongodb-exporter metrics.dynatrace.com/scrape=true --namespace=model-app
+$ kubectl annotate pod mongodb-exporter metrics.dynatrace.com/scrape=true --namespace=samplebank
 
-$ kubectl annotate pod mongodb-exporter metrics.dynatrace.com/port=9216 --namespace=model-app
+$ kubectl annotate pod mongodb-exporter metrics.dynatrace.com/port=9216 --namespace=samplebank
 
-$ kubectl annotate pod mongodb-exporter metrics.dynatrace.com/secure=false --namespace=model-app
+$ kubectl annotate pod mongodb-exporter metrics.dynatrace.com/secure=false --namespace=samplebank
 ```
 
 Once annotated, the metrics will now be pushed to dynatrace too. To view these metrics, navigate to **Metrics** screen within Dynatrace tenant.
@@ -38,7 +38,7 @@ metrics.dynatrace.com/filter: |
 
 Let us annotate our mongodb exporter pod to limit collection of say two metrics "mongodb_network_metrics_num_requests_total, mongodb_asserts_total". To do so, run the command as below:
 ```bash
-$ kubectl edit pod <pod_name> -n model-app
+$ kubectl edit pod <pod_name> -n samplebank
 ```
 
 Replace pod_name with the mongodb-exporter copied in the ealier steps. Further, add the below section in the manifest file:

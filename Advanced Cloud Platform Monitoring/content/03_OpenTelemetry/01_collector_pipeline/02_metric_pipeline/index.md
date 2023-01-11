@@ -8,11 +8,11 @@ In this lab you'll learn how to :
 
 ### Step 1: Update the collector Pipeline
  A. Look at  the OpenTelemetryCollector template
-   In the Bastion host, go to o the folder : `exercice/01_collector/metrics`
+   In the Bastion host, go to o the folder : `exercice/02_collector/metrics`
     
    ```bash
-   (bastion)$ cd ~/ACE_OTEL_SCRIPT
-   (bastion)$ cd exercice/01_collector/metrics`
+   (bastion)$ cd ~/HOT_DAY_SCRIPT
+   (bastion)$ cd exercice/02_collector/metrics`
    (bastion)$ cat openTelemetry-manifest.yaml
    ```
 

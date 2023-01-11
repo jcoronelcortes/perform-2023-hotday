@@ -14,7 +14,7 @@ Follow these steps to configure the monitor:
 1. Name this HTTP monitor: Prometheus-setup-1
 1. Click “Add HTTP request”
 1. Request type: HTTP request
-1. HTTP Request URL: AWS-IP:30005/login - Replace the AWS-IP with your machine IP
+1. HTTP Request URL: AWS-IP:3000/login - Replace the AWS-IP with your machine IP
 1. Name: Sample-app
 1. Click on “Add HTTP request”
 

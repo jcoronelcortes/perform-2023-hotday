@@ -9,10 +9,10 @@ In this lab you'll learn how to :
 
 A. Look at  the OpenTelemtryCollector template
 
-In the Bastion host, go to the folder : `exercice/01_collector/trace`
+In the Bastion host, go to the folder : `exercice/02_collector/trace`
    ```bash
-   (bastion)$ cd ~/ACE_OTEL_SCRIPT
-   (bastion)$ cd exercice/01_collector/trace
+   (bastion)$ cd ~/HOT_DAY_SCRIPT
+   (bastion)$ cd exercice/02_collector/trace
    (bastion)$ cat openTelemetry-manifest.yaml
    ```
 This collector is currently receiving traces and exporting it directly to the logging exporter.

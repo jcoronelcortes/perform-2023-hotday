@@ -55,6 +55,8 @@ In the bastion host the cluster Output plugin as already been configured.
        tls:
          verify: false
 ```
+( TENANT_TO_REPLACE will have the url of your own Dynatrace tenant)
+
 To send lobs to dynatrace , we need :
 - use the json_stream format
 - specify the key holding the date
