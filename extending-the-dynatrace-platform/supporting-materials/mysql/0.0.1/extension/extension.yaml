@@ -1,9 +1,8 @@
 name: custom:mysql-queries
-version: 0.0.35
+version: 0.0.1
 minDynatraceVersion: 1.256.0
 author:
-  name: David Lopes
-
+  name: Dynatrace User
 sqlMySql:
   - group: Global Status
     query: |
@@ -16,7 +15,7 @@ sqlMySql:
                           'statement/sql/delete' 
                           )
     metrics:
-      - key: mysql.statements.count 
+      - key: mysql.statements.count
         value: col:count_star
         type: Count
     dimensions:
@@ -56,7 +55,6 @@ screens:
         cards:
           - type: ENTITIES_LIST
             key: mysqlinstance_list_self
-    
     detailsSettings:
       staticContent:
         showProblems: true
@@ -69,39 +67,34 @@ screens:
         cards:
           - type: CHART_GROUP
             key: mysql-charts
-      
-    
-    
     entitiesListCards:
       - key: mysqlinstance_list_self
-        pageSize: 15 
+        pageSize: 15
         displayName: List of MySQL Instances
         displayCharts: false
         enableDetailsExpandability: true
         numberOfVisibleCharts: 3
         displayIcons: true
         hideEmptyCharts: true
-        filtering: 
-              entityFilters:
-                - displayName: Filter by
-                  filters:
-                    - type: entityName
-                      displayName: Name
-                      freeText: true
-                      modifier: contains
-                      defaultSearch: true
-                      distinct: false
-                      entityTypes:
-                        - mysql:instance
+        filtering:
+          entityFilters:
+            - displayName: Filter by
+              filters:
+                - type: entityName
+                  displayName: Name
+                  freeText: true
+                  modifier: contains
+                  defaultSearch: true
+                  distinct: false
+                  entityTypes:
+                    - mysql:instance
         columns: []
-        charts: 
+        charts:
           - displayName: Chart
             visualizationType: GRAPH_CHART
             graphChartConfig:
               metrics:
                 - metricSelector: mysql.statements.count
-           
-  
     chartsCards:
       - key: mysql-charts
         numberOfVisibleCharts: 2
@@ -115,8 +108,6 @@ screens:
               metrics:
                 - metricSelector: mysql.statements.count:splitBy(statement_type)
                   visualization:
-                    seriesType: COLUMN 
-                  
-
-
-
+                    seriesType: COLUMN
+alerts:
+  - path: alerts/alert-001-mysql-too-many-statements.json

@@ -1,10 +1,16 @@
 ## MySQL Extension
 
-In this exercise, we will create a SQL Extension using Extensions 2.0
+In this exercise, we will create a `SQL Extension` using the `Extensions 2.0 framework` from scratch.
 
-At the end of this lab, we will have:
+At the end of this lab, we will have a fully fledged MySQL extension with:
 
-1. A built SQL extension
-2. A monitoring configuration in Dynatrace
-3. Query results displayed on customized screens
-4. A packaged and ready to distribute version
+* Customized entities (topology)
+* Entities screens (list and detail)
+* A dashboard to help users find our metrics and entities
+* Included alerts
+* Metrics metadata
+
+
+Users can easily import and activate this extension to their Dynatrace environment. 
+
+
