@@ -7,7 +7,15 @@ In this lab you'll learn how to :
 
 ### Step 1: Enrich the logs with Kubernetes Labels
 
-A. Look at  the Fluentbit configuration
+A. Go to the folder of the exercice :
+
+   In the Bastion host, go to o the folder : `exercice/04_Fluent`
+
+   ```bash
+   (bastion)$ cd ~/HOT_DAY_SCRIPT
+   (bastion)$ cd exercice/04_Fluent
+   
+B. Look at  the Fluentbit configuration
 
 The cluster has already Fluentbit agents running in the cluster.
 Let's first have a look a the various fluenbit objects deployed in the cluster
@@ -21,7 +29,7 @@ With the desplayed named, let's describe to see the configuration of this object
 This object is defining that a fluentbit daemonset will be deployed in the namespace `kubesphere-logging-system` of the cluster
 This object map to a specific configuration object : `fluent-bit-config`
 
-B. Look at the ClusterFluentBitConfig
+C. Look at the ClusterFluentBitConfig
    ```bash
    kubectl describe ClusterFluentBitConfig.fluentbit.fluent.io fluent-bit-config
    ```
@@ -41,7 +49,7 @@ B. Look at the ClusterFluentBitConfig
   ```
 This object will define label that attach the ClusterInput objects ( to collect logs ) , ClusterFilter objects and the ClusterOutput objects of our pipeline.
 
-C. Look at the ClusterInput
+D. Look at the ClusterInput
    
    ```bash
    kubectl get CluserInput.fluentbit.fluent.io
@@ -64,7 +72,7 @@ C. Look at the ClusterInput
      db: /fluent-bit/tail/pos.db
      dbSync: Normal
    ```
-D. Look at the ClusterOutput
+E. Look at the ClusterOutput
 
   ```bash
    kubectl get CluserOutput.fluentbit.fluent.io
@@ -77,7 +85,7 @@ D. Look at the ClusterOutput
    ```
    Fluentbit is currently sending the collected logs in the stdout of the Fluentbit Pods.
 
-E. Look at the logs of the fluentbit Pods
+F. Look at the logs of the fluentbit Pods
   ```bash
    kubectl get pods -n kubesphere-logging-system
    ```
