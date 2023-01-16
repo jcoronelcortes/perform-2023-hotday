@@ -23,7 +23,7 @@ kubectl describe service -n samplebank mongo
 
 Now, let us create mongo-exporter that will collect mongodb metrics. To do so, run the mongodb-exporter pod in your kubernetes cluster by executing the command (after replacing cluster-ip in the command with the IP we identified earlier).
 ```sh
-helm install prometheus-mongo prometheus-community/prometheus-mongodb-exporter --set mongodb.uri=mongodb://d1prumworkshop:password@clusterip:27017/?authSource=admin,serviceMonitor.enabled=false --set-string podAnnotations."prometheus.io/scrape"=true  --set-string podAnnotations."prometheus.io/port"=9108 --namespace=model-app
+helm install prometheus-mongo prometheus-community/prometheus-mongodb-exporter --set mongodb.uri=mongodb://d1prumworkshop:password@mongo.samplebank.svc.cluster.local:27017/?authSource=admin,serviceMonitor.enabled=false --set-string podAnnotations."prometheus.io/scrape"=true  --set-string podAnnotations."prometheus.io/port"=9108 --namespace=model-app
 ```
 
 Replace the **cluster-ip** with the IP listed from our earlier step before running the command.
