@@ -1,4 +1,4 @@
-## Enable the EEC 
+## Introduction 
 The EEC executes our EF2.0 extensions but it isn't enabled by default.  
 
 1. Go to your Dynatrace tenant. Settings -> preferences -> Extension execution controller  

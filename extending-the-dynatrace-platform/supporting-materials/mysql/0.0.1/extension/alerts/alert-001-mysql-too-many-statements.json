@@ -1,0 +1,22 @@
+{
+  "id": "820bbdc4-dfe4-498d-b381-eebf61fcf00d",
+  "metricSelector": "mysql.statements.count",
+  "name": "MySQL - Too many statements",
+  "description": "The {metricname} value was {alert_condition} normal behavior. Dimensions: {dims}",
+  "enabled": true,
+  "monitoringStrategy": {
+    "type": "STATIC_THRESHOLD",
+    "violatingSamples": 3,
+    "samples": 5,
+    "dealertingSamples": 5,
+    "alertCondition": "ABOVE",
+    "alertingOnMissingData": false,
+    "threshold": 80
+  },
+  "alertCondition": "ABOVE",
+  "samples": 5,
+  "violatingSamples": 3,
+  "dealertingSamples": 5,
+  "threshold": 80,
+  "eventType": "CUSTOM_ALERT"
+}
