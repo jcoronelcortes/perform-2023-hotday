@@ -45,11 +45,11 @@ export default function HomeView({ props }) {
       try {
         /*let dtAPI = */new DynatraceTenantAPI({ url: tenant, token: token });
         setValidationMessage("You are connected to your Dynatrace instance!");
-        setTextColor('text-success')
+        setTextColor('text-success fs-4')
       } catch (e) {
         console.log('e:', e)
         setValidationMessage(e);
-        setTextColor('text-danger')
+        setTextColor('text-danger fs-4')
       } finally {
         if (
           validationMessage === "You are connected to your Dynatrace instance!"
