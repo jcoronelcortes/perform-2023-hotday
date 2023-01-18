@@ -6,9 +6,9 @@ In the Bastion host, go to the folder : `exercice/01_Prometheus`
    (bastion)$ cd ~/HOT_DAY_SCRIPT
    (bastion)$ cd exercice/01_Prometheus
    ```
-Run the file as displayed below:
+Run the following deployment to run a new K6 test:
 ```sh
-python3 simulate-alert.py AWS-IP 3000
+kubectl apply -f loadgenerator.yaml -n samplebank
 ```
 
 * **Note**: To run this file you will need to replace the AWS-IP with your public-IP.
