@@ -1,0 +1,67 @@
+{
+  "entityId": "SYNTHETIC_TEST-41C3C6D6CD52E6E7",
+  "name": "Google",
+  "frequencyMin": 15,
+  "enabled": true,
+  "type": "BROWSER",
+  "createdFrom": "GUI",
+  "script": {
+    "type": "availability",
+    "version": "1.0",
+    "configuration": {
+      "device": {
+        "deviceName": "Desktop",
+        "orientation": "landscape"
+      },
+      "chromiumStartupFlags": {
+        "disable-web-security": false
+      }
+    },
+    "events": [
+      {
+        "type": "navigate",
+        "description": "Loading of \"www.google.com\"",
+        "url": "http://www.google.com",
+        "wait": {
+          "waitFor": "page_complete"
+        }
+      }
+    ]
+  },
+  "locations": [
+    "GEOLOCATION-9999453BE4BDB3CD"
+  ],
+  "anomalyDetection": {
+    "outageHandling": {
+      "globalOutage": true,
+      "globalOutagePolicy": {
+        "consecutiveRuns": 1
+      },
+      "localOutage": false,
+      "localOutagePolicy": {
+        "affectedLocations": null,
+        "consecutiveRuns": null
+      },
+      "retryOnError": true
+    },
+    "loadingTimeThresholds": {
+      "enabled": true,
+      "thresholds": []
+    }
+  },
+  "tags": [],
+  "managementZones": [],
+  "automaticallyAssignedApps": [],
+  "manuallyAssignedApps": [],
+  "keyPerformanceMetrics": {
+    "loadActionKpm": "VISUALLY_COMPLETE",
+    "xhrActionKpm": "VISUALLY_COMPLETE"
+  },
+  "events": [
+    {
+      "entityId": "SYNTHETIC_TEST_STEP-FA6E6643F2E39841",
+      "name": "Loading of \"www.google.com\"",
+      "sequenceNumber": 1
+    }
+  ]
+}

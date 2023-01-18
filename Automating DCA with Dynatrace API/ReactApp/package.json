@@ -1,0 +1,26 @@
+{
+  "name": "dt-api-cleanup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "nodemon server/app.js",
+    "develop": "concurrently \"cd server && nodemon app.js\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build",
+    "script": "node script/script.js",
+    "token": "node script/generateToken.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "@dt-esa/dynatrace-api-client": "2.0.3",
+    "@dt-esa/platform-constants": "^1.2.1",
+    "dotenv": "^16.0.3",
+    "uuid": "^9.0.0"
+  }
+}
