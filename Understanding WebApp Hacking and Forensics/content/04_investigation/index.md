@@ -6,7 +6,7 @@ Modify or add new commands to these example queries to perform your investigatio
 #### access log:
 ```
 fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
-| filter dt.entity.host == "HOST-C3A8FFC2BEA1D40A"
+| filter dt.entity.host == "HOST-D866B6DD5365DD5B"
 | filter contains(log.source, "localhost_access_log")
 | parse content, "IPADDR:client_ip LD HTTPDATE:event_time LD DQS LD DQS ' ' DQS ' ' LD:session_id EOS"
 | fields event_time, client_ip, session_id, content
@@ -16,7 +16,7 @@ fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
 #### web application log:
 ```
 fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
-| filter dt.entity.host == "HOST-C3A8FFC2BEA1D40A"
+| filter dt.entity.host == "HOST-D866B6DD5365DD5B"
 | filter contains(log.source, "insecure-bank-webapp.log")
 | parse content, "'[' TIMESTAMP('dd/MMM/yyyy:HH:mm:ss.S'):event_time LD '} - ' LD:session_id ' '"
 | fields event_time, content
@@ -26,7 +26,7 @@ fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
 #### database log:
 ```
 fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
-| filter dt.entity.host == "HOST-C3A8FFC2BEA1D40A"
+| filter dt.entity.host == "HOST-D866B6DD5365DD5B"
 | filter contains(log.source, "insecure-bank.sql.log")
 | parse content, "TIMESTAMP('yyyy-MM-dd HH:mm:ss.S'):event_time ' 3 ' LD:statement"
 | fields event_time, statement
@@ -152,7 +152,7 @@ Quick intro to Linux auditd logs:
 Execute following query:
 ```
 fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
-| filter contains(log.source,"audit") AND matchesValue(dt.entity.host, "HOST-C3A8FFC2BEA1D40A")
+| filter contains(log.source,"audit") AND matchesValue(dt.entity.host, "HOST-D866B6DD5365DD5B")
 | parse content, "
    'type=' LD:event_type ' '
    'msg=audit(' TIMESTAMP('s.S'):event_time ':' INT:id '):' ' '?
@@ -169,7 +169,7 @@ fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
          cmd=event_attr[comm], exe=event_attr[exe]
          ,content
 | filter event_type=="SYSCALL"
-| filter in(ppid,"575137") //insecure-bank java process id
+| filter in(ppid,"36603") //insecure-bank java process id
 | sort id, event_time
 ```
 
@@ -180,7 +180,7 @@ executing command `sh`.
 To see more details of each executed command, run following query:
 ```
 fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
-| filter contains(log.source,"audit") AND matchesValue(dt.entity.host, "HOST-C3A8FFC2BEA1D40A")
+| filter contains(log.source,"audit") AND matchesValue(dt.entity.host, "HOST-D866B6DD5365DD5B")
 | parse content, "'type=' LD:event_type ' ' 'msg=audit(' TIMESTAMP('s.S'):event_time ':' INT:id"
 | fields event_time, id, content
 | filter in(id, ...) //paste here id’s from previous query
