@@ -4,7 +4,7 @@ We will now create a new maintenance window using the tagging we just created in
 
 #### In Dynatrace, using the left navigation menu find Settings under Manage section
 
-- Manage  - Settings
+- Navigate to Manage  - Settings
 
  ```bash
    Action: Look at the "Settings" page
@@ -19,7 +19,7 @@ We will now create a new maintenance window using the tagging we just created in
 
 Tags can also be utilized for maintenance windows – these are typically planned periods of system downtime during which your DevOps team can perform any maintenance and system upgrades out of peak traffic hours​
 
-Add an maintenance window that occur every Friday, 04:00-04:30 to detect problems and not alert​ using existing tagging rule applied to the easyTrade Broker service 
+- Add an maintenance window that occur every Friday, 04:00-04:30 to detect problems and not alert​ using existing tagging rule applied to the easyTrade Broker service 
 
  ```bash
    Action: Click "Add maintenance window"

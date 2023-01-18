@@ -1,4 +1,4 @@
-## Create a custom chart using the manual tag for Host CPU Usage
+## Custom chart for Host CPU Usage
 
 To create a custom chart you need to use the Data explorer in Dynatrace.
 
@@ -6,7 +6,7 @@ To create a custom chart you need to use the Data explorer in Dynatrace.
 
 Create a custom chart for CPU usage using the manual tag you created in the previous section
 
-- Observe and explore - Data explorer
+- Navigate to Observe and explore - Data explorer
 
  ```bash
    Action: Look at the "Data explorer" page

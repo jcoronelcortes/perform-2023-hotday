@@ -14,7 +14,7 @@ with the correct value from your Dynatrace URL
 
 To start this module select the Environment API v1, it can be found in the profile menu or on the top right of the Dynatrace API Documentation.
 
-### Access tokens  - Time to authenticate
+- Navigate to Access tokens  - Time to authenticate
 
  ```bash
    Action: Click "Authorize"
@@ -22,7 +22,8 @@ To start this module select the Environment API v1, it can be found in the profi
    Action: Click "Authorize"
    Action: Click "Close" to save
    ```
-### API  - GET
+
+- API  - GET
 
 ![tspgdocs](../../assets/images/tspgdocs.png)
 
@@ -35,7 +36,7 @@ The **meIdentifier** field is also known as the Dynatrace entity ID. This is a u
 
 *An example is PROCESS_GROUP-65D65DF2C4E6E488*
 
-For this scenario we will use the ID of the process group named "brokerservice" under the "easyTrade" namespace
+- For this scenario we will use the ID of the process group named "brokerservice" under the "easyTrade" namespace
 You can copy it from the URL in Dynatrace when you are viewing that process group.
  
  *An example URL is:*

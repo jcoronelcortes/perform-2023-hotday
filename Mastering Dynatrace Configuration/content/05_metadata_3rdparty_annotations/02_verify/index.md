@@ -9,16 +9,20 @@ In the commands below you will need to replace
 with the correct values and you will need to remove the quotes once replaced.
 These names can be found in the **Process Group Properties**
 
-In your Bastion terminal let's view the metadata in Kubernetes:
+- In your Bastion terminal let's view the metadata in Kubernetes:
 
  ```bash
    kubectl describe pod "NAME_OF_YOUR_POD" -n "NAMESPACE_OF_YOUR_POD"
+
+   OR use the built-in script:
+
+   sh ~/perform-2023-mastering-dynatrace-configuration/scripts/describe-pod.sh easytrade
    ```
 The contents should look similiar to the following:
 
 ![annotations](../../assets/images/labelsandannotations.png)
 
-The Annotations should match what appears in the Dynatrace
+- The Annotations should match what appears in the Dynatrace
 
 ```bash
    Action: Check Dynatrace values

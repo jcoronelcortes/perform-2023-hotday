@@ -6,7 +6,7 @@ We will now create a new management zone using the tagging we just created in th
 
 #### In Dynatrace, using the left navigation menu find Settings under Manage section
 
-- Manage  - Settings
+- Navigate to Manage  - Settings
 
  ```bash
    Action: Look at the "Settings" page
@@ -19,7 +19,7 @@ We will now create a new management zone using the tagging we just created in th
    Action: Click on "Management zones"
    ```
 
-Add an management zone using existing tagging rule applied to the easyTrade Broker service
+- Add an management zone using existing tagging rule applied to the easyTrade Broker service
 
  ```bash
    Action: Click "Add new management zone"
@@ -45,7 +45,7 @@ Add an management zone using existing tagging rule applied to the easyTrade Brok
 
 In the future, anything tagged with **brokerservice** will fall immediately into the same management zone, which is very powerful for architecting your environment, and controlling who has access to which parts of the data sets​. We call this automation!
 
-Use the automated tagging rule to filter services entities
+- Use the automated tagging rule to filter services entities
 
  ```bash
    Action: Look at the "Services" page

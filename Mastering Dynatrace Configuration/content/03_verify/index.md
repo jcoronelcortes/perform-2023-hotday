@@ -1,4 +1,4 @@
-## Verify Setup of Environment
+## Verify Setup
 
 In this module, you will verify that the setup completed successfully in your training environment. You will use some of what you learned about Kubernetes in this module and you will check connectivity in your Dynatrace UI.
 

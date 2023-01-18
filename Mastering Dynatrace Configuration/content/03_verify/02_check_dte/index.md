@@ -4,17 +4,17 @@ Now that we know the application is running, we need to switch over to Dynatrace
 
 #### Areas in Dynatrace to view from the left navigation menu
 
-- Hosts
+- Navigate to Infrastructure - Hosts
 
  ```bash
    Action: Look at the "Hosts" page
    ```
-- Technologies and processes
+- Navigate to Infrastructure - Technologies and processes
 
  ```bash
    Action: Look at the "Technologies and processes" page
    ```
-- Services
+- Navigate to Application & Microservices - Services
 
  ```bash
    Action: Look at the "Services" page

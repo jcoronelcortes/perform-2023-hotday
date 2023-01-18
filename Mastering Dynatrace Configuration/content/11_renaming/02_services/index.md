@@ -1,10 +1,10 @@
-## Renaming Rules - Process Groups
+## Naming Rules - Services
 
 We will now create a new naming rule for a process group using the tagging we created previously. Let's go back to the settings in Dynatrace.
 
 #### In Dynatrace, using the left navigation menu find Settings under Manage section
 
-- Manage  - Settings
+- Navigate to Manage  - Settings
 
  ```bash
    Action: Look at the "Settings" page
@@ -17,7 +17,13 @@ We will now create a new naming rule for a process group using the tagging we cr
    Action: Click on "Service naming rules"
    ```
 
-Add an renaming rule using **Kubernetes namespace – exists** and a new name format of **K8s | {Service:DetectedName} | {ProcessGroup:KubernetesNamespace}​​**
+- Add an renaming rule using: 
+
+Kubernetes namespace – exists
+  
+and a new name format of:
+
+K8s | {Service:DetectedName} | {ProcessGroup:KubernetesNamespace}​​
 
  ```bash
    Action: Click "Add a new rule"
@@ -32,7 +38,7 @@ Add an renaming rule using **Kubernetes namespace – exists** and a new name fo
    Action: Click "Preview" and compare the names before and after the renaming rule is applied
    ```
 
-After previewing the changes
+- After previewing the changes
 
  ```bash
    Action: Click "Create rule" under the preview list of matching entities
