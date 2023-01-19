@@ -15,7 +15,7 @@ A. Create the log parser for Traefik
 
    In the Bastion host, edit the CluserParser template 
    ```bash
-   vi exercice/03_Fluent/cluster_parser_template.yaml
+   vi exercice/04_Fluent/cluster_parser_template.yaml
    ```
 
    the regexp parser can take several parameters :
@@ -40,7 +40,7 @@ A. Create the log parser for Traefik
 
 B. Type the data
    ```bash
-   vi exercice/03_Fluent/cluster_parser_template.yaml
+   vi exercice/04_Fluent/cluster_parser_template.yaml
    ```
    Add the following lines to:
    - convert the `responsetime` field into integer
@@ -50,7 +50,7 @@ B. Type the data
    ```yaml
    types: request_duration_in_ms:integer
    timeKey: timestamp
-   timeFormat: %d/%b/%Y:%H:%M:%S %z
+   timeFormat: "%d/%b/%Y:%H:%M:%S %z"
    ```
 
    Let's apply this filter and look at the logs of fluentbit:

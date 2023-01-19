@@ -14,7 +14,8 @@ A. Go to the folder of the exercice :
    ```bash
    (bastion)$ cd ~/HOT_DAY_SCRIPT
    (bastion)$ cd exercice/04_Fluent
-   
+   ```
+
 B. Look at  the Fluentbit configuration
 
 The cluster has already Fluentbit agents running in the cluster.

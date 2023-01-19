@@ -66,5 +66,5 @@ To send lobs to dynatrace , we need :
 Let's apply it, and look at the logs in dynatrace.
  
 ```bash
-(bastion)$ kubectl apply -f exercice/03_Fluent/cluster_output_http.yaml
+(bastion)$ kubectl apply -f exercice/04_Fluent/cluster_output_http.yaml
 ```
