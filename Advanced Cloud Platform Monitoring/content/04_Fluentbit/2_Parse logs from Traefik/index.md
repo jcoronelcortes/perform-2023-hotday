@@ -85,43 +85,6 @@ Add the lines underneath to apply our filter on the message field of the logs co
 - parser:
     keyName: message
     parser: kubernetes-parser-traefik
-- kubernetes:
-     kubeURL: https://kubernetes.default.svc:443
-     kubeCAFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-     kubeTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
-     labels: true
-     annotations: true
-- nest:
-    operation: lift
-    nestedUnder: kubernetes
-    addPrefix: kubernetes_
-- nest:
-    operation: lift
-    nestedUnder: kubernetes_labels
-- modify:
-    rules:
-       - remove: stream
-       - remove: kubernetes_container_hash
-       - rename:
-            message: content
-            log: content
-            date: timestamp
-            kubernetes_pod_name: k8s.pod.name
-            kubernetes_namespace_name: k8s.namespace.name
-            kubernetes_pod_id: k8s.pod.uid
-            kubernetes_host: k8s.kubernetes_node
-       - add:
-            k8s.kubernetes.cluster.id: CLUSTER_ID_TOREPLACE
-            k8s.cluster.name: Hotday2023
-- nest:
-    operation: nest
-    wildcard:
-       - kubernetes_*
-    nestUnder: kubernetes
-    removePrefix: kubernetes_
-- modify:
-    rules:
-       - remove: kubernetes
 ```
 Make sure to replace the CLUSTER_ID_TOREPLACE with your cluster id.
 
