@@ -7,7 +7,16 @@ In this lab you'll learn how to :
 
 Fluentbit can parse log content using `Parser`. In fluent operator the parser would be expressed using `ClusterParser`.
 
-A. Create the log parser for Traefik
+A. Enable the access log on Traefik
+   ```shell
+   kubectl edit deployment traefik -n kube-system
+   ```
+   to enable the acess-log in traefik we need to add an args to the container for traefik
+   ```
+   - --accesslog=true
+   ```
+
+B. Create the log parser for Traefik
 
    Traefik log format is standard , if follow the following structure :
    `<remote_IP_address> - <client_user_name_if_available> [<timestamp>] "<request_method> <request_path> <request_protocol>" <origin_server_HTTP_status> <origin_server_content_size> "<request_referrer>" "<request_user_agent>" <number_of_requests_received_since_Traefik_started> "<Traefik_router_name>" "<Traefik_server_URL>" <request_duration_in_ms>ms`
@@ -38,7 +47,7 @@ A. Create the log parser for Traefik
 
    To be able to use this Parser we would need to create a `Clusterfilter` using the operator `parser`
 
-B. Type the data
+C. Type the data
    ```bash
    vi exercice/04_Fluent/cluster_parser_template.yaml
    ```
