@@ -1,10 +1,10 @@
-# Using built-in functions of DQL
+## Using built-in functions of DQL
 
 This lab is designed to review a few hands-on examples of the most common built-in functions of DQL. After building some of these queries we will pin them to a dashboard for future reference.
 
 For a full list of all the available functions check out our [help documents](https://www.dynatrace.com/support/help/how-to-use-dynatrace/log-and-event-processing/log-and-event-processing-functions)
 
-## JSON Parsing
+### JSON Parsing
 
 It is a common occurance that you will need to parse a log event that is formated in JSON. The DQL parse function contains a very convenient to accomplish this to achieve the output to you looking for.
 

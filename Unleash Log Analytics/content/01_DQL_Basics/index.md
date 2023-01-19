@@ -1,4 +1,4 @@
-# Explore the Basics of DQL
+## Explore the Basics of DQL
 
 ### Step 1
 
