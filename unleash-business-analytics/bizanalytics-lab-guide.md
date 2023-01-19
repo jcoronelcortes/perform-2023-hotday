@@ -234,7 +234,6 @@ fetch bizevents
 1. For "Field name", type "amount"
 1. For "Data source", select "Request - Body"
 1. For "Path", type "amount"
-
 1. Click on "Add data field"
 1. For "Field name", type "price"
 1. For "Data source", select "Request - Body"
@@ -274,19 +273,19 @@ fetch bizevents
 1. For "Rule name", type "Calculate revenue"
 1. For "Matcher (DQL)", type `event.type=="asset-purchase"`
 
-###
+### Fields
 1. Under "Transformation fields", click on "Add item"
 1. For "Type", select "double"
 1. For "Name", type "price"
 1. Leave toggles unchanged
 
-###
+### Fields
 1. Under "Transformation fields", click on "Add item"
 1. For "Type", select "double"
 1. For "Name", type "amount"
 1. Leave toggles unchanged
 
-###
+### Processor definition
 1. For "Processor definition", type `FIELDS_ADD(trading_volume:price*amount)`
 
 ## 2) Bucket assignment rule
@@ -296,7 +295,7 @@ fetch bizevents
 1. Click on "Bucket assignment"
 1. Click on "Add rule"
 1. For "Rule name", type "Asset Purchase"
-1. For "Bucket", select "Business events (1 year)"e
+1. For "Bucket", select "Business events (1 year)"
 1. For "Matcher (DQL)", type `event.type=="asset-purchase"`
 
 
