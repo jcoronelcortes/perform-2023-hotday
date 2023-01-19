@@ -1,4 +1,4 @@
-## Metadata - Environment Properties
+## 3rd Party Environment
 
 In this module, you will learn how to use environment properties as metadata in Dynatrace. This extends your knowledge of how Dynatrace uses metadata to expand the monitoring capabilities within Dynatrace and provides more options for any filtering within Dynatrace.
 
