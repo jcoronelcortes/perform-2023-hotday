@@ -4,10 +4,9 @@ To get started with the API you first need to create a security token in Dynatra
 
 #### In Dynatrace, using the left navigation menu find Access tokens under the Manage section
 
-Add a new token, with the **Access problem and event feed, metrics, and topology** scope. Once you can see the token you must save it to a text file for future use as we will not be able to retrieve it once you exit the final screen.
+- Add a new token, with the **Access problem and event feed, metrics, and topology** scope. Once you can see the token you must save it to a text file for future use as we will not be able to retrieve it once you exit the final screen.
 
-### Access tokens  - Manage
-
+Navigate to Manage - Access tokens
 
 ![smartscapeapitoken](../../assets/images/smartscapeapitoken.png)
 
