@@ -40,7 +40,6 @@ In the bastion host the cluster Output plugin as already been configured.
        fluentbit.fluent.io/enabled: "true"
        fluentbit.fluent.io/component: logging
    spec:
-     match: kube.*
      http:
        host: TENANT_TO_REPLACE
        uri: /api/v2/logs/ingest
