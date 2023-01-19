@@ -22,7 +22,7 @@ Using the if function, we expand the day of week to its full form. Note: the sam
 ```
 fetch logs, from:now()-7d, to:now(), scanLimitGBytes:500, samplingRatio:100000
 | fieldsAdd day= formatTimestamp(timestamp,format:"E") // https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html
-| fieldsAdd DayOfWeek=if(day=="Mon","Monday",else:if(day=="Tue","Tuesday",else:if(day=="Wed","Wednesday",else:if(day=="Thr","Thursday",else:if(day=="Fri","Friday",else:if(day=="Sat","Saturday",else:"Sunday"))))))
+| fieldsAdd DayOfWeek=if(day=="Mon","Monday",else:if(day=="Tue","Tuesday",else:if(day=="Wed","Wednesday",else:if(day=="Thu","Thursday",else:if(day=="Fri","Friday",else:if(day=="Sat","Saturday",else:"Sunday"))))))
 | summarize count(),by:{DayOfWeek}
 ```
 <hr/>
