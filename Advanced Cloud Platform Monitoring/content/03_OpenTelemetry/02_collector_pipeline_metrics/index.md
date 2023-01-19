@@ -41,7 +41,7 @@ In this lab you'll learn how to :
            operations:
              - action: add_label
                new_label: K8s.cluster.name 
-               new_value: ACE_RECONNECT
+               new_value: HOTDAY
              - action: add_label
                new_label: k8s.cluster.id
                new_value: <YOUR CLUSTER ID>             
@@ -79,6 +79,6 @@ E. Apply the changes :
 ### Step 2: Look at the produced metrics
 A. In your Dynatrace tenant:
    > 1. Navigate to `Metrics` via Dynatrace Menu
-   > 2. Search for `acereconnect`
+   > 2. Search for `hotday`
    
 
