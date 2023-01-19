@@ -4,7 +4,7 @@
 
 Login to the provided Dynatrace Tenant. Using the left-hand navigation panel, expand 'Observe & Explore' and select 'Logs'.
 
-![Logs & Events Viewer](../../assets/images/Log%20viewer.png)
+![Logs & Events Viewer](../../assets/images/Log_viewer.png)
 
 Once in the advanced mode you'll find the default query producing the content in the table. All DQL queries will begin with a `fetch` for the type of data to query. There will be many fetch options available. To see all available records stored in grail try executing the following:
 
