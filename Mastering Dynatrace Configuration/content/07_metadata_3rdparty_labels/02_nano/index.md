@@ -1,39 +1,19 @@
-## Add additional metadata to easyTrade application via labels
+## Add additional metadata to easytrade application via K8s labels
 
-- In your Bastion terminal, navigate to the following directory:​
-
-```bash
-   cd ~/deploy/easyTrade/manifests​
-   ```
-In this directory you will see deployment files associated with the easyTrade app, we are going to make a change to the file
- 
- - brokerservice.yaml
-
-Using nano, we’ll add some metadata to the brokerservice service via a Label​
-
-- To open the brokerservice.yaml file, we’ll type the following:​
+- In your Bastion terminal, let's apply a new label to the pricingservice.yaml file:​
 
 ```bash
-   nano brokerservice.yaml​
+   sh ~/perform-2023-mastering-dynatrace-configuration/scripts/k8s-label.sh
    ```
+That script updated the pricingservice.yaml file, and added the a new "hands: onTraining" label in the Labels: section
 
-- In the labels section add the following:​
+![pricingservice](../../assets/images/pricingservicev3.png)
 
-```bash
-   template:
-     metadata:
-       labels:
-         app: brokerservice
-         hands: onTraining         
-
-    After adding the above line, press "Ctrl+X" , press "Y" and press "Enter" to save​
-
-   ```
-
-We now need to apply the changes, so we need to trigger Kubernetes to stop our current container and start a new one with our Environment Variable added​
+We need to trigger Kubernetes to stop our current container and start a new one with our Label added​, this will push the changes to Dynatrace.
 
 - To apply the changes, execute:​
 
 ```bash
-    kubectl apply -f brokerservice.yaml​
+    cd ~/deploy/easytrade/manifests/
+    kubectl apply -f pricingservice.yaml
    ```

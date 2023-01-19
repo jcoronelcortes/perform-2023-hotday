@@ -4,5 +4,5 @@ In this module, you will verify that the setup completed successfully in your tr
 
 In this module you will go through the following actions:
 
-1. Test the easyTrade application
+1. Test the easytrade application
 1. Verify Dynatrace is monitoring the application services, hosts, etc.

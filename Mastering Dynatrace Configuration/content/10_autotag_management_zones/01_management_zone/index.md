@@ -19,11 +19,11 @@ We will now create a new management zone using the tagging we just created in th
    Action: Click on "Management zones"
    ```
 
-- Add an management zone using existing tagging rule applied to the easyTrade Broker service
+- Add an management zone using existing tagging rule applied to the easytrade pricing service
 
  ```bash
    Action: Click "Add new management zone"
-   Action: Type "broker" into the "Management zone name" field and leave the "Description" field blank
+   Action: Type "pricing" into the "Management zone name" field and leave the "Description" field blank
    Action: Click "Add a new rule"
    Action: Pick "Monitored entity" from the "Rule type" dropdown list
    Action: In the "Rule applies to" field pick "Services"
@@ -36,20 +36,20 @@ We will now create a new management zone using the tagging we just created in th
 ```bash
    Action: Pick "Service tags" from the "Property" dropdown list
    Action: Pick "tag key equals" from the "Operator" dropdown list
-   Action: Pick "broker" from the "Tag" dropdown list
+   Action: Pick "pricing" from the "Tag" dropdown list
    Action: Toggle on "Apply to underlying hosts of matching services"
    Action: Toggle on "Apply to underlying process groups of matching services"
    Action: Click "Preview" to view the matched entities
    Action: Click "Save changes" on the lower left of your screen to save the new rule
    ```
 
-In the future, anything tagged with **brokerservice** will fall immediately into the same management zone, which is very powerful for architecting your environment, and controlling who has access to which parts of the data sets​. We call this automation!
+In the future, anything tagged with **pricingservice** will fall immediately into the same management zone, which is very powerful for architecting your environment, and controlling who has access to which parts of the data sets​. We call this automation!
 
 - Use the automated tagging rule to filter services entities
 
  ```bash
    Action: Look at the "Services" page
-   Action: Filter by "broker" management zone (filter icon at the top right of the page)
+   Action: Filter by "pricing" management zone (filter icon at the top right of the page)
    ```
 
 **FYI** - It may take a few minutes for your automated tagging rules to propogate, wait a few minutes and try again.

@@ -29,7 +29,7 @@ To begin let's start in your Bastion terminal. Let's make sure we start in the r
 The contents should look similiar to the following:
 
  ```bash
-   "README.md  easyTrade  scripts​"
+   "README.md  easytrade  scripts​"
    ```
 
 Now you have a local copy of the tools required for this training.

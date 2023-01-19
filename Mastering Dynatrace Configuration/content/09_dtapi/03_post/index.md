@@ -20,7 +20,7 @@ For this module we will continue to use the Environment API v1, make sure you ar
    Action: Click on the "POST" api to expand it
    ```
 
-- Again, for this scenario we will use the ID of the process group named "brokerservice" under the "easyTrade" namespace. Remember how we found and used the **meIdentifier** from the previous section, we will use it again so make sure you have it available.
+- Again, for this scenario we will use the ID of the process group named "brokerservice" under the "easytrade" namespace. Remember how we found and used the **meIdentifier** from the previous section, we will use it again so make sure you have it available.
 
 If you don't have it available, you can copy it from the URL in Dynatrace when you are viewing that process group.
 

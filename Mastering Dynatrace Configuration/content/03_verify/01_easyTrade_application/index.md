@@ -1,11 +1,11 @@
-## easyTrade Application
+## easytrade Application
 
-The easyTrade application should already be running in your environment, let's take some time to use our *kubectl* knowledge to get the public IP address of our easyTrade application.
+The easytrade application should already be running in your environment, let's take some time to use our *kubectl* knowledge to get the public IP address of our easytrade application.
 
-- In your Bastion terminal let's list the easyTrade services in Kubernetes:
+- In your Bastion terminal let's list the easytrade services in Kubernetes:
 
  ```bash
-   kubectl get svc -n easyTrade
+   kubectl get svc -n easytrade
 
    OR use the built-in script:
 
@@ -22,7 +22,9 @@ The easyTrade application should already be running in your environment, let's t
  frontendreverseproxy LoadBalancer  172.20.154.224  djks480054kskd-2494.us-west-2.elb.amazonaws.com 80:32731/TCP  12m
  ```
  
- Look for the name **frontendreverseproxy** and the type **LoadBalancer** with an external IP that ends with **elb.amazonaws.com**.  
+ Look for the following:
+ 
+ NAME: frontendreverseproxy, TYPE: LoadBalancer with an EXTERNAL-IP that ends with elb.amazonaws.com  
  
  - Copy the EXTERNAL-IP address and paste in into your browser to test it.
 
@@ -30,7 +32,7 @@ The easyTrade application should already be running in your environment, let's t
    Action: Copy the external IP address and paste into your browser.
    ```
 
-- If you see a Login page it is working properly. You can register a fake account to further test the easyTrade appliction. 
+- If you see a Login page it is working properly. You can register a fake account to further test the easytrade appliction. 
 
  ```bash
    Action: Register a fake account

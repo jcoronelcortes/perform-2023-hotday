@@ -1,30 +1,33 @@
 ## Verify Dynatrace and Kubernetes metadata match
 
-In the commands below you will need to replace 
+First you need to find the metadata in Dynatrace.
 
-- K8S\_CONTAINER\_NAME\_OF\_YOUR\_POD
-- NAME\_OF\_YOUR\_POD
-- NAMESPACE\_OF\_YOUR\_POD
+- Navigate to Infrastructure  - Technologies and processes
 
-with the correct values and you will need to remove the quotes once replaced.
-These names can be found in the **Process Group Properties**
+ ```bash
+   Action: Filter by "Tag", pick "pricing" and "All"
+   Action: Click the "easyTradePricingService.dll pricingservice-*" group
+   Action: Click "Properties and tags" and review the content
+   ```
+
+![tp](../../assets/images/tp.png)
 
 - In your Bastion terminal let's view the metadata in Kubernetes:
 
  ```bash
-   kubectl describe pod "NAME_OF_YOUR_POD" -n "NAMESPACE_OF_YOUR_POD"
+   kubectl -n easytrade describe pod "pricingservice"
 
    OR use the built-in script:
 
-   sh ~/perform-2023-mastering-dynatrace-configuration/scripts/describe-pod.sh easytrade
+   sh ~/perform-2023-mastering-dynatrace-configuration/scripts/describe-pod.sh pricingservice
    ```
+
 The contents should look similiar to the following:
 
 ![annotations](../../assets/images/labelsandannotations.png)
 
-- The Annotations should match what appears in the Dynatrace
+- The Annotations should match what appears in Dynatrace
 
 ```bash
-   Action: Check Dynatrace values
+   Action: Compare Dynatrace values
    ```
-   

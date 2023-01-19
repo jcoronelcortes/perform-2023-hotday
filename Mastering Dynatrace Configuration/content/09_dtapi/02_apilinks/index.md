@@ -2,15 +2,15 @@
 
 To get started testing the API you now need to know how to access it.
 
-- https://YourEnvironmentID.live.dynatrace.com/rest-api-doc/index.jsp
+The easiest way is to click on the Profile icon at the top right of your Dynatrace environment, scroll to the bottom of the menu and click on the "Environment API v1".
 
-In the URL above you will need to replace 
+![dtapienv1](../../assets/images/dtapienv1.png)
 
-- YourEnvironmentID
+Other ways are listed below:
 
-with the correct value from your Dynatrace URL
+https://YourEnvironmentID.live.dynatrace.com/rest-api-doc/index.jsp
 
-#### In Dynatrace, you can also access the API from your profile icon in the top right area.
+In the URL above you will need to replace YourEnvironmentID with the correct value from your Dynatrace URL
 
 To start this module select the Environment API v1, it can be found in the profile menu or on the top right of the Dynatrace API Documentation.
 
@@ -36,7 +36,7 @@ The **meIdentifier** field is also known as the Dynatrace entity ID. This is a u
 
 *An example is PROCESS_GROUP-65D65DF2C4E6E488*
 
-- For this scenario we will use the ID of the process group named "brokerservice" under the "easyTrade" namespace
+- For this scenario we will use the ID of the process group named "pricingservice" under the "easytrade" namespace
 You can copy it from the URL in Dynatrace when you are viewing that process group.
  
  *An example URL is:*

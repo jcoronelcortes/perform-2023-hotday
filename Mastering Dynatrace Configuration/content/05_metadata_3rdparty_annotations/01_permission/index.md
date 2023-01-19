@@ -17,12 +17,6 @@ The contents should look similiar to the following:
 - Now you have created the permissions let's look at the yaml file.
 
 ```bash
-   cat ../easytrade/dynatrace-oneagent-metadata-viewer.yaml
-   ```
-
-- Take time to review the contents of the yaml file
-
-```bash
-   Action: Review the yaml file contents
+   clear; cat ~/perform-2023-mastering-dynatrace-configuration/easytrade/dynatrace-oneagent-metadata-viewer.yaml
    ```
    

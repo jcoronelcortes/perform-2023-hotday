@@ -10,13 +10,13 @@ With our tag that we have propagated to the detected Services​, go ahead and e
    Action: Look at the "Distributed traces" page
    ```
 
-- Filter using "broker" service tag in the **Filter requests** field
+- Filter using "pricing" service tag in the **Filter requests** field
 
  ```bash
-   Action: Filter using Service tag "broker" all
+   Action: Filter using Service tag "pricing" all
    ```
 
-Now you have sorted through the entire environments data, and limited it to the "broker" tag, let's narrow the list using response time > 200ms​
+Now you have sorted through the entire environments data, and limited it to the "pricing" tag, let's narrow the list using response time > 200ms​
 
 - Filter using "response time > 200ms​" in the **Filter requests** field
 
