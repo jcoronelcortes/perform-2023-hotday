@@ -1,4 +1,5 @@
-## Let's create an extension with the SNMP data source.
+## SNMP Extension
+
 
 What's required?  
 1. extension/extension.yaml file

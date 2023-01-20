@@ -40,8 +40,8 @@ Create a file called `config.json` in the `mysql` folder with the contents:
 				"databaseName": null,
 				"authentication": {
 					"scheme": "basic",
-					"username": "root",
-					"password": "root"
+					"username": "dynatrace",
+					"password": "password"
 				}
 			}
 		]
