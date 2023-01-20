@@ -57,7 +57,7 @@ C. Type the data
    - set  the format of the timestamp field
 
    ```yaml
-   types: request_duration_in_ms:integer
+   types: responsetime:integer
    timeKey: timestamp
    timeFormat: "%d/%b/%Y:%H:%M:%S %z"
    ```
@@ -85,6 +85,11 @@ Add the lines underneath to apply our filter on the message field of the logs co
 - parser:
     keyName: message
     parser: kubernetes-parser-traefik
+- modify:
+    rules:
+      - add:
+          content: method path statuscode url ingress
+
 ```
 Make sure to replace the CLUSTER_ID_TOREPLACE with your cluster id.
 
