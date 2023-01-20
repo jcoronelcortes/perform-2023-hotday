@@ -2,7 +2,7 @@
 In this step, we will annotate the pods to start pushing the prometheus metrics to Dynatrace.
 Identify the mongodb-exporter name by running the following command:
 ```
-$ kubectl get deployment -n samplebank
+$ kubectl get pod -n samplebank
 ```
 ![image](../../../assets/images/identify_mongo_exporter.png)
 

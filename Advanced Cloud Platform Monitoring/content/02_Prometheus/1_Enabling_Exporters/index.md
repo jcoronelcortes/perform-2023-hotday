@@ -15,7 +15,23 @@ Once saved, this concludes the setup required on tenant. The activeGate installe
 
 Now, let us create mongo-exporter that will collect mongodb metrics. To do so, run the mongodb-exporter pod in your kubernetes cluster by executing the command 
 ```sh
-helm install prometheus-mongo prometheus-community/prometheus-mongodb-exporter --set mongodb.uri=mongodb://d1prumworkshop:password@mongo.samplebank.svc.cluster.local:27017/?authSource=admin,serviceMonitor.enabled=false -namespace=samplebank
+helm install prometheus-mongo prometheus-community/prometheus-mongodb-exporter --set mongodb.uri=mongodb://d1prumworkshop:password@mongo.samplebank.svc.cluster.local:27017/?authSource=admin,serviceMonitor.enabled=false -n samplebank
 ```
 This helm chart deploy a k8S deployment collecting data from our mongo database in the namespace samplebank.
+
+Now that this exporter is running let's look at the prometheus metrics produced:
+```sh
+kubectl get pods -n samplebank
+```
+You should get the following output :
+![step-3](../../../assets/images/prometheus_exporter.png)
+let's have a look at the metric produce by the exporter pod
+```sh
+kubectl port-forward <POD ID of the exporter> -n samplebank 9216:9216
+```
+in another terminal send the following curl command:
+```sh
+curl http://localhost:9216/metrics
+```
+
 <!-- ------------------------ -->
