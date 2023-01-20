@@ -13,7 +13,7 @@ const generateToken = async () => {
     );
   } else {
     try {
-        const response = await fetch(`${tenant}/api/v1/tokens`, {
+        const response = await fetch(`${tenant}/api/v2/apiTokens`, {
           method: 'post',
           body: JSON.stringify(tokenJson),
           headers: {
@@ -43,6 +43,8 @@ const generateToken = async () => {
             `TENANT=${tenant}` + os.EOL, 
             (err) => (err ? console.log(err) : '')
           );
+        } else {
+          console.log('something went wrong: ', data.error)
         }
       } catch (err) {
         console.error(err);

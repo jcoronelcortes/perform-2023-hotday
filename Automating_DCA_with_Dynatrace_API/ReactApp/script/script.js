@@ -24,7 +24,11 @@ const postMonitor = async (script) => {
   );
 
   const data = await response.json();
-  console.log(`Synthetic monitor ${data.entityId} created successfully`);
+  if (response.status !== 200) {
+    console.log(data.error)
+  } else {
+    console.log(`Synthetic monitor ${data.entityId} created successfully`); 
+  }
 };
 
 const postMgmtZone = async (mzRule) => {
@@ -38,10 +42,14 @@ const postMgmtZone = async (mzRule) => {
   );
 
 const data = await response.json();
-console.log(`Management Zone created successfully. ID is: ${data.id}`);
+if (response.status !== 201) {
+  console.log('data:', data)
+} else {
+  console.log(`Management Zone created successfully. ID is: ${data.id}`);
+}
 };
 
-for (let index = 1; index <= 5; index++) {
+for (let index = 1; index <= 4; index++) {
   //browser monitor creation
   browserMon.name = `HOT script Browser ${uuidv4()}`;
   postMonitor(browserMon);
@@ -50,7 +58,7 @@ for (let index = 1; index <= 5; index++) {
   postMgmtZone(mgmtZoneRule);
 }
 
-for (let index = 1; index <= 5; index++) {
+for (let index = 1; index <= 3; index++) {
   httpMon.name = `HOT script HTTP ${uuidv4()}`;
   httpMonFail.name = `HOT script HTTP Fail ${uuidv4()}`;
   postMonitor(httpMon);
