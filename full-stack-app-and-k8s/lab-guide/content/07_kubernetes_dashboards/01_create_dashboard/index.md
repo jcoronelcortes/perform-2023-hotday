@@ -19,11 +19,11 @@ In this step, we will create our own Kubernetes dashboard using metrics we've se
 
       - Change the dropdown selection at the top right to **Top list**
 
-      ![Template](../../../assets/images/data_explorer_toplist.png)
+![Template](../../../assets/images/data_explorer_toplist.png)
 
       - Select **Pin to dashboard**
 
-      ![Template](../../../assets/images/data_explorer_pin_dashboard.png)
+![Template](../../../assets/images/data_explorer_pin_dashboard.png)
 
 4. **Result**
 
