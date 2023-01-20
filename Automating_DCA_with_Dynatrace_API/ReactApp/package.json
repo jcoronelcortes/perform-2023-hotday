@@ -21,6 +21,7 @@
     "@dt-esa/dynatrace-api-client": "2.0.3",
     "@dt-esa/platform-constants": "^1.2.1",
     "dotenv": "^16.0.3",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "node-fetch": "^2.6.8"
   }
 }

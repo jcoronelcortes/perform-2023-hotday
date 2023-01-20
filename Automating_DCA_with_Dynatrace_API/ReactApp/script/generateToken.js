@@ -5,6 +5,7 @@ const path = './.env';
 const token = ''          /*<--- enter token here */;
 const tenant = ''         /*<--- enter tenant here */;
 let tokenJson = require('./jsonFiles/token/tokenGeneration.json')
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const generateToken = async () => {
   if (fs.existsSync(path)) {

@@ -5,6 +5,7 @@ let mgmtZoneRule = require('./jsonFiles/mgmtZone/mgmtZone.json')
 const { v4: uuidv4 } = require('uuid');
 const dotenv = require('dotenv');
 dotenv.config();
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 
 const headers = {
