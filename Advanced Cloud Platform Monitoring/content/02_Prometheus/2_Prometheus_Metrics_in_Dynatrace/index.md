@@ -18,7 +18,7 @@ $ kubectl annotate pod mongodb-exporter metrics.dynatrace.com/secure=false --nam
 ```
 
 Once annotated, the metrics will now be pushed to dynatrace too. To view these metrics, navigate to **Metrics** screen within Dynatrace tenant.
-![image](../../../assets/images/metrics_screen.png)
+![image-1](../../../assets/images/metrics_screen.png)
 
 By default, all the metrics collected by the annotated exporter(s) will be pushed to Dynatrace. However, you can limit the metrics by annotating the pod with filter key as below:
 ```bash
@@ -51,10 +51,12 @@ metrics.dynatrace.com/filter: |
 ]
 }
 ```
-![image](../../../assets/images/filter-metrics.png)
+![image-2](../../../assets/images/filter-metrics.png)
 
 Once added, press ESC + :wq to quit the editor. The pod would now be annotated with the configured metrics and you will receive **only** these in Dynatrace,thereby, reducing your DDU consumption.
 
 * **Note**: mode supports both **include** and **exclude** keyword. Also, the names accept wild card like (*mongo) or (mongo*) or (*mongo*) should you have multiple metrics with similar text pattern.
 
+In Dynatrace, Go to Metrics and search for `Mongo`
+![image-3](../../../assets/images/prometheus_metric.png)
 <!-- ------------------------ -->
