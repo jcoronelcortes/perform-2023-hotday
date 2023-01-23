@@ -23,10 +23,14 @@ Let's first have a look a the various fluenbit objects deployed in the cluster
    ```bash
    kubectl get  FluentBit.fluentbit.fluent.io -n kubesphere-logging-system
    ```
+![fluentbit fluentbit 01](../../../assets/images/fluenbit_fluentbit.png)
+
 With the desplayed named, let's describe to see the configuration of this object :
    ```bash
-   kubectl describe fluentbit.fluent.io <FluentbitID> -n kubesphere-logging-system
+   kubectl edit FluentBit.fluent.io <Fluentbit naùe> -n kubesphere-logging-system
    ```
+![fluentbit fluentdescribe 01](../../../assets/images/fluentbit_fluent_describe.png)
+
 This object is defining that a fluentbit daemonset will be deployed in the namespace `kubesphere-logging-system` of the cluster
 This object map to a specific configuration object : `fluent-bit-config`
 
@@ -34,6 +38,9 @@ C. Look at the ClusterFluentBitConfig
    ```bash
    kubectl describe ClusterFluentBitConfig.fluentbit.fluent.io fluent-bit-config
    ```
+
+![fluentbit conf 01](../../../assets/images/fluenbit_conf.png)
+
    This object will map the various steps that would be involved in our Log ingest pipeline :
   ```yaml
    service:
@@ -53,13 +60,15 @@ This object will define label that attach the ClusterInput objects ( to collect 
 D. Look at the ClusterInput
    
    ```bash
-   kubectl get CluserInput.fluentbit.fluent.io
+   kubectl get ClusterInput.fluentbit.fluent.io
    ```
-   Describe this object
 
+ ![fluentbit input 01](../../../assets/images/fluenbit_input.png)
+
+   Describe this object
   
    ```bash
-   kubectl describe CluserInput.fluentbit.fluent.io <CLusterinptu Name>
+   kubectl describe ClusterInput.fluentbit.fluent.io <CLusterinptu Name>
    ```
    The clusterinput is currently collecting the logs for our pods with the help of the Tail plugin :
    ```yaml
@@ -68,7 +77,7 @@ D. Look at the ClusterInput
      path: /var/log/containers/*.log
      parser: cri
      refreshIntervalSeconds: 10
-     memBufLimit: 5MB
+     memBufLimit: 10MB
      skipLongLines: true
      db: /fluent-bit/tail/pos.db
      dbSync: Normal
@@ -76,13 +85,15 @@ D. Look at the ClusterInput
 E. Look at the ClusterOutput
 
   ```bash
-   kubectl get CluserOutput.fluentbit.fluent.io
+   kubectl get ClusterOutput.fluentbit.fluent.io
    ```
+
+   ![fluentib_output 01](../../../assets/images/filter-output.png)
+
    Describe this object
 
-
    ```bash
-   kubectl describe CluserOutput.fluentbit.fluent.io <CLusterinptu Name>
+   kubectl describe ClusterOutput.fluentbit.fluent.io <CLusteroutput Name>
    ```
    Fluentbit is currently sending the collected logs in the stdout of the Fluentbit Pods.
 
@@ -90,6 +101,7 @@ F. Look at the logs of the fluentbit Pods
   ```bash
    kubectl get pods -n kubesphere-logging-system
    ```
+![fluenbit sdout 01](../../../assets/images/fluenbit_pod.png)
 
    let's display the logs currently parsed by Fluentbit:
    ```bash
@@ -105,7 +117,7 @@ A. Let's enrich the logs by adding the kubernetes information
    
    Let's add a new Filter step in our current log pipeline.
 
-   in the bastion host , create a there a cluster filter template file located in `exercice/03_Fluent/` let's edit the following file :
+   in the bastion host , create a there a cluster filter template file located in `exercice/04_Fluent/` let's edit the following file :
    ```bash
    vi cluster_filter_template.yaml
    ```

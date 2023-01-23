@@ -41,7 +41,7 @@ In this lab you'll learn how to :
            operations:
              - action: add_label
                new_label: K8s.cluster.name 
-               new_value: HOTDAY
+               new_value: hotday2023
              - action: add_label
                new_label: k8s.cluster.id
                new_value: <YOUR CLUSTER ID>             
@@ -65,11 +65,6 @@ D. Replace the prometheus exporter with the dynatrace exporter
    ```
 
 
-Remember to change it under the processor as well:
-   ```YAML
-    spanmetrics:
-      metrics_exporter: dynatrace
-   ```
 E. Apply the changes :
    
    ```bash

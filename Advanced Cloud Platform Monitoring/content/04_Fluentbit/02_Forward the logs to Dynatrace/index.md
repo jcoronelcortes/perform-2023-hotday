@@ -10,7 +10,7 @@ To be able to throttle everything we would apply it on the logs taged: `kube.*`
 
 In the Bastion host, edit the following file : 
    ```bash
-   vi exercice/03_Fluent/cluster_filter_throttle_filter.yaml
+   vi exercice/04_Fluent/cluster_filter_throttle_filter.yaml
    ```
 The Dynatrace API limits the number of logs per ingest API call to 1000.
 Therefore we will add the `throttle` operator that will allow us to bach our logs.
@@ -26,7 +26,7 @@ Add the following lines :
 
 Let's apply this new CLusterFilter:
   ```bash
-   kubectl apply -f exercice/03_Fluent/cluster_filter_throttle_filter.yaml
+   kubectl apply -f exercice/04_Fluent/cluster_filter_throttle_filter.yaml
    ```
 
 ### Step 2: Create a ClusterOutput
@@ -68,3 +68,17 @@ Let's apply it, and look at the logs in dynatrace.
 ```bash
 (bastion)$ kubectl apply -f exercice/04_Fluent/cluster_output_http.yaml
 ```
+
+### Step 3: Look at the the logs in dynatrace
+
+In Dynatrace, let's have a look a the logs sent by Fluentbit.
+
+![fluentib_logviewer 01](../../../assets/images/log_viewer.png)
+
+
+You can see that all the log attributes are available, and will help us to filter our logs :
+
+![fluentib_logfilter 01](../../../assets/images/log_filter.png)
+
+It means that by applying the right filter we could create Metric and filter out of the logs sent by Fluentbit.
+

@@ -40,7 +40,7 @@ C. Look at the produced logs
 ### Step 2. Update the current Trace Pipeline 
 
 A. Edit the OpenTelemetryCollector object
-   In the Bastion host, edit the file  : `exercice/01_collector/metrics/openTelemetry-manifest.yaml`
+   In the Bastion host, edit the file  : `exercice/02_collector/traces/openTelemetry-manifest.yaml`
    Change the Trace pipeline to process span , where each task will always :
       - start with the `memory_limiter`
       - end with the `batch` processor 
@@ -138,89 +138,26 @@ D. Look at the Service Screen
    > 1. Navigate to `Services` via Dynatrace Menu 
    > 2. Click on the `checkoutservice`
 
-### Step 4. Add the spanMetrics processor
+### Step 4 The metrics produced by the collector
 
-A. Add the fake  `otlp/spanmetrics` receiver
-   Edit the following receiver :
+1. Look at the prometheus metrics produced by the Collector
+   Get the new service montoring name of the Collector
    
    ```bash
-   (bastion)$ vi openTelemetry-manifest.yaml
+    (bastion)$ kubectl get svc
    ```
+   ![collector 01](../../../assets/images/collector_metrics.png)
    
-   ```yaml
-   otlp/spanmetrics:
-     protocols:
-       grpc:
-         endpoint: "localhost:65535"
-   ```
-
-B. Add the fake  `otlp/spanmetrics` exporter:
-  ```yaml
-   otlp/spanmetrics:
-     endpoint: "localhost:55677"
-     tls:
-       insecure: true
-  ```
-
-C. Add a specific  `metrics/spanmetrics` pipeline
-   Similar to the trace pipeline , we need to add a "fake" pipeline for ``metrics/spanmetrics`
-   
-   ```yaml
-   metrics/spanmetrics:
-      receivers: [otlp/spanmetrics]
-      exporters: [otlp/spanmetrics]
-   ```
-   
-D. Add the processor `spanmetrics`
-   The settings of the `spanmetrics` processor limits by defining the name of the current metric exporter.
-   The current pipeline has only metric exporter defined : `prometheus`
-   ```yaml
-   spanmetrics:
-      metrics_exporter: prometheus
-   ```
-E. Update the trace pipeline 
-   Add the `spanmetrics` processor in the trace processor flow:
-
-   ```yaml
-   traces:
-      receivers: [otlp]
-      processors: [memory_limiter,k8sattributes,spanmetrics,batch]
-      exporters: [otlphttp]
-   ```
-
-F. Add a metric pipeline
-   To be able to look at the produced metrics, let's add a metric pipeline
-   
-   ```yaml
-   metrics:
-      receivers: [otlp]
-      processors: [memory_limiter,k8sattributes,batch]
-      exporters: [prometheus]
-   ```
-   
-G. Apply the changes 
-
-   ```bash
-    (bastion)$ kubectl apply -f openTelemetry-manifest.yaml
-   ```
-   
-H. Look at the prometheus metrics produced by the Collector
-   Get the new Pod name of the Collector
+   Expose the port 8088 locally on the bastion host :
    
    ```bash
-    (bastion)$ kubectl get pods
-   ```
-
-   Expose the port 9091 locally on the bastion host :
-   
-   ```bash
-   (bastion)$ kubectl port-forward <collector pod name> 9091:9090
+   (bastion)$ kubectl port-forward svc/<collector monitoring service name> 8088:8888
    ```
 
    Open another terminal and connect to the bastion host.
-   Look at the metrics by send http request to `http://localhost:9091/metrics`
+   Look at the metrics by send http request to `http://localhost:8088/metrics`
    
    ```bash
-   (bastion)$ curl http://localhost:9091/metrics
+   (bastion)$ curl http://localhost:8088/metrics
    ```
    
