@@ -10,9 +10,9 @@
 
 5. Let's add an API Client call to get our Management Zone Settings from the tenant.
 
-   * The necessary code is commented in amendManagementZones.js, but let's take a moment to write this ourselves and understand what the API Client is doing
+     * The necessary code is commented in amendManagementZones.js, but let's take a moment to write this ourselves and understand what the API Client is doing
 
-       ![getMzsFunction](../../assets/images/getManagmentZonesFunction.png)
+     ![getMzsFunction](../../assets/images/getManagmentZonesFunction.png)
 
 6. Write a console.log() to take a look at the data we're getting back.
 

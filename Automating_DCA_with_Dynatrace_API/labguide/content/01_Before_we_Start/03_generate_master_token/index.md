@@ -6,7 +6,7 @@ Keep your previously generated token handy for this step!
 
 2. Copy and paste your management token into the token declaration, and tenant URL into the tenant declaration
 
-   ![Generic Token Script](../../assets/images/generateTokenJS.png)
+     ![Generic Token Script](../../assets/images/generateTokenJS.png)
 
 3. Open a terminal at the root of the project directory and run the following command:
 
@@ -15,4 +15,4 @@ Keep your previously generated token handy for this step!
 ```
 4. Verify in the terminal you've been provided a new token and that the .env file has been enriched with your connection information.
 
-   ![mastertoken](../../assets/images/mastertoken.png)
+     ![mastertoken](../../assets/images/mastertoken.png)
