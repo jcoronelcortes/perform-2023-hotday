@@ -1,10 +1,10 @@
 ## Trigger an alert
 In this step, let us simulate load by executing a load-script so that the automatic threshold is breached, thereby, triggering an alert.
 
-In the Bastion host, go to the folder : `exercice/01_Prometheus`
+In the Bastion host, go to the folder : `exercise/01_Prometheus`
    ```bash
    (bastion)$ cd ~/HOT_DAY_SCRIPT
-   (bastion)$ cd exercice/01_Prometheus
+   (bastion)$ cd exercise/01_Prometheus
    ```
 Run the following deployment to run a new K6 test:
 ```sh
