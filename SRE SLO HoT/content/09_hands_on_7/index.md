@@ -40,11 +40,21 @@ type(~"CLOUD_APPLICATION~"),entityName.equals(~"easytravel-backend~"))")))
 
 5. Navigate to the Service-level Objectives page and add a new SLO. 
 
-6. Provide a meaningful name/metric for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
+6. Provide a meaningful name/metric/description for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
+SLO Name : 
 ```
-SLO Name : Prod - Easytravel Backend - HoT7 - Container - Saturation
-SLO Metric : prod_easytravelbackend_hot7_container_saturation
+Prod - Easytravel Backend - HoT7 - Container - Saturation
+```
+
+SLO description:
+```
+At least 20% of memory available for additional load
+```
+
+SLO Metric : 
+```
+prod_easytravelbackend_hot7_container_saturation
 ```
 
 7. Set the metricselector to:
@@ -60,18 +70,28 @@ SLO Metric : prod_easytravelbackend_hot7_container_saturation
 > - Time Frame - the evaluation period of SLO. *last 30 minutes* </br>
 > - Entity Selector - the entities from where SLI is calculated. *workload name*</br>
 
+timeFrame : 
 ```
-timeFrame : -30m
-entitySelector : type(CONTAINER_GROUP_INSTANCE),fromRelationships.isCgiOfCa(type(CLOUD_APPLICATION),entityName.equals(easytravel-backend))
+-30m
+```
+
+entitySelector : 
+```
+type(CONTAINER_GROUP_INSTANCE),fromRelationships.isCgiOfCa(type(CLOUD_APPLICATION),entityName.equals(easytravel-backend))
 ```
 
 ![](../../assets/images/handson7_3.png)
 
 9. Next, let's set our SLO target.
 
+Target - 
 ```
-Target - 20.00
-Warning - 25.00
+20.00
+```
+
+Warning - 
+```
+25.00
 ```
 
 ![](../../assets/images/handson7_4.png)

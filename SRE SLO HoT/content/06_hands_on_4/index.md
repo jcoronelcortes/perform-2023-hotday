@@ -19,7 +19,7 @@
 ![](../../assets/images/handson4_3.png)
 
 4. Identify the Service Method Id
-> Look in the URL for *service_method*
+> - Look in the URL for *service_method*
 
 ![](../../assets/images/handson4_4.png)
 
@@ -28,12 +28,22 @@
 ![](../../assets/images/handson4_5.png)
 
 6. Click on *Service-method availability*
-> - Provide a meaningful name *{ENV} {APP NAME} {HoT#} {ENTITY TYPE} {TYPE}* </br>
-> - Provide a meaningful metric *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
+> - Provide a meaningful name/metric/description for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
+
+SLO Name : 
 ```
-SLO Name : Prod - calculateRecommendations - HoT4 - Key Request - Availability
-SLO Metric : prod_calculateRecommendations_hot4_KeyRequest_availability
+Prod - calculateRecommendations - HoT4 - Key Request - Availability
+```
+
+SLO description:
+```
+99.98% of recommendations are successful
+```
+
+SLO Metric : 
+```
+prod_calculaterecommendations_hot4_keyrequest_availability
 ```
 
 ![](../../assets/images/handson4_6.png)
@@ -43,18 +53,28 @@ SLO Metric : prod_calculateRecommendations_hot4_KeyRequest_availability
 > - Time Frame - the evaluation period of SLO. *last 30 minutes* </br>
 > - Entity Selector - the entities from where SLI is calculated. *service method id*</br>
 
+timeFrame : 
 ```
-timeFrame : -30m
-entitySelector : type("SERVICE_METHOD"),entityId(SERVICE_METHOD-04A5FB5A5A9D3A59)
+-30m
+```
+
+entitySelector : 
+```
+type("SERVICE_METHOD"),entityId(SERVICE_METHOD-04A5FB5A5A9D3A59)
 ```
 
 ![](../../assets/images/handson4_7.png)
 
 8. Next, let's set our SLO target.
 
+Target - 
 ```
-Target - 99.98
-Warning - 99.999
+99.98
+```
+
+Warning - 
+```
+99.999
 ```
 
 ![](../../assets/images/handson4_8.png)

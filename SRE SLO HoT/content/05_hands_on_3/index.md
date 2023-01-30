@@ -18,11 +18,22 @@
 
 ![](../../assets/images/handson3_3.png)
 
-5. Provide a meaningful name/metric for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
+5. Provide a meaningful name/metric/description for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
+
+SLO Name : 
 ```
-SLO Name : Prod - checkCreditCard - HoT3 - Key Request - Latency
-SLO Metric : prod_checkCreditCard_hot3_keyrequest_latency
+Prod - checkCreditCard - HoT3 - Key Request - Latency
+```
+
+SLO description:
+```
+99.5% of credit card checks perform under 1 ms
+```
+
+SLO Metric : 
+```
+prod_checkcreditcard_hot3_keyrequest_latency
 ```
 
 ![](../../assets/images/handson3_4.png)
@@ -39,18 +50,30 @@ SLO Metric : prod_checkCreditCard_hot3_keyrequest_latency
 > - Time Frame - the evaluation period of SLO. *last 30 minutes* </br>
 > - Entity Selector - the entities from where SLI is calculated. *checkCreditCard* request</br>
 
+
+timeFrame : 
 ```
-timeFrame : -30m
-entitySelector : type(service_method),entityName.equals("checkCreditCard")
+-30m
+```
+
+entitySelector : 
+```
+type(service_method),entityName.equals("checkCreditCard")
 ```
 
 ![](../../assets/images/handson3_6.png)
 
 8. Next, let's set our SLO target.
 
+
+Target - 
 ```
-Target - 99.5
-Warning - 99.99
+99.5
+```
+
+Warning - 
+```
+99.99
 ```
 
 9. Finally, preview the SLO and hit 'Create'

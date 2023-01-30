@@ -1,16 +1,26 @@
 ## Hands on #6 - Advanced SLO - Synthetic
 
-#### You are investigating an issue with an ecommerce site. To track the current state, you create a test transaction (clickpath) to monitor the process. Based on the transaction you define two an SLO proving the performance of the checkout page.
+#### You are investigating an issue with a third-party payment provider. To track the current state, you create a test transaction (click path) to monitor the checkout process. Based on the transaction, you define an SLO proving the performance of the checkout page, invoking the third-party payment provider.
 
 1. Navigate to the Service-level Objectives page and add a new SLO. 
 
 ![](../../assets/images/handson6_1.png)
 
-2. Provide a meaningful name/metric for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
+2. Provide a meaningful name/metric/description for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
+SLO Name : 
 ```
-SLO Name : Prod - Easytravel - HoT6 - Synthetic - Performance
-SLO Metric : prod_easytravel_hot6_synthetic_performance
+Prod - Easytravel - HoT6 - Synthetic - Performance
+```
+
+SLO description:
+```
+85% of checkouts complete in <= 2 seconds
+```
+
+SLO Metric : 
+```
+prod_easytravel_hot6_synthetic_performance
 ```
 
 3. Set the Metric Selector
@@ -26,18 +36,29 @@ SLO Metric : prod_easytravel_hot6_synthetic_performance
 > - Time Frame - the evaluation period of SLO.</br>
 > - Entity Selector - the entities from where SLI is calculated. </br>
 
+
+timeFrame : 
 ```
-timeFrame : -30m
-entitySelector : type("SYNTHETIC_TEST_STEP"),entityName(click on "Finish")
+-30m
+```
+
+entitySelector : 
+```
+type("SYNTHETIC_TEST_STEP"),entityName(click on "Finish")
 ```
 
 ![](../../assets/images/handson6_3.png)
 
 5. Next, let's set our SLO target.
 
+Target - 
 ```
-Target - 85.0
-Warning - 90.0
+85.0
+```
+
+Warning - 
+```
+90.0
 ```
 
 ![](../../assets/images/handson6_4.png)
