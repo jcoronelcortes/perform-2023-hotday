@@ -14,7 +14,7 @@ const generateToken = async () => {
     );
   } else {
     try {
-        const response = await fetch(`${tenant}/api/v2/apiTokens`, {
+        const response = await fetch(`${tenant}/api/v1/tokens`, {  //older api endpoint. Replace v1/tokens with v2/apiTokens
           method: 'post',
           body: JSON.stringify(tokenJson),
           headers: {

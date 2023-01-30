@@ -36,7 +36,6 @@
 
      * Paste your object Id in the id field
      * Execute the query
-
      * Verify your response contains a settings object
 
      ![getobject](../../assets/images/getobject.png)

@@ -7,6 +7,6 @@ Now that we've generated a token that has permission to edit your tenant, let's 
 ```bash
    npm run script
 ```
-4. Verify in the terminal that new entities have been created!
+2. Verify in the terminal that new entities have been created!
 
-   ![deployconfig](../../assets/images/deployconfig.png)
+     ![deployconfig](../../assets/images/deployconfig.png)

@@ -26,9 +26,10 @@ The IP Address and credentials for this Ubuntu host can be found within the `Env
 
 ![Development Machine](../../assets/images/01-ubuntu.png)
 
-1. Open a Terminal Window to that host to get the URL to your development environment.
-2. Copy the URL
-3. Open a new browser window and paste the URL in the address line. You should see the login screen now. Enter the password that has been provided.
+1. Copy the IP address and paste it into a new browser window.
+2. Append /code to the address bar, i.e. 1.2.3.4 **/code**
+3. Full URL will look something like this: http://1.2.3.4/code
+4. Press enter, you should see the login screen now. Copy the password that has been provided under the IP address.
    ![Code Server Login](../../assets/images/01-code-server-login.png)
 
 We are using <a href="https://github.com/coder/code-server" target="_blank">Visual Studio Code Server</a> today in order to build and launch applications.
