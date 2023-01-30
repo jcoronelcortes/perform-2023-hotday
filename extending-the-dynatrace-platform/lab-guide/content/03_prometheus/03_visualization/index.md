@@ -1,6 +1,6 @@
-# Visualizing the data collected 
+## Visualizing the data collected 
 
-## `screens:` section
+### `screens:` section
 
 In the yaml file, the screens section defines the different unified analysis pages to visualize the data that your extension collects. More details are available [here](https://www.dynatrace.com/support/help/shortlink/ua-pages).
 

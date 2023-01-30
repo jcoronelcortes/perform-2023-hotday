@@ -1,6 +1,6 @@
 name: custom:prometheus-windows-exporter
 version: 0.0.1
-minDynatraceVersion: 1.253.0
+minDynatraceVersion: 1.256.0
 author:
   name: Dynatrace
 vars:
@@ -9,182 +9,18 @@ vars:
     displayName: Volume (Disk) Name
     description: Filter Volume Names
     required: false
+
 metrics:
-  - key: windows_cpu_clock_interrupts_total.count
-    metadata:
-      displayName: Windows Cpu Clock Interrupts Total
-      description: Total number of received and serviced clock tick interrupts
-      unit: Count
-  - key: windows_cpu_core_frequency_mhz
-    metadata:
-      displayName: Windows Cpu Core Frequency Mhz
-      description: Core frequency in megahertz
-      unit: NotApplicable
-  - key: windows_cpu_cstate_seconds_total.count
-    metadata:
-      displayName: Windows Cpu Cstate Seconds Total
-      description: Time spent in low-power idle state
-      unit: Second
-  - key: windows_cpu_dpcs_total.count
-    metadata:
-      displayName: Windows Cpu Dpcs Total
-      description: Total number of received and serviced deferred procedure calls (DPCs)
-      unit: Count
-  - key: windows_cpu_idle_break_events_total.count
-    metadata:
-      displayName: Windows Cpu Idle Break Events Total
-      description: Total number of time processor was woken from idle
-      unit: Count
-  - key: windows_cpu_interrupts_total.count
-    metadata:
-      displayName: Windows Cpu Interrupts Total
-      description: Total number of received and serviced hardware interrupts
-      unit: Count
-  - key: windows_cpu_parking_status
-    metadata:
-      displayName: Windows Cpu Parking Status
-      description: Parking Status represents whether a processor is parked or not
-      unit: Count
-  - key: windows_cpu_processor_performance
-    metadata:
-      displayName: Windows Cpu Processor Performance
-      description: Processor Performance is the average performance of the processor while it is executing instructions, as a percentage of the nominal performance of the processor. On some processors, Processor Performance may exceed 100%
-      unit: Percent
-  - key: windows_cpu_time_total.count
-    metadata:
-      displayName: Windows Cpu Time Total
-      description: Time that processor spent in different modes (dpc, idle, interrupt, privileged, user)
-      unit: Second
   - key: windows_logical_disk_free_bytes
     metadata:
       displayName: Windows Logical Disk Free Bytes
       description: Free space in bytes, updates every 10-15 min (LogicalDisk.PercentFreeSpace)
       unit: Byte
-  - key: windows_logical_disk_idle_seconds_total.count
-    metadata:
-      displayName: Windows Logical Disk Idle Seconds Total
-      description: Seconds that the disk was idle (LogicalDisk.PercentIdleTime)
-      unit: Second
-  - key: windows_logical_disk_read_bytes_total.count
-    metadata:
-      displayName: Windows Logical Disk Read Bytes Total
-      description: The number of bytes transferred from the disk during read operations (LogicalDisk.DiskReadBytesPerSec)
-      unit: Byte
-  - key: windows_logical_disk_read_latency_seconds_total.count
-    metadata:
-      displayName: Windows Logical Disk Read Latency Seconds Total
-      description: Shows the average time, in seconds, of a read operation from the disk (LogicalDisk.AvgDiskSecPerRead)
-      unit: Second
-  - key: windows_logical_disk_read_seconds_total.count
-    metadata:
-      displayName: Windows Logical Disk Read Seconds Total
-      description: Seconds that the disk was busy servicing read requests (LogicalDisk.PercentDiskReadTime)
-      unit: Second
-  - key: windows_logical_disk_read_write_latency_seconds_total.count
-    metadata:
-      displayName: Windows Logical Disk Read Write Latency Seconds Total
-      description: Shows the time, in seconds, of the average disk transfer (LogicalDisk.AvgDiskSecPerTransfer)
-      unit: Second
-  - key: windows_logical_disk_reads_total.count
-    metadata:
-      displayName: Windows Logical Disk Reads Total
-      description: The number of read operations on the disk (LogicalDisk.DiskReadsPerSec)
-      unit: Count
-  - key: windows_logical_disk_requests_queued
-    metadata:
-      displayName: Windows Logical Disk Requests Queued
-      description: The number of requests queued to the disk (LogicalDisk.CurrentDiskQueueLength)
-      unit: Count
   - key: windows_logical_disk_size_bytes
     metadata:
       displayName: Windows Logical Disk Size Bytes
       description: Total space in bytes, updates every 10-15 min (LogicalDisk.PercentFreeSpace_Base)
       unit: Byte
-  - key: windows_logical_disk_split_ios_total.count
-    metadata:
-      displayName: Windows Logical Disk Split Ios Total
-      description: The number of I/Os to the disk were split into multiple I/Os (LogicalDisk.SplitIOPerSec)
-      unit: Count
-  - key: windows_logical_disk_write_bytes_total.count
-    metadata:
-      displayName: Windows Logical Disk Write Bytes Total
-      description: The number of bytes transferred to the disk during write operations (LogicalDisk.DiskWriteBytesPerSec)
-      unit: Byte
-  - key: windows_logical_disk_write_latency_seconds_total.count
-    metadata:
-      displayName: Windows Logical Disk Write Latency Seconds Total
-      description: Shows the average time, in seconds, of a write operation to the disk (LogicalDisk.AvgDiskSecPerWrite)
-      unit: Second
-  - key: windows_logical_disk_write_seconds_total.count
-    metadata:
-      displayName: Windows Logical Disk Write Seconds Total
-      description: Seconds that the disk was busy servicing write requests (LogicalDisk.PercentDiskWriteTime)
-      unit: Second
-  - key: windows_logical_disk_writes_total.count
-    metadata:
-      displayName: Windows Logical Disk Writes Total
-      description: The number of write operations on the disk (LogicalDisk.DiskWritesPerSec)
-      unit: Count
-  - key: windows_net_bytes_received_total.count
-    metadata:
-      displayName: Windows Net Bytes Received Total
-      description: (Network.BytesReceivedPerSec)
-      unit: Byte
-  - key: windows_net_bytes_sent_total.count
-    metadata:
-      displayName: Windows Net Bytes Sent Total
-      description: (Network.BytesSentPerSec)
-      unit: Byte
-  - key: windows_net_bytes_total.count
-    metadata:
-      displayName: Windows Net Bytes Total
-      description: (Network.BytesTotalPerSec)
-      unit: Byte
-  - key: windows_net_current_bandwidth_bytes
-    metadata:
-      displayName: Windows Net Current Bandwidth Bytes
-      description: (Network.CurrentBandwidth)
-      unit: Byte
-  - key: windows_net_packets_outbound_discarded_total.count
-    metadata:
-      displayName: Windows Net Packets Outbound Discarded Total
-      description: (Network.PacketsOutboundDiscarded)
-      unit: Count
-  - key: windows_net_packets_outbound_errors_total.count
-    metadata:
-      displayName: Windows Net Packets Outbound Errors Total
-      description: (Network.PacketsOutboundErrors)
-      unit: Count
-  - key: windows_net_packets_received_discarded_total.count
-    metadata:
-      displayName: Windows Net Packets Received Discarded Total
-      description: (Network.PacketsReceivedDiscarded)
-      unit: Count
-  - key: windows_net_packets_received_errors_total.count
-    metadata:
-      displayName: Windows Net Packets Received Errors Total
-      description: (Network.PacketsReceivedErrors)
-      unit: Count
-  - key: windows_net_packets_received_total.count
-    metadata:
-      displayName: Windows Net Packets Received Total
-      description: (Network.PacketsReceivedPerSec)
-      unit: Count
-  - key: windows_net_packets_received_unknown_total.count
-    metadata:
-      displayName: Windows Net Packets Received Unknown Total
-      description: (Network.PacketsReceivedUnknown)
-      unit: Count
-  - key: windows_net_packets_sent_total.count
-    metadata:
-      displayName: Windows Net Packets Sent Total
-      description: (Network.PacketsSentPerSec)
-      unit: Count
-  - key: windows_net_packets_total.count
-    metadata:
-      displayName: Windows Net Packets Total
-      description: (Network.PacketsPerSec)
-      unit: Count
   - key: windows_service_info
     metadata:
       displayName: Windows Service Info
@@ -193,43 +29,6 @@ metrics:
 prometheus:
   - group: windows
     subgroups:
-      - subgroup: cpu
-        featureSet: Windows CPU Metrics
-        dimensions:
-          - key: mode
-            value: label:mode
-          - key: state
-            value: label:state
-          - key: core
-            value: label:core
-        metrics:
-          - key: windows_cpu_clock_interrupts_total.count
-            value: metric:windows_cpu_clock_interrupts_total
-            type: count
-          - key: windows_cpu_core_frequency_mhz
-            value: metric:windows_cpu_core_frequency_mhz
-            type: gauge
-          - key: windows_cpu_cstate_seconds_total.count
-            value: metric:windows_cpu_cstate_seconds_total
-            type: count
-          - key: windows_cpu_dpcs_total.count
-            value: metric:windows_cpu_dpcs_total
-            type: count
-          - key: windows_cpu_idle_break_events_total.count
-            value: metric:windows_cpu_idle_break_events_total
-            type: count
-          - key: windows_cpu_interrupts_total.count
-            value: metric:windows_cpu_interrupts_total
-            type: count
-          - key: windows_cpu_parking_status
-            value: metric:windows_cpu_parking_status
-            type: gauge
-          - key: windows_cpu_processor_performance
-            value: metric:windows_cpu_processor_performance
-            type: gauge
-          - key: windows_cpu_time_total.count
-            value: metric:windows_cpu_time_total
-            type: count
       - subgroup: disk
         featureSet: Windows Disk Metrics
         dimensions:
@@ -240,87 +39,9 @@ prometheus:
           - key: windows_logical_disk_free_bytes
             value: metric:windows_logical_disk_free_bytes
             type: gauge
-          - key: windows_logical_disk_idle_seconds_total.count
-            value: metric:windows_logical_disk_idle_seconds_total
-            type: count
-          - key: windows_logical_disk_read_bytes_total.count
-            value: metric:windows_logical_disk_read_bytes_total
-            type: count
-          - key: windows_logical_disk_read_latency_seconds_total.count
-            value: metric:windows_logical_disk_read_latency_seconds_total
-            type: count
-          - key: windows_logical_disk_read_seconds_total.count
-            value: metric:windows_logical_disk_read_seconds_total
-            type: count
-          - key: windows_logical_disk_read_write_latency_seconds_total.count
-            value: metric:windows_logical_disk_read_write_latency_seconds_total
-            type: count
-          - key: windows_logical_disk_reads_total.count
-            value: metric:windows_logical_disk_reads_total
-            type: count
-          - key: windows_logical_disk_requests_queued
-            value: metric:windows_logical_disk_requests_queued
-            type: gauge
           - key: windows_logical_disk_size_bytes
             value: metric:windows_logical_disk_size_bytes
             type: gauge
-          - key: windows_logical_disk_split_ios_total.count
-            value: metric:windows_logical_disk_split_ios_total
-            type: count
-          - key: windows_logical_disk_write_bytes_total.count
-            value: metric:windows_logical_disk_write_bytes_total
-            type: count
-          - key: windows_logical_disk_write_latency_seconds_total.count
-            value: metric:windows_logical_disk_write_latency_seconds_total
-            type: count
-          - key: windows_logical_disk_write_seconds_total.count
-            value: metric:windows_logical_disk_write_seconds_total
-            type: count
-          - key: windows_logical_disk_writes_total.count
-            value: metric:windows_logical_disk_writes_total
-            type: count
-      - subgroup: network
-        featureSet: Windows Network Metrics
-        dimensions:
-          - key: nic
-            value: label:nic
-        metrics:
-          - key: windows_net_bytes_received_total.count
-            value: metric:windows_net_bytes_received_total
-            type: count
-          - key: windows_net_bytes_sent_total.count
-            value: metric:windows_net_bytes_sent_total
-            type: count
-          - key: windows_net_bytes_total.count
-            value: metric:windows_net_bytes_total
-            type: count
-          - key: windows_net_current_bandwidth_bytes
-            value: metric:windows_net_current_bandwidth_bytes
-            type: gauge
-          - key: windows_net_packets_outbound_discarded_total.count
-            value: metric:windows_net_packets_outbound_discarded_total
-            type: count
-          - key: windows_net_packets_outbound_errors_total.count
-            value: metric:windows_net_packets_outbound_errors_total
-            type: count
-          - key: windows_net_packets_received_discarded_total.count
-            value: metric:windows_net_packets_received_discarded_total
-            type: count
-          - key: windows_net_packets_received_errors_total.count
-            value: metric:windows_net_packets_received_errors_total
-            type: count
-          - key: windows_net_packets_received_total.count
-            value: metric:windows_net_packets_received_total
-            type: count
-          - key: windows_net_packets_received_unknown_total.count
-            value: metric:windows_net_packets_received_unknown_total
-            type: count
-          - key: windows_net_packets_sent_total.count
-            value: metric:windows_net_packets_sent_total
-            type: count
-          - key: windows_net_packets_total.count
-            value: metric:windows_net_packets_total
-            type: count
       - subgroup: running_services
         featureSet: Windows Running Service Info
         dimensions:

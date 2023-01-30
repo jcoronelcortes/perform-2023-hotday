@@ -1,0 +1,63 @@
+{
+  "entityId": "HTTP_CHECK-309769FE234D5858",
+  "name": "Google http monitor",
+  "frequencyMin": 1,
+  "enabled": true,
+  "type": "HTTP",
+  "createdFrom": "GUI",
+  "script": {
+    "version": "1.0",
+    "requests": [
+      {
+        "description": "Google",
+        "url": "http://www.google.com",
+        "method": "GET",
+        "validation": {
+          "rules": [
+            {
+              "value": ">=400",
+              "passIfFound": false,
+              "type": "httpStatusesList"
+            }
+          ]
+        },
+        "configuration": {
+          "acceptAnyCertificate": true,
+          "followRedirects": true,
+          "shouldNotPersistSensitiveData": false
+        }
+      }
+    ]
+  },
+  "locations": [
+    "GEOLOCATION-4DBE735F24F26BD5"
+  ],
+  "anomalyDetection": {
+    "outageHandling": {
+      "globalOutage": true,
+      "globalOutagePolicy": {
+        "consecutiveRuns": 1
+      },
+      "localOutage": false,
+      "localOutagePolicy": {
+        "affectedLocations": null,
+        "consecutiveRuns": null
+      }
+    },
+    "loadingTimeThresholds": {
+      "enabled": true,
+      "thresholds": []
+    }
+  },
+  "tags": [],
+  "managementZones": [],
+  "automaticallyAssignedApps": [],
+  "manuallyAssignedApps": [],
+  "requests": [
+    {
+      "entityId": "HTTP_CHECK_STEP-925BD357C2975D51",
+      "name": "Google",
+      "sequenceNumber": 1
+    }
+  ]
+}

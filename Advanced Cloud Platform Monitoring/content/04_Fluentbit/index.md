@@ -13,5 +13,4 @@ During the session, we will attend the following objectives on the provided kube
 1. Enrich our logs by adding kubernetes labels
 1. Structure the logs to send it in Dynatrace
 1. Configure the output plugin to send the logs to dynatrace
-1. Parse the logs from Traefic
 
