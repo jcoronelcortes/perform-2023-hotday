@@ -1,16 +1,18 @@
-## Optional: Context injection with Python web requests
+# 5. Challenge: Instrument the `/newroute` request
 
 ---
 
-### Introduction
+## Introduction
 
-This exercise is optional, in case you have spare time and want to challenge yourself. You will have noticed that our Python webservice has a `/newroute` route which we haven't really talked about.
+This exercise is optional, in case you have spare time and want to challenge yourself. You will have noticed that our Python webservice has a `/newroute` route which we haven't talked about yet.
 
 In this exercise you'll apply knowledge from the previous exercises and instrument `/newroute` accordingly.
 
-Head over to `./shopizer/pysrvc/main.py`
+**All the concepts you need have already been covered in the previous sections**.
 
-### Your Tasks
+Head over to <mark>./shopizer/pysrvc/main.py</mark> to get started.
+
+## 📌 Your Tasks
 
 1. Disable (by commenting with `#`) the auto-instrumentation for Python
 2. Create a Span for the `/newroute` route
@@ -28,7 +30,7 @@ Trigger the route from the command-line
 curl http://localhost:8090/newroute
 ```
 
-### Verify results
+## ✅ Verify results
 
 Open the `pysrvc on port 8090` service in Dynatrace and look for your `/newroute` spans in its Distributed traces panel. Open up any of these traces and verify the Span kind and most importantly the continuation of the transaction into the Java side of the application.
 
@@ -50,5 +52,4 @@ Open the `pysrvc on port 8090` service in Dynatrace and look for your `/newroute
             requests.get("http://localhost:8080/shop", headers=headers)
             return make_response({}, 200)
 ```
-
 </details>
