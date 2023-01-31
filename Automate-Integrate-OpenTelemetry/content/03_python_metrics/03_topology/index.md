@@ -11,7 +11,7 @@ Here we explore how to connect our metrics to the Dynatrace Topology.
 
 #### 📌 Follow along
 
-#### 1.  Go to `Settings >  Toplogy model > Generic types > Add type definition` and start by completeing the following feilds and click on `Add extraction rule`:
+#### 1.  Go to `Settings >  Toplogy model > Generic types > Add type definition` and fill out the feilds as follows:
 
 | Field | Value |
 | ------ | ------------- |
@@ -21,7 +21,7 @@ Here we explore how to connect our metrics to the Dynatrace Topology.
 
    ![Topology 1](../../../assets/images/03-03-topology_1.png)
 
-#### 2. Fill out the following fields and click on `Add Source`:
+#### 2. Click on `Add extraction rule` and fill out the following fields:
 
 | Field | Value |
 | ------ | ------------- |
@@ -31,7 +31,7 @@ Here we explore how to connect our metrics to the Dynatrace Topology.
 
    ![Topology 2](../../../assets/images/03-03-topology_2.png)
 
-#### 3. Fill out the following values and click on `Add dimensions filter`
+#### 3.  Click on `Add Source` and fill out the following fields:
 
 | Field | Value |
 | ------ | ------------- |
@@ -40,7 +40,7 @@ Here we explore how to connect our metrics to the Dynatrace Topology.
 
    ![Topology 3](../../../assets/images/03-03-topology_3.png)
 
-#### 4. Finally, fill out the following values and click on `Save Changes`:
+#### 4. Finally, click on `Add dimensions filter` and fill out the following fields and click on `Save Changes`:
 
 | Field | Value |
 | ------ | ------------- |

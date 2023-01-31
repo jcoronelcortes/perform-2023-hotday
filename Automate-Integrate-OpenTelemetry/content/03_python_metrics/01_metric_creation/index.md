@@ -217,9 +217,9 @@ def calc():
 
 ### 📌 Task
 
-**Your Task:** Send a measurment to your histogram instrument
+**Your Task:** Send a measurement to your histogram instrument
 
-Open `pysrvc/utils.py` and between line `29-30` add a line to populate your measurment for the histogram passing the variable `duration` as the metric and add an attribute with the key `"number"` and variable `n` as the value. 
+Open `pysrvc/utils.py` and navigate the `process` function on line `24` and add a line after `duration = (datetime.now().timestamp() - start.timestamp())*1000` to populate your measurement for the histogram passing the variable `duration` as the metric and add an attribute with the key `"number"` and variable `n` as the value. 
 - change the dictionary reference to the name of the new histogram instrument `"process_duration"`
 
 >💡 **Hint**
