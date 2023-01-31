@@ -9,11 +9,11 @@ In this lab you'll learn how to :
 
 A. Go to the folder of the exercice :
 
-   In the Bastion host, go to o the folder : `exercice/04_Fluent`
+   In the Bastion host, go to o the folder : `exercise/04_Fluent`
 
    ```bash
    (bastion)$ cd ~/HOT_DAY_SCRIPT
-   (bastion)$ cd exercice/04_Fluent
+   (bastion)$ cd exercise/04_Fluent
    ```
 
 B. Look at  the Fluentbit configuration
@@ -136,7 +136,7 @@ A. Let's enrich the logs by adding the kubernetes information
 
    Let's add this filter step by running this command: 
    ```bash
-   kubectl apply - f cluster_filter_template.yaml -n kubesphere-logging-system
+   kubectl apply -f cluster_filter_template.yaml -n kubesphere-logging-system
    ```
 
    Now let's have a look at the new format of the logs processed by Fluenbit.
@@ -168,7 +168,7 @@ B. Lift the kubernetes information in the log stream
 
    Now let's have a look at the new format of the logs processed by Fluenbit.
    ```bash
-   kubectl apply - f cluster_filter_template.yaml -n kubesphere-logging-system
+   kubectl apply -f cluster_filter_template.yaml -n kubesphere-logging-system
    kubectl logs <podid> -n kubesphere-logging-system
    ```
    We can see that there is json object holding the kubernetes labels, we can do the the same operation by lifting kubernetes_labels
@@ -185,7 +185,7 @@ B. Lift the kubernetes information in the log stream
      
    Now let's have a look at the new format of the logs processed by Fluenbit.
    ```bash
-   kubectl apply - f cluster_filter_template.yaml -n kubesphere-logging-system
+   kubectl apply -f cluster_filter_template.yaml -n kubesphere-logging-system
    kubectl logs <podid> -n kubesphere-logging-system
    ```
 
@@ -223,7 +223,7 @@ B. Lift the kubernetes information in the log stream
    ```
   Now let's have a look at the new format of the logs processed by Fluenbit.
    ```bash
-   kubectl apply - f cluster_filter_template.yaml -n kubesphere-logging-system
+   kubectl apply -f cluster_filter_template.yaml -n kubesphere-logging-system
    kubectl logs <podid> -n kubesphere-logging-system
    ```
    

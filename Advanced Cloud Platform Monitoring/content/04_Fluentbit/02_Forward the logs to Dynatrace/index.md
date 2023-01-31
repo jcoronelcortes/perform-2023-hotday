@@ -8,9 +8,9 @@ In this lab you'll learn how to :
 In our case we want to send all the logs collected by Fluentbit from our Pods.
 To be able to throttle everything we would apply it on the logs taged: `kube.*`
 
-In the Bastion host, edit the following file : 
+In the Bastion host, in the folder `exercise/04_Fluent/` edit the following file : 
    ```bash
-   vi exercice/04_Fluent/cluster_filter_throttle_filter.yaml
+   vi cluster_filter_throttle_filter.yaml
    ```
 The Dynatrace API limits the number of logs per ingest API call to 1000.
 Therefore we will add the `throttle` operator that will allow us to bach our logs.
@@ -26,7 +26,7 @@ Add the following lines :
 
 Let's apply this new CLusterFilter:
   ```bash
-   kubectl apply -f exercice/04_Fluent/cluster_filter_throttle_filter.yaml
+   kubectl apply -f cluster_filter_throttle_filter.yaml
    ```
 
 ### Step 2: Create a ClusterOutput
@@ -66,7 +66,7 @@ To send lobs to dynatrace , we need :
 Let's apply it, and look at the logs in dynatrace.
  
 ```bash
-(bastion)$ kubectl apply -f exercice/04_Fluent/cluster_output_http.yaml
+(bastion)$ kubectl apply -f cluster_output_http.yaml
 ```
 
 ### Step 3: Look at the the logs in dynatrace

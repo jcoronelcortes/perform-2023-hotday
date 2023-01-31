@@ -9,10 +9,10 @@ In this lab you'll learn how to :
 
 A. Look at  the OpenTelemtryCollector template
 
-In the Bastion host, go to the folder : `exercice/02_collector/trace`
+In the Bastion host, go to the folder : `exercise/02_collector/trace`
    ```bash
    (bastion)$ cd ~/HOT_DAY_SCRIPT
-   (bastion)$ cd exercice/02_collector/trace
+   (bastion)$ cd exercise/02_collector/trace
    (bastion)$ cat openTelemetry-manifest.yaml
    ```
 This collector is currently receiving traces and exporting it directly to the logging exporter.
@@ -40,7 +40,7 @@ C. Look at the produced logs
 ### Step 2. Update the current Trace Pipeline 
 
 A. Edit the OpenTelemetryCollector object
-   In the Bastion host, edit the file  : `exercice/02_collector/traces/openTelemetry-manifest.yaml`
+   In the Bastion host, edit the file  : `exercise/02_collector/traces/openTelemetry-manifest.yaml`
    Change the Trace pipeline to process span , where each task will always :
       - start with the `memory_limiter`
       - end with the `batch` processor 

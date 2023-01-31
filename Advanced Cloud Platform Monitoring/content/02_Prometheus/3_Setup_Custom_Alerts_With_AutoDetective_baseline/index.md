@@ -1,7 +1,7 @@
 ## Setup Custom Alerts (With Auto-Detective baseline)
 In this step, we will setup a custom-alert to alert us when the automatic baseline has been breached for the Prometheus metric(s)
 
-Setup a custom alert with an auto-detective baseline so that the AI engine would determine the threshold after studying the trend and behaviour of the metrics. To setup a custom alert
+Setup a custom alert with an  so that the AI engine would determine the threshold after studying the trend and behaviour of the metrics. To setup a custom alert
 
 ![image](../../../assets/images/createCustom-event-1.png)
 
@@ -11,10 +11,14 @@ All the metrics which were pushed into Dynatrace are now available in the metric
 ![image](../../../assets/images/createCustom-event-2.png)
 
 Further, scroll down to **Monitoring strategy** and configure the following:
-1.	Alert-type: **Auto-adaptive baseline**
-1.	Configure to be alerted if the metric is **above** the baseline for **1 minutes** during **3 minutes** window
-1.	Select **Alert** to ensure you are notified if data is missing.
-![image](../../../assets/images/createCustom-event-3.png)
+1.	Model-type: **Static threshold**
+1.	Configure to be alerted if the metric is above **10000**
+![image](../../../assets/images/threshold_alerting_1.png)
+1.  In Advanced dimension definition , select **kubernetes workload**
+     filter type: Name
+     Operator : equals
+     value: mongo
+![image](../../../assets/images/threshold_alerting_2.png)
 1. Name the title **Prometheus-custom-alert**
 1. Click on **Create custom event for alerting**
 ![image](../../../assets/images/createCustom-event-4.png)

@@ -41,5 +41,5 @@ cd /home/dtu_training/SRE_HOT_PREDEPLOY/
 4. Execute the predeploy script. (Replace the parameters with your own):
 
 ```
-./deployment.sh --environment-url "https://{your-environment-id}.live.dynatrace.com" --dtu-id "dtulab123456789" --api-token "TOKEN" --email "EMAIL"
+./deployment.sh --environment-url "https://{your-environment-id}.sprint.dynatracelabs.com" --dtu-id "dtulab123456789" --api-token "TOKEN" --email "EMAIL"
 ```

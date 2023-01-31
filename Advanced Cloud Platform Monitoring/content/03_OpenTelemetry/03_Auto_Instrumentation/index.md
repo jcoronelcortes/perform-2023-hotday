@@ -13,11 +13,11 @@ In this module you will go through the following actions:
 
 1. Go to the folder of the exercice :
 
-   In the Bastion host, go to o the folder : `exercice/03_auto-instrumentation`
+   In the Bastion host, go to o the folder : `exercise/03_auto-instrumentation`
    
    ```bash
    (bastion)$ cd ~/HOT_DAY_SCRIPT
-   (bastion)$ cd exercice/03_auto-instrumentation`
+   (bastion)$ cd exercise/03_auto-instrumentation`
    ```
 
 

@@ -15,11 +15,21 @@
 
 ![](../../assets/images/handson5_3.png)
 
-4. Provide a meaningful name/metric for the SLO. **{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
+4. Provide a meaningful name/metric/description for the SLO. *{ENV}\_{APP NAME}\_{HoT#}\_{ENTITY TYPE}\_{TYPE}*
 
+SLO Name : 
 ```
-SLO Name : Prod - Easytravel - HoT5 - Synthetic - Availability
-SLO Metric : prod_easytravel_hot5_synthetic_availability
+Prod - Easytravel - HoT5 - Synthetic - Availability
+```
+
+SLO description:
+```
+99.99% of synthetic visits are successful
+```
+
+SLO Metric : 
+```
+prod_easytravel_hot5_synthetic_availability
 ```
 
 ![](../../assets/images/handson5_4.png)
@@ -29,19 +39,28 @@ SLO Metric : prod_easytravel_hot5_synthetic_availability
 > - Time Frame - the evaluation period of SLO. *last 30 minutes* </br>
 > - Entity Selector - the entities from where SLI is calculated. *easytravel tag*</br>
 
+
+timeFrame : 
 ```
-timeFrame : -30m
-entitySelector : type("SYNTHETIC_TEST"),tag(easytravel)
+-30m
+```
+entitySelector : 
+```
+type("SYNTHETIC_TEST"),tag(easytravel)
 ```
 
 ![](../../assets/images/handson5_5.png)
 
 6. Next, let's set our SLO target.
-> #### *Step 7 of the SLO Framework* </br>
 
+Target - 
 ```
-Target - 99.99
-Warning - 99.999
+99.99
+```
+
+Warning - 
+```
+99.999
 ```
 
 ![](../../assets/images/handson5_6.png)

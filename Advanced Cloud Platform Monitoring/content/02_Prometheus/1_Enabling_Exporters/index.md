@@ -5,7 +5,7 @@ In this step, you will monitor the application pods using node-exporter and mong
 ### Annotate mongodb-exporter
 In this step, we will annotate the exporters to accept metrics on the annotated pods.
 
-Towards first step, navigate to **Kubernetes** menu within Dynatrace tenant, and against the kubernetes cluster **prometheusintegration** that you have setup in the first step, click (...) under "Actions" against the integration and select **Settings**.
+Towards first step, navigate to **Kubernetes** menu within Dynatrace tenant, and against the kubernetes cluster , click (...) under "Actions" against the integration and select **Settings**.
 ![step-1](../../../assets/images/step_1_prometheus_annotation.png)
 
 Further, toggle **Monitor annotated Prometheus exporters** and click on **Save**.
@@ -33,5 +33,5 @@ in another terminal send the following curl command:
 ```sh
 curl http://localhost:9216/metrics
 ```
-
+![step-4](../../../assets/images/prometheus_local.png)
 <!-- ------------------------ -->
