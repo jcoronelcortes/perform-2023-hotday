@@ -88,12 +88,12 @@ fetch logs
 |limit 10
 ```
 
-## Additional exercise - Parsing only
+## Additional exercises - Parsing only
 
 As we saw before, we can use Dynatrace's parsing capabilities to access JSON content to be able to retrieve values in a dynamic way.
 On top of that, we can use the same capabilities to be able to parse values out of text responses, parsing puts the result into one or more fields as specified in the pattern. This is especially useful when defining log processing rules, which eventually can be used to define custom log attributes that can be leveraged as dimensions in custom metrics.
 
-### Step 1 - Accessing sample data
+### Sample data for parsing
 
 Using the following query will provide you with a sample string, that can be parsed into multiple different fields using different type of matchers, like LD (Line data matcher), IPADDR (for matching IPv4 and IPV6 addresses), INT (integral numbers) and TIMESTAMP.
 
@@ -103,12 +103,32 @@ fetch logs
 | fields contentToParse = "Feb 13 2023 17:29:01 ip-10-1-92-64 kernel: [526784.068581] [UFW AUDIT] IN=ens5 OUT=eth1 MAC=0e:16:b3:b8:e3:4f:0e:06:f6:c1:0c:7c:08:00 SRC=169.254.169.254 DST=10.1.92.64 LEN=52 TOS=0x00 PREC=0x00 TTL=255 ID=0 PROTO=TCP SPT=80 DPT=60350 WINDOW=493 RES=0x00 ACK URGP=0 "
 ```
 
-The goal is to breakdown the provided entry into individual fields, the result should look something like this:
+### Exercise 1 - Extracting the timestamp
 
-![Parse result](../../assets/images/parseResult.png)
+In the provided example, the timestamp is the first parameter, so it is a good exercise on how to transform the string to parse into a DPL expression in order to be able to extract only specific parameters. 
+Using the ![Grammar](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-grammar) and ![Time and Date](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-time-date#conversion-patterns) documentation, we can use the TIMESTAMP expression with the right parameters for referencing the date and time, and once referenced we can extract the value using a variable. It is important to note that DPL needs to match the whole content to be parsed, so we need to add the LD expression after hour timestamp one to tell DQP to read the rest of the line data.
 
-### Step 2 - End result
+```
+fetch logs
+| limit 1
+| fields contentToParse = "Feb 13 2023 17:29:01 ip-10-1-92-64 kernel: [526784.068581] [UFW AUDIT] IN=ens5 OUT=eth1 MAC=0e:16:b3:b8:e3:4f:0e:06:f6:c1:0c:7c:08:00 SRC=169.254.169.254 DST=10.1.92.64 LEN=52 TOS=0x00 PREC=0x00 TTL=255 ID=0 PROTO=TCP SPT=80 DPT=60350 WINDOW=493 RES=0x00 ACK URGP=0 "
+| parse contentToParse, "TIMESTAMP('MMM d YYYY HH:mm:ss'):Timestamp LD"
+```
 
+### Exercise 2 - Extracting parameters in the middle
+
+We can use DPL to target multiple parameters using a single parse command and a single expression. In this case, we can target other useful information presented in the example string. We can target the Kernel information, found within square brackets after the "kernel:" sub-string, and the source IP, found after the "SRC=" sub-string.
+
+```
+fetch logs
+| limit 1
+| fields contentToParse = "Feb 13 2023 17:29:01 ip-10-1-92-64 kernel: [526784.068581] [UFW AUDIT] IN=ens5 OUT=eth1 MAC=0e:16:b3:b8:e3:4f:0e:06:f6:c1:0c:7c:08:00 SRC=169.254.169.254 DST=10.1.92.64 LEN=52 TOS=0x00 PREC=0x00 TTL=255 ID=0 PROTO=TCP SPT=80 DPT=60350 WINDOW=493 RES=0x00 ACK URGP=0 "
+| parse contentToParse, "LD 'kernel:' SPACE? '[' LD:kernel ']' LD 'SRC=' IPADDR:src LD"
+```
+
+### Optional excercise - Fully parametize the complete string
+
+As we have seen, we can target 1 or multiple parameters within an object for dinamically extracting data. We can break down the whole string into individual parameters.
 This is a query that you can use to completely breakdown this sample string. This same logic can be implemented to results provided by fetching logs.
 
 ```
@@ -118,6 +138,10 @@ fetch logs
 | parse contentToParse, "TIMESTAMP('MMM d YYYY HH:mm:ss'):Timestamp SPACE LD:hostName SPACE LD '['LD:Kernel']' LD 'IN='LD:IN SPACE 'OUT='LD:OUT SPACE 'MAC='LD:MAC SPACE 'SRC='IPADDR:SRC SPACE 'DST='IPADDR:DST SPACE 'LEN='INT:LEN SPACE 'TOS='LD:TOS SPACE 'PREC='LD:PREC SPACE 'TTL='INT:TTL SPACE 'ID='INT:ID SPACE 'PROTO='LD:PROTO SPACE 'SPT='INT:SPT SPACE 'DPT='INT:DPT SPACE 'WINDOW='INT:Window SPACE 'RES='LD:RES SPACE LD 'URGP='INT:URGP"
 | fieldsRemove contentToParse
 ```
+
+The goal is to breakdown the provided entry into individual fields, the result should look something like this:
+
+![Parse result](../../assets/images/parseResult.png)
 
 
 **Useful links**
