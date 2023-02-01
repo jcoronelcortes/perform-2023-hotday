@@ -112,7 +112,7 @@ Using the [Grammar](https://www.dynatrace.com/support/help/how-to-use-dynatrace/
 fetch logs
 | limit 1
 | fields contentToParse = "Feb 13 2023 17:29:01 ip-10-1-92-64 kernel: [526784.068581] [UFW AUDIT] IN=ens5 OUT=eth1 MAC=0e:16:b3:b8:e3:4f:0e:06:f6:c1:0c:7c:08:00 SRC=169.254.169.254 DST=10.1.92.64 LEN=52 TOS=0x00 PREC=0x00 TTL=255 ID=0 PROTO=TCP SPT=80 DPT=60350 WINDOW=493 RES=0x00 ACK URGP=0 "
-| parse contentToParse, "TIMESTAMP('MMM d YYYY HH:mm:ss'):Timestamp LD"
+| parse contentToParse, "TIMESTAMP('MMM d y HH:mm:ss'):Timestamp LD"
 ```
 
 ### Exercise 2 - Extracting parameters in the middle
@@ -135,7 +135,7 @@ This is a query that you can use to completely breakdown this sample string. Thi
 fetch logs
 | limit 1
 | fields contentToParse = "Feb 13 2023 17:29:01 ip-10-1-92-64 kernel: [526784.068581] [UFW AUDIT] IN=ens5 OUT=eth1 MAC=0e:16:b3:b8:e3:4f:0e:06:f6:c1:0c:7c:08:00 SRC=169.254.169.254 DST=10.1.92.64 LEN=52 TOS=0x00 PREC=0x00 TTL=255 ID=0 PROTO=TCP SPT=80 DPT=60350 WINDOW=493 RES=0x00 ACK URGP=0 "
-| parse contentToParse, "TIMESTAMP('MMM d YYYY HH:mm:ss'):Timestamp SPACE LD:hostName SPACE LD '['LD:Kernel']' LD 'IN='LD:IN SPACE 'OUT='LD:OUT SPACE 'MAC='LD:MAC SPACE 'SRC='IPADDR:SRC SPACE 'DST='IPADDR:DST SPACE 'LEN='INT:LEN SPACE 'TOS='LD:TOS SPACE 'PREC='LD:PREC SPACE 'TTL='INT:TTL SPACE 'ID='INT:ID SPACE 'PROTO='LD:PROTO SPACE 'SPT='INT:SPT SPACE 'DPT='INT:DPT SPACE 'WINDOW='INT:Window SPACE 'RES='LD:RES SPACE LD 'URGP='INT:URGP"
+| parse contentToParse, "TIMESTAMP('MMM d y HH:mm:ss'):Timestamp SPACE LD:hostName SPACE LD '['LD:Kernel']' LD 'IN='LD:IN SPACE 'OUT='LD:OUT SPACE 'MAC='LD:MAC SPACE 'SRC='IPADDR:SRC SPACE 'DST='IPADDR:DST SPACE 'LEN='INT:LEN SPACE 'TOS='LD:TOS SPACE 'PREC='LD:PREC SPACE 'TTL='INT:TTL SPACE 'ID='INT:ID SPACE 'PROTO='LD:PROTO SPACE 'SPT='INT:SPT SPACE 'DPT='INT:DPT SPACE 'WINDOW='INT:Window SPACE 'RES='LD:RES SPACE LD 'URGP='INT:URGP"
 | fieldsRemove contentToParse
 ```
 
