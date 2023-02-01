@@ -106,7 +106,7 @@ fetch logs
 ### Exercise 1 - Extracting the timestamp
 
 In the provided example, the timestamp is the first parameter, so it is a good exercise on how to transform the string to parse into a DPL expression in order to be able to extract only specific parameters. 
-Using the ![Grammar](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-grammar) and ![Time and Date](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-time-date#conversion-patterns) documentation, we can use the TIMESTAMP expression with the right parameters for referencing the date and time, and once referenced we can extract the value using a variable. It is important to note that DPL needs to match the whole content to be parsed, so we need to add the LD expression after hour timestamp one to tell DQP to read the rest of the line data.
+Using the [Grammar](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-grammar) and [Time and Date](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-pattern-language/log-processing-time-date#conversion-patterns) documentation, we can use the TIMESTAMP expression with the right parameters for referencing the date and time, and once referenced we can extract the value using a variable. It is important to note that DPL needs to match the whole content to be parsed, so we need to add the LD expression after hour timestamp one to tell DQP to read the rest of the line data.
 
 ```
 fetch logs
