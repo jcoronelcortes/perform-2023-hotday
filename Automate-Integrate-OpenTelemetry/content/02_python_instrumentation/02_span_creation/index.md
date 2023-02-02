@@ -1,8 +1,8 @@
-# 2. Creating Spans into the Python webservice
+## 2. Creating Spans into the Python webservice
 
 ---
 
-## Introduction
+### Introduction
 
 Now that we're familiar with the OpenTelemetry setup for Python, it's time to start tracing our missing transactions. Our Python webservice is a very simple Flask web app.
 
@@ -12,7 +12,7 @@ In this exercise you'll create the missing span for the `/calc` route and use Co
 
 Head over to <mark>./shopizer/pysrvc/main.py</mark> to begin.
 
-## 📑 Key Concepts
+### 📑 Key Concepts
 
 Expand each section as needed.
 
@@ -92,7 +92,7 @@ Expand each section as needed.
   ```
 </details>
 
-## 📌 Your Tasks
+### 📌 Your Tasks
 
 In <mark>./shopizer/pysrvc/main.py`</mark>:
 1. On line `22` - Edit the span creation route `/quote` so that it uses the right context and has the SpanKind set to SERVER.
@@ -128,7 +128,7 @@ mvn spring-boot:run
   ```
 </details>
 
-## ✅ Verify results
+### ✅ Verify results
 
 To verify your results, go to Services and find the `Requests executed in the background threads of com.salesmanager.shop.application.ShopApplication` service then click `...` and drilldown to `Distributed traces`:
 ![service](../../../assets/images/02-02-background_service.png)

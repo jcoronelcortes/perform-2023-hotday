@@ -1,8 +1,8 @@
-# 1. Basic plumbing for OpenTelemetry with Python
+## 1. Basic plumbing for OpenTelemetry with Python
 
 ---
 
-## Introduction
+### Introduction
 
 Before we can begin creating Spans and providing better insights into our Python webservice, we should first get an overview and understanding of the OpenTelemetry setup (_the plumbing_) that is already in place for these exercises.
 
@@ -12,7 +12,7 @@ Let's find out what's involved.
 
 Go to the <mark>./shopizer/pysrvc/otel.py</mark> file.
 
-## 📑 Key Concepts
+### 📑 Key Concepts
 
 Expand each section as needed.
 
@@ -102,7 +102,7 @@ Expand each section as needed.
   So from here on, in all exercises, you can use `ot.tracer` and access the full functionality of the tracing SDK.
 </details>
 
-## 📌 Your Tasks
+### 📌 Your Tasks
 
 1. Start the Demo application
    ```bash
@@ -117,7 +117,7 @@ Expand each section as needed.
    3. Click `Distributed traces` (top right corner)
       * Can you tell where these traces are coming from?
 
-## ✅ Verify Results
+### ✅ Verify Results
 
 You have completed this exercise once you can visualize the Python webservice and have understood where the data is coming from.
 

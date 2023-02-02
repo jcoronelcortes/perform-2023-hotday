@@ -1,8 +1,8 @@
-# 5. Challenge: Instrument the `/newroute` request
+## 5. Challenge: Instrument the `/newroute` request
 
 ---
 
-## Introduction
+### Introduction
 
 This exercise is optional, in case you have spare time and want to challenge yourself. You will have noticed that our Python webservice has a `/newroute` route which we haven't talked about yet.
 
@@ -12,7 +12,7 @@ In this exercise you'll apply knowledge from the previous exercises and instrume
 
 Head over to <mark>./shopizer/pysrvc/main.py</mark> to get started.
 
-## 📌 Your Tasks
+### 📌 Your Tasks
 
 1. Disable (by commenting with `#`) the auto-instrumentation for Python
 2. Create a Span for the `/newroute` route
@@ -30,7 +30,7 @@ Trigger the route from the command-line
 curl http://localhost:8090/newroute
 ```
 
-## ✅ Verify results
+### ✅ Verify results
 
 Open the `pysrvc on port 8090` service in Dynatrace and look for your `/newroute` spans in its Distributed traces panel. Open up any of these traces and verify the Span kind and most importantly the continuation of the transaction into the Java side of the application.
 

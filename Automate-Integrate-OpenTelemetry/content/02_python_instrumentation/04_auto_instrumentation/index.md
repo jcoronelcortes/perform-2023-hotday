@@ -2,13 +2,13 @@
 
 ---
 
-## Introduction
+### Introduction
 
 By now you must be thinking "*Do I really need to write so much instrumentation myself?*". Luckily, the answer is "No!". Most languages and frameworks that support OpenTelemetry also come prepared with some auto-instrumentation that can take away a lot of the initial effort.
 
 In this exercise you'll add OpenTelemetry's auto-instrumentation for Flask and remove some of the code you wrote.
 
-## 📑 Key Concepts
+### 📑 Key Concepts
 
 <details>
   <summary><strong>What is auto-instrumentation</strong></summary>
@@ -35,7 +35,7 @@ In this exercise you'll add OpenTelemetry's auto-instrumentation for Flask and r
   * Add semantic attributes to all created Spans
 </details>
 
-## 📌 Your Tasks
+### 📌 Your Tasks
 
 In <mark>./shopizer/pysrvc/main.py</mark>:
 1. On line `12`: Add auto-instrumentation for the Python webservice
@@ -71,7 +71,7 @@ mvn spring-boot:run
   ```
 </details>
 
-## ✅ Verify results
+### ✅ Verify results
 
 Open the `pysrvc svc on port 8090` service in Dynatrace and open one of the `/quote` traces from its Distributed traces view. 
 
