@@ -91,11 +91,11 @@ fetch logs
 ## Additional exercises - Parsing only
 
 As we saw before, we can use Dynatrace's parsing capabilities to access JSON content to be able to retrieve values in a dynamic way.
-On top of that, we can use the same capabilities to be able to parse values out of text responses, parsing puts the result into one or more fields as specified in the pattern. This is especially useful when defining log processing rules, which eventually can be used to define custom log attributes that can be leveraged as dimensions in custom metrics.
+On top of that, we can use the same capabilities to be able to parse values out of text responses. Parsing puts the resulting values into one or more fields as specified in the pattern. This is especially useful when defining log processing rules, which eventually can be used to define custom log attributes that can be leveraged as dimensions in custom metrics.
 
 ### Sample data for parsing
 
-Using the following query will provide you with a sample string, that can be parsed into multiple different fields using different type of matchers, like LD (Line data matcher), IPADDR (for matching IPv4 and IPV6 addresses), INT (integral numbers) and TIMESTAMP.
+Using the following query will provide you with a sample string that can be parsed into multiple different fields using different types of matchers, like LD (Line data matcher), IPADDR (for matching IPv4 and IPV6 addresses), INT (integral numbers) and TIMESTAMP.
 
 ```
 fetch logs
@@ -128,8 +128,8 @@ fetch logs
 
 ### Optional excercise - Fully parametize the complete string
 
-As we have seen, we can target 1 or multiple parameters within an object for dinamically extracting data. We can break down the whole string into individual parameters.
-This is a query that you can use to completely breakdown this sample string. This same logic can be implemented to results provided by fetching logs.
+As we have seen, we can target one or more parameters within an object for dynamically extracting data. We can break down the whole string into individual parameters.
+This is a query that you can use to completely breakdown the provided sample string. This same logic can be implemented to results provided by fetching logs.
 
 ```
 fetch logs
