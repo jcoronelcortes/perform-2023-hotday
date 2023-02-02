@@ -2,7 +2,7 @@
 
 In this section we'll monitor the application pods using node-exporter and mongodb-exporter.
 
-### A) Annotate mongodb-exporter
+## A) Annotate mongodb-exporter
 
 In this step, we will annotate the exporters to accept metrics on the annotated pods.
 
@@ -14,7 +14,7 @@ Then, toggle **Monitor annotated Prometheus exporters** and click on **Save**.
 
 Once saved, this concludes the setup required on tenant. The activeGate installed as part of the integration will now look for any annotated exporters and push the data in Dynatrace.
 
-### B) Create Mongodb Exporter
+## B) Create Mongodb Exporter
 
 1. Create mongo-exporter that will collect mongodb metrics. To do so, first let helm know where to find kubernetes using:
 
