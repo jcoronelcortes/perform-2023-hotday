@@ -55,6 +55,9 @@ Here we explore how to connect our metrics to the Dynatrace Topology.
 
 #### 👂 Listen & follow in Dynatrace
 
+> 📝 **Note**: 
+> It may take a few minutes for the topology to connect the metrics to the service
+
 Now that we have our topology we can navigate to the Service screen for our python service to see the result
 
 In the top search bar type in `pysrvc svc on port 8090` to navigate to the service screen:

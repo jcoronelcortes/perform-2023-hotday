@@ -9,7 +9,7 @@ Here we look at ad-hock anlysis of metrics connected to our python service and c
 
 ## Davis Exploritory Analysis
 
-#### 📌 Follow along
+#### 👂 Listen (follow along if you like)
 
 Quickly identify observability signals relevant to any signal behavior (for example, a spike on a chart) that you want to investigate. Now that our metrics are connected to the topology they can be included in this anlysis. 
 
@@ -18,14 +18,14 @@ Highlight an area in the unified anlysis screen until Anlyze is a teal color. Cl
 ![Davis Analysis](../../../assets/images/03-04-davis_adhock.gif)
 
 > 📝 **Note**: 
->- Every data analysis relies on the quality of your data. The quality of the results significantly improves when you select a phenomenon correctly.
->- Causal correlation analysis requires that portions of normal behavior in a reference time series be selected–both before and after any phenomenon under analysis. For a spike analysis, a rule of thumb is that the spike itself should cover a third of the reference time series, with one third before and one third after the spike.
+>- The quality of the results significantly improves when you select a phenomenon correctly.
+>- For a spike analysis, a rule of thumb is that the spike itself should cover a third of the reference time series, with one third before and one third after the spike.
 
 ---
 
 ## Metric Events (Alerting)
 
-#### 📌 Follow along
+#### 👂 Listen (follow along if you like)
 
 Lets create an Auto Adaptive baseline metric event for the `perform.opentelemetry.hot.process_duration` metric. 
 
@@ -68,15 +68,4 @@ Here is a good visualization of how this works:
 ![Sliding Window](../../../assets/images/03-04-sliding-window-example.jpg)
 
 Complete the metric event setup by giving it a Title and optionally set the Event type to be indicitive of the alert being raised and click `Save Changes`.
-
-### 📌 Task
-
-Now that we've created an Auto-adaptive baseline you'll create a Seasonal Baseline on `perform.opentelemetry.hot.requests_count`. 
-- Adjust the Tolerance to see how the band changes in the alert preview 
-- Change the Advanced Model Properties for the number of violating samples, sliding window, and dealerting samples. 
-- Save your alert
-
-> Note: becuase there isn't much data in your envionrment you will likley get a warning, you can ignore this - the alert will still be created: 
-
-> `Using auto-adaptive threshold, time series is not suitable for seasonal model. `
 
