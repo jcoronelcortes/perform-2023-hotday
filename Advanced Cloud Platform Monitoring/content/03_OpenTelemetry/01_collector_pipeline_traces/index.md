@@ -7,9 +7,9 @@ In this section you'll learn how to :
 - use the processor spanMetrics
 - use the otlp http exporter
 
-### Step 1: Export Traces to Logs
+## A) Export Traces to Logs
 
-A. Review the OpenTelemetry Collector template
+1. Review the OpenTelemetry Collector template
 
 Run the following to check out the manifest:
 
@@ -19,7 +19,7 @@ cat ~/HOT_DAY_SCRIPT/exercise/02_collector/trace/openTelemetry-manifest.yaml
 
 This collector is currently receiving traces and exporting it directly to the logging exporter.
 
-B. Deploy the OpenTelemetryCollector
+2. Deploy the OpenTelemetryCollector
 
 ```bash
 kubectl apply -f ~/HOT_DAY_SCRIPT/exercise/02_collector/trace/openTelemetry-manifest.yaml
@@ -27,13 +27,13 @@ kubectl apply -f ~/HOT_DAY_SCRIPT/exercise/02_collector/trace/openTelemetry-mani
 
 This will deploy OpenTelemetry Collector in a daemon set mode.
 
-C. Look at the produced logs
+3. Look at the produced logs
 
 ```bash
 kubectl get pods
 ```
 
-D. Save the otel pod to a variable to make further commands easy.
+4. Save the otel pod to a variable to make further commands easy.
 
 ```bash
 export otelpod=<pod>
@@ -48,9 +48,9 @@ Display the logs of the otel pod with:
 kubectl logs $otelpod
 ```
 
-### Step 2. Update the current Trace Pipeline
+## B) Update the current Trace Pipeline
 
-A. Edit the OpenTelemetryCollector object
+1. Edit the OpenTelemetryCollector object
 
 We'll edit the opentelemetry manifest and change the Trace pipeline to process spans. Each task will always start with the `memory_limiter` - end with the `batch` processor.
 
@@ -60,7 +60,7 @@ vi ~/HOT_DAY_SCRIPT/exercise/02_collector/trace/openTelemetry-manifest.yaml
 
 ![Pod 01](../../../assets/images/processor_flow.png)
 
-B. Add k8s attributes
+Add k8s attributes
 Adding k8s attributes to the generated traces means using the processor `k8sattributes`.
 `k8sattributes` will interact with the k8s Api to collect details related to the span.
 
@@ -78,7 +78,7 @@ Add the following extra attributes :
 
 Here is the link to documentation of the [k8sattributes processor](https://pkg.go.dev/github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor).
 
-Edit the `openTelemetry-manifest.yaml`, by adding the right defintion of processor
+2. Edit the `openTelemetry-manifest.yaml` and add the correct processor components with:
 
 ```bash
 vi ~/HOT_DAY_SCRIPT/exercise/02_collector/trace/openTelemetry-manifest.yaml
@@ -104,7 +104,7 @@ Add this under processors in the YAML file:
 
 ```
 
-C. Change the Processor flow
+3. Change the Processor flow
 
 Change the Processor flow in the trace pipeline to add the `k8sattributes` after the `memory_limiter`
 Apply the change made on the collector :
@@ -134,10 +134,10 @@ Then get the logs of your pod with:
 kubectl logs $otelpod
 ```
 
-### Step 3. Export the generated spans to Dynatrace
+## C) Export the generated spans to Dynatrace
 
-A. Update the current trace pipeline
-In the OpenTelemetry Collector pipeline, edit `openTelemetry-manifest.yaml` to export the spans to : - The logs of the collector - Dynatrace OpenTelemtry Trace ingest API.
+1. Update the current trace pipeline
+   In the OpenTelemetry Collector pipeline, edit `openTelemetry-manifest.yaml` to export the spans to : - The logs of the collector - Dynatrace OpenTelemtry Trace ingest API.
 
 ```bash
 vi ~/HOT_DAY_SCRIPT/exercise/02_collector/trace/openTelemetry-manifest.yaml
@@ -152,24 +152,24 @@ Apply the file.
 kubectl apply -f ~/HOT_DAY_SCRIPT/exercise/02_collector/trace/openTelemetry-manifest.yaml
 ```
 
-B. Look at the generated traces in Dynatrace
-Open your Dynatrace tenant :
+2. Look at the generated traces in Dynatrace
+   Open your Dynatrace tenant :
 
 > 1.  Navigate to `Distributed traces` via Dynatrace Menu
 > 2.  Click on ingested Traces
 > 3.  Click on the Trace named HTTP GET or HTTP Post
 
-C. Add all span attributes not stored by Dynatrace
-Look at each generated span, add all span attributes detected but not stored by dynatrace.
-![spanattribute 01](../../../assets/images/span_attribute.png)
+3. Add all span attributes not stored by Dynatrace
+   Look at each generated span, add all span attributes detected but not stored by dynatrace.
+   ![spanattribute 01](../../../assets/images/span_attribute.png)
 
-D. Look at the Service Screen
-In your Dynatrace tenant:
+4. Look at the Service Screen
+   In your Dynatrace tenant:
 
 > 1.  Navigate to `Services` via Dynatrace Menu
 > 2.  Click on the `checkoutservice`
 
-### Step 4 The metrics produced by the collector
+### D) Review metrcs created
 
 1. Look at the prometheus metrics produced by the Collector
    Get the new service montoring name of the Collector
@@ -180,13 +180,13 @@ In your Dynatrace tenant:
 
    ![collector 01](../../../assets/images/collector_metrics.png)
 
-   Expose the port 8088 locally on the bastion host :
+2. Expose the port 8088 locally on the bastion host :
 
    ```bash
    kubectl port-forward svc/<collector monitoring service name> 8088:8888
    ```
 
-   Open another terminal and connect to the bastion host.
+3. Open another terminal and connect to the bastion host.
    Look at the metrics by send http request to `http://localhost:8088/metrics`
 
    ```bash

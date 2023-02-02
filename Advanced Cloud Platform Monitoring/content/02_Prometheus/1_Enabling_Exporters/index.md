@@ -60,5 +60,3 @@ curl http://localhost:9216/metrics
 ```
 
 ![step-4](../../../assets/images/prometheus_local.png)
-
-<!-- ------------------------ -->

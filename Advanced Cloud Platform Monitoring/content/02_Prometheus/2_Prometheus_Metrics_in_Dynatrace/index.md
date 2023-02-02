@@ -9,11 +9,11 @@ kubectl get pod -n samplebank
 
 ![image](../../../assets/images/identify_mongo_exporter.png)
 
-Keep the exporter name handy in a notepad which you can refer to later. (If you did not save it as a variable earlier)
+## A) Annotate the pods
 
 Next, we'll annotate the exporter so that oneagent running on the cluster will push prometheus metrics to dynatrace tenant.
 
-Copy the mongodb-exporter pod name and annotate them using command below.
+Annotate the pod using the saved variable from previous section:
 
 ```bash
 kubectl annotate pod $mongopod metrics.dynatrace.com/scrape=true --namespace=samplebank
@@ -28,7 +28,11 @@ Once annotated, Oneagent will detect the metrics and automatically important the
 To view these metrics, navigate to the **Metrics** screen within Dynatrace tenant.
 ![image-1](../../../assets/images/metrics_screen.png)
 
+## B) Apply metric filters
+
 By default, all the metrics collected by the annotated exporter(s) will be pushed to Dynatrace. However, you can limit the metrics using a filter like:
+
+**EXAMPLE ONLY**
 
 ```bash
 metrics.dynatrace.com/filter: |
@@ -55,7 +59,7 @@ kubectl edit pod $mongopod -n samplebank
 
 Edit the manifest file
 
-```bash
+```YAML
     metrics.dynatrace.com/filter: |
       {
       "mode": "include",
@@ -72,7 +76,7 @@ Once added, press ESC + :wq! to quit the editor. The pod would now be annotated 
 
 - **Note**: mode supports both **include** and **exclude** keyword. Also, the names accept wild card like (_mongo) or (mongo_) or (_mongo_) should you have multiple metrics with similar text pattern.
 
+## C) Confirm metric visibility in Dynatrace
+
 In Dynatrace, Go to Metrics and search for `Mongo`
 ![image-3](../../../assets/images/prometheus_metric.png)
-
-<!-- ------------------------ -->

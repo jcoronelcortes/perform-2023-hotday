@@ -7,33 +7,26 @@ In this section, we'll inject the auto instrumentation library using the OpenTel
 1. Deploy the `Instrumentation` object in the namespace
 1. Update the `Instrumetnation` object by adding the right instrumentation annotation
 
-### Step 1: Create the New Namespace
+## A) Deploy the collector
 
-1. Go to the folder of the exercice :
-
-   In the Bastion host, go to o the folder : `exercise/03_auto-instrumentation`
-
-   ```bash
-   (bastion)$ cd ~/HOT_DAY_SCRIPT
-   (bastion)$ cd exercise/03_auto-instrumentation`
-   ```
-
-2. Deploy the OpenTelemetry Sidecar Collector
+1. Deploy the OpenTelemetry Sidecar Collector
 
    ```bash
    kubectl apply -f ~/HOT_DAY_SCRIPT/exercise/03_auto-instrumentation/openTelemetry-sidecar.yaml -n hipster-shop
    ```
 
-3. Look at the Instrumentation object
+2. Look at the Instrumentation object
+
    ```bash
    cat ~/HOT_DAY_SCRIPT/exercise/03_auto-instrumentation/instrumentation.yaml
    ```
-4. Deploy the instrumentation object
+
+3. Deploy the instrumentation object
    ```bash
    kubectl apply -f  ~/HOT_DAY_SCRIPT/exercise/03_auto-instrumentation/instrumentation.yaml -n hipster-shop
    ```
 
-### Step 2 : Configure the Deployment file
+## B) Configure the Deployment file
 
 1. Add the instrumentation annotation in the deployment file
 
@@ -52,7 +45,7 @@ In this section, we'll inject the auto instrumentation library using the OpenTel
    kubectl apply -f  ~/HOT_DAY_SCRIPT/exercise/03_auto-instrumentation/k8Sdemo-nootel.yaml -n hipster-shop
    ```
 
-### Step 3 : Look at the generated traces
+### C) Look at the generated traces
 
 1. Open your Dynatrace tenant :
 

@@ -1,6 +1,6 @@
 ## Fluentbit log pipeline
 
-In this section, you will learn how to build a fluentbit log pipeline using the Fluent Operator.
+In this session, you will learn how to build a fluentbit log pipeline using the Fluent Operator.
 
 ### Prerequisites
 

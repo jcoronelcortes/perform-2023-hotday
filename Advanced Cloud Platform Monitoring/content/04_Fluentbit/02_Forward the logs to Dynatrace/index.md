@@ -5,12 +5,12 @@ In this section you'll learn how to :
 - use the right filter plugin to batch the logs before sending it to dynatrace
 - configure the http output plugin to send the logs to dynatrace
 
-### Step 1: Create a ClusterFilter
+### A) Create a ClusterFilter
 
 In our case we want to send all the logs collected by Fluentbit from our Pods.
 To be able to throttle everything we would apply it on the logs taged: `kube.*`
 
-Edit our cluster template again:
+1. Edit our good friend the cluster template:
 
 ```bash
 vi ~/HOT_DAY_SCRIPT/exercise/04_Fluent/cluster_filter_template.yaml
@@ -30,13 +30,13 @@ Add the following lines :
 
 ```
 
-Let's apply this new Cluster Filter with:
+2. Let's apply this new Cluster Filter with:
 
 ```bash
 kubectl apply -f ~/HOT_DAY_SCRIPT/exercise/04_Fluent/cluster_filter_template.yaml
 ```
 
-### Step 2: Create the Cluster Output
+### B) Create the Cluster Output
 
 In the bastion host the cluster Output plugin as already been configured.
 
@@ -74,13 +74,13 @@ To send lobs to dynatrace we need to:
 - configure the communication to the log ingest api ( by specifying the host, uri)
 - handle the authentification with the help of the header : Authorization
 
-Let's apply it and look at the logs in dynatrace.
+1. Let's apply it and look at the logs in dynatrace.
 
 ```bash
 kubectl apply -f ~/HOT_DAY_SCRIPT/exercise/04_Fluent/cluster_output_http.yaml
 ```
 
-### Step 3: Look at the the logs in Dynatrace
+### C) Review the logs in Dynatrace
 
 In Dynatrace, let's have a look a the logs sent by Fluentbit.
 

@@ -7,9 +7,9 @@ In this section you'll learn how to :
 - use the processor `spanMetrics`
 - use the dynatrace exporter
 
-### Step 1: Update the collector Pipeline
+## A) Update the collector Pipeline
 
-A. Look at the OpenTelemetryCollector template
+1. Look at the OpenTelemetryCollector template
 
 Check out the manifest with:
 
@@ -17,16 +17,16 @@ Check out the manifest with:
 cat ~/HOT_DAY_SCRIPT/exercise/02_collector/metrics/openTelemetry-manifest.yaml
 ```
 
-B. Add a metricstransform processor
+2. Add a metricstransform processor
 
-Add a new label to store the K8s.cluster.name and the Cluster id.
+We'll add a new label to store the K8s.cluster.name and the Cluster id.
 To get the Cluster id run the following command :
 
 ```bash
- kubectl get namespace kube-system -o jsonpath='{.metadata.uid}'
+kubectl get namespace kube-system -o jsonpath='{.metadata.uid}'
 ```
 
-Update the `openTelemetry-manifest.yaml` by adding the following processor :
+3. Update the `openTelemetry-manifest.yaml` by adding the following processor :
 
 ```bash
 vi ~/HOT_DAY_SCRIPT/exercise/02_collector/metrics/openTelemetry-manifest.yaml
@@ -50,8 +50,9 @@ Add the following processor:
 
 ```
 
-C. Add a metric pipeline
-The metric that would :
+## B) Add a metric pipeline
+
+The pipeline will :
 
 - receive `otlp metrics`
 - process with `memory_limiter`, `k8sattributes` , `metricstransform` , `batch`
@@ -59,24 +60,26 @@ The metric that would :
 
 ![metric pipeline 01](../../../assets/images/metric_pipeline.png)
 
-D. Replace the prometheus exporter with the dynatrace exporter
+1. Replace the prometheus exporter with the dynatrace exporter
 
-```yaml
+You can **EDIT** your existing file. No need to copy all of below.
+
+```YAML
 metrics:
   receivers: [otlp]
   processors: [memory_limiter, k8sattributes, batch]
   exporters: [logging, dynatrace]
 ```
 
-E. Apply the changes :
+2. Apply the changes :
 
 ```bash
 kubectl apply -f ~/HOT_DAY_SCRIPT/exercise/02_collector/metrics/openTelemetry-manifest.yaml
 ```
 
-### Step 2: Look at the produced metrics
+### C) Review the produced metrics
 
-A. In your Dynatrace tenant:
+1. In your Dynatrace tenant:
 
 > 1.  Navigate to `Metrics` via Dynatrace Menu
 > 2.  Search for `hotday`

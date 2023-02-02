@@ -2,6 +2,8 @@
 
 In this step, let us simulate load by executing a load-script so that the automatic threshold is breached, thereby, triggering an alert.
 
+## A) Enable load generation & alerts
+
 Run the following deployment to run a new K6 test:
 
 ```sh

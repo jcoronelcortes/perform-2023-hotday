@@ -1,6 +1,6 @@
 ## OpenTelemetry
 
-In this section, you will learn how to build a OpenTelemetry Collector pipeline using the OpenTelemetry Operator.
+In this session, you will learn how to build a OpenTelemetry Collector pipeline using the OpenTelemetry Operator.
 
 ### Prerequisites
 
