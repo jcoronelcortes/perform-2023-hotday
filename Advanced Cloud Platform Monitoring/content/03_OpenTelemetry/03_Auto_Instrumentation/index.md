@@ -1,8 +1,6 @@
-## Auto Instrumentation 
+## Auto Instrumentation
 
-In this module to inject the auto instrumentation library using the OpenTelemetry Operator.
-
-In this module you will go through the following actions:
+In this section, we'll inject the auto instrumentation library using the OpenTelemetry Operator by doing the following:
 
 1. Create a new Namespace for our demo application
 1. Deploy the OpenTelemetry SideCar collector in the namespace
@@ -14,46 +12,44 @@ In this module you will go through the following actions:
 1. Go to the folder of the exercice :
 
    In the Bastion host, go to o the folder : `exercise/03_auto-instrumentation`
-   
+
    ```bash
    (bastion)$ cd ~/HOT_DAY_SCRIPT
    (bastion)$ cd exercise/03_auto-instrumentation`
    ```
 
+2. Deploy the OpenTelemetry Sidecar Collector
 
-3. Deploy the OpenTelemetry Sidecar Collector
-   
    ```bash
-   (bastion)$ kubectl apply -f openTelemetry-sidecar.yaml -n hipster-shop
+   kubectl apply -f ~/HOT_DAY_SCRIPT/exercise/03_auto-instrumentation/openTelemetry-sidecar.yaml -n hipster-shop
    ```
-   
-4. Look at the Instrumentation object
+
+3. Look at the Instrumentation object
    ```bash
-   (bastion)$ cat instrumentation.yaml
+   cat ~/HOT_DAY_SCRIPT/exercise/03_auto-instrumentation/instrumentation.yaml
    ```
-   
-5. Deploy the instrumentation object
+4. Deploy the instrumentation object
    ```bash
-   (bastion)$ kubectl apply -f  instrumentation.yaml -n hipster-shop
+   kubectl apply -f  ~/HOT_DAY_SCRIPT/exercise/03_auto-instrumentation/instrumentation.yaml -n hipster-shop
    ```
 
 ### Step 2 : Configure the Deployment file
 
+1. Add the instrumentation annotation in the deployment file
 
-1. Add the right instrumentation annotation in the deployment file
- 
-    To be able to inject the right OpenTelemetry Agent in the workload, we need to add the right annotation for:
-      - Java : `instrumentation.opentelemetry.io/inject-java: "true"`
-      - Nodejs: `instrumentation.opentelemetry.io/inject-nodejs: "true"`
-      - Python: `instrumentation.opentelemetry.io/inject-python: "true"`
-      - Dotnet: `instrumentation.opentelemetry.io/inject-dotnet: "true"`
+   To inject the correct OpenTelemetry Agent in the workload, we need to add annotations for:
 
-    Edit `k8Sdemo-nootel.yaml` add the right annotation based on the annotation `technology`
+   - Java : `instrumentation.opentelemetry.io/inject-java: "true"`
+   - Nodejs: `instrumentation.opentelemetry.io/inject-nodejs: "true"`
+   - Python: `instrumentation.opentelemetry.io/inject-python: "true"`
+   - Dotnet: `instrumentation.opentelemetry.io/inject-dotnet: "true"`
+
+   Edit `k8Sdemo-nootel.yaml` add the right annotation based on the annotation `technology`
 
 2. Deploy the application
 
    ```bash
-   (bastion)$ kubectl apply -f  k8Sdemo-nootel.yaml -n hipster-shop
+   kubectl apply -f  ~/HOT_DAY_SCRIPT/exercise/03_auto-instrumentation/k8Sdemo-nootel.yaml -n hipster-shop
    ```
 
 ### Step 3 : Look at the generated traces
@@ -63,7 +59,3 @@ In this module you will go through the following actions:
    > 1. Navigate to `Distributed traces` via Dynatrace Menu
    > 2. Click on ingested Traces
    > 3. Click on the produced by the service Frontend-service
-
-
-
-
