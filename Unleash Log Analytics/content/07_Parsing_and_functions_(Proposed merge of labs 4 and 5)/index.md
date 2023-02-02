@@ -1,3 +1,41 @@
+## Using built-in functions of DQL
+
+This lab is designed to review a few hands-on examples of the most common built-in functions of DQL. After building some of these queries we will pin them to a dashboard for future reference.
+
+For a full list of all the available functions check out our [help documents](https://www.dynatrace.com/support/help/how-to-use-dynatrace/log-and-event-processing/log-and-event-processing-functions)
+
+## Conversion Functions
+
+Conversion functions are used to convert one data type to another type (ex. Integer to String)
+
+### **Example 1 - Arrays**
+
+In this example we'll convert a list of numbers and a list of strings into an array.
+
+First let's create some data:
+
+```
+fetch logs
+| fields var_value = 235711131719, num_array = array(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 2, 3, 5, 7, 11)
+```
+
+Now lets turn each into an array, but using the `toArray` function
+
+```
+fetch logs //, scanLimitGBytes: 500, samplingRatio: 1000
+| fields var_value = 235711131719, num_array = array(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 2, 3, 5, 7, 11)
+| fields toArray(num_array), toArray(var_value)
+```
+
+And for tidiness, let's limit the results to 1 record
+
+```
+fetch logs //, scanLimitGBytes: 500, samplingRatio: 1000
+| fields var_value = 235711131719, num_array = array(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 2, 3, 5, 7, 11)
+| fields toArray(num_array), toArray(var_value)
+| limit 1
+```
+
 ## DQL Parsing
 
 Dynatrace Pattern Language (DPL) is a pattern language that allows you to describe patterns using matchers, where a matcher is a mini-pattern that matches a certain type of data. For example, IPADDR matches IPv4 or IPv6 addresses. There are matchers available to handle all kinds of data types.
