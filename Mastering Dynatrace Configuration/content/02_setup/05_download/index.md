@@ -20,7 +20,7 @@ To begin let's start in your Bastion terminal. Let's make sure we start in the r
 cd ~/perform-2023-mastering-dynatrace-configuration
 ```
 
-- Finally, review the folder contents:
+- Now review the folder contents:
 
 ```bash
 ls
@@ -33,3 +33,9 @@ The contents should look similiar to the following:
 ```
 
 Now you have a local copy of the tools required for this training.
+
+- Finally, let's run a local setup script to finish the setup process
+
+```bash
+sh ~/perform-2023-mastering-dynatrace-configuration/scripts/dt-setup-k8s.sh
+```
