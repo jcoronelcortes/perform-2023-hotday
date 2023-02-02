@@ -1,4 +1,4 @@
-## Metric Browser & Dashboards
+## Metric Browser & Dashboarding
 
 In this section we create a dashboard using our OpenTelemetry metrics. 
 
@@ -23,10 +23,7 @@ Let's create a heatmap with the following settings:
 1. Show Labels `on`
 1. Y axis: `Split by Dimensions`
 1. Rename our metric to `CPU Usage`
-1. Set the threshold as:
-   - Green > 0
-   - Yellow > 2
-   - Red > 3
+1. Set the threshold so you have a couple different colors showing in the heatmap
 1. Pin the tile with the title `Request Count` to a new dashboard:
 
 ![Settings](../../../assets/images/03-02-heatmap.png)
@@ -46,10 +43,7 @@ Let's create a heatmap with the following settings:
 
 1. Select the `perform.opentelemetry.hot.process_duration` metric
 1. Choose `Single value` as the chart type
-1. Set your thresholds as:
-   * Green > 0
-   * Yellow > 2
-   * Red > 3 
+1. Set your threshold so the background is yellow
 1. Pin to the same dashboard with the title `Process Duration`
 
 ![Settings](../../../assets/images/03-02-single_value.png)
