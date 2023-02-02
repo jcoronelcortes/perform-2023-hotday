@@ -95,7 +95,7 @@ Finally, change the visualization type to 'bar' and pin the results to the same 
 
 ## Bonus Exercises
 
-1. Build a DQL query that produces a SUM of all records grouped by status and ensures the status field is not null.
+1. Build a DQL query that produces a count of all records grouped by status and ensures the status field is not null.
 
 _Note that values in the image below are expected to differ from your results_
 
