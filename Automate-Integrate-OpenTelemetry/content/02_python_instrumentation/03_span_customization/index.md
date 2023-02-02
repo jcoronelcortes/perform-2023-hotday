@@ -2,13 +2,13 @@
 
 ---
 
-## Introduction
+### Introduction
 
 While tracing provides us the most basic visibility into our transactions and allows to see the end-to-end picture, in most cases there will be a need to capture additional detail relevant to troubleshooting problems.
 
 In this exercise you'll modify your previously created Spans to capture additional details.
 
-## 📑 Key Concepts
+### 📑 Key Concepts
 
 <details>
   <summary><strong>Adding attributes</strong></summary>
@@ -60,7 +60,7 @@ In this exercise you'll modify your previously created Spans to capture addition
   ```
 </details>
 
-## 📌 Your Tasks
+### 📌 Your Tasks
 
 In <mark>./shopizer/pysrvc/utils.py</mark> inside the `process` function:
 1. Set the value of the variable `n` as an attribute to the "process" span.
@@ -95,7 +95,7 @@ mvn spring-boot:run
   ```
 </details>
 
-## ✅ Verify results
+### ✅ Verify results
 
 In Dynatrace, open the `pysrvc svc on port 8090` service and click "Distributed traces" from the top-right corner. View any of the `quote` or `calc` traces, and focus on the `process` node.
 You should verify verify that your attribute and event have been registered. You can view your event in the Events tab, and depending on the span you may also observe a failure recorded in the Errors tab.
