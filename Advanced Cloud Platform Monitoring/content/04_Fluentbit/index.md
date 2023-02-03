@@ -8,7 +8,7 @@ In this session, you will learn how to build a fluentbit log pipeline using the 
 
 ### Session Objectives
 
-During the session, we will attend the following objectives on the provided kubernetes cluster:
+During the session, we will complete the following objectives on the provided kubernetes cluster:
 
 1. Look at the configuration of Fluentbit to collect logs from K8s Pods
 1. Enrich our logs by adding kubernetes labels

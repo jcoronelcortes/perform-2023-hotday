@@ -10,7 +10,7 @@ Welcome! We're excited that you're with us today!! This session is packed with g
 
 ![started 1](../../../assets/images/image843.png)
 
-If you have putty or your comfortable using the `Command line`, then you can connect to the bastion host with :
+If you have your own terminal you can connect to the bastion host with:
 
 ```bash
 ssh dtu_training@ip_address

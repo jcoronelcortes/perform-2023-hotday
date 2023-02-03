@@ -40,6 +40,8 @@ kubectl apply -f ~/HOT_DAY_SCRIPT/exercise/04_Fluent/cluster_filter_template.yam
 
 In the bastion host the cluster Output plugin as already been configured.
 
+**EXAMPLE ONLY**
+
 ```yaml
 apiVersion: fluentbit.fluent.io/v1alpha2
 kind: ClusterOutput
