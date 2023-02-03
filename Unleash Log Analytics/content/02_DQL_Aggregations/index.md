@@ -4,64 +4,98 @@ This lab is designed to explore common use-cases for aggregating data and viewin
 
 ## Introducing the Summarize command
 
-Let's assume a developer of our application EasyTravel states there is a log entry from the backend process which needs to be summed for a period of time. The record has a URI path in its content field which identifys a new booking has occured on our application. We woud like to build a query that generates a total value for the number of matching records in a given time period.
+Let's assume you've been tasked to report the total confirmed order counts in the HipsterShop Ecommerce application. You track down a developer and ask if there's any log that would write such information. The developer suggests to look at the frontend container log which writes entries for each HTTP request and also includes metadata confirming the action type (view cart, order placed, etc..).
 
-The _phrase_ to match records by = "GET /Payment/Pay"
+Information known:
 
-Starting with the following query, filter records which contain the above phrase. Also build the query so it only returns the timestamp and content fields.
+- The container name 'frontend' is the container writing logs for the information needed.
+- Only interested in entries that have the action 'order placed' present.
+
+### Step 1 - Filter log records
+
+Starting with the below DQL query, create appropriate filters to find the relevant log entries for the requirements above.
+
+```
+fetch logs, scanLimitGBytes:500, samplingRatio:1000
+| fields timestamp, content, log.source, dt.process.name, k8s.container.name
+| sort timestamp desc
+```
+
+<h2><details>
+    <summary>Click to Expand Solution</summary>
+
+```
+fetch logs, scanLimitGBytes:500, samplingRatio:1000
+| fields timestamp, content, log.source, dt.process.name, k8s.container.name
+| filter k8s.container.name == "frontend" AND matchesPhrase(content, "Order placed")
+| sort timestamp desc
+```
+
+</details></h2>
+
+### Step 2 - Verify results
+
+The results should look similar to the screenshot below:
+
+![Order Results](../../assets/images/placedorderresults.png)
+
+### Step 3 - Get the total count
+
+Now that we have the records matching the requirements it's time to aggregate them together for a total count in the time period. Since each record represents a customer order the goal is to sum the count of all records.
+
+To aggregate any results, we'll use the `summarize` command in DQL.
+
+### Helpful Link: [Summarize Command documentation](https://www.dynatrace.com/support/help/how-to-use-dynatrace/dynatrace-query-language/commands#summarize)
+
+Modify the current query to show a total count of customer orders placed and include a custom column name for the count. Now that we want exact results, we'll remove the scanLimitGB & samplingRatio from the query.
+
+<h2><details>
+    <summary>Click to Expand Solution</summary>
 
 ```
 fetch logs
+| fields timestamp, content, log.source, dt.process.name, k8s.container.name
+| filter k8s.container.name == "frontend" AND matchesPhrase(content, "Order placed")
+| summarize `Customer Orders` = count()
 ```
 
-The log viewer results should look be similar to the image below:
+</details></h2>
 
-![Payment/Pay](../../assets/images/getpaymentpay.png)
+### Step 4 - Pin the results to a new dashboard
 
-If you were successful with your filter the resulting query should currently be:
+Pin the Customer Order count to a new Dashboard called 'Unleash Log Analytics Perform 2023'
+
+### Step 5 - Show 5 minute trend of total orders
+
+We've built a DQL query that will show the total orders for any time period requested. We can also show the same results as a trend over some aggergation of time using the `by:` command within the summarize pipe.
+
+Navigate back to the log viewer and query the same results as in step 3.
+
+Modify the query to show the total number of errors for each 5 minute aggregation for today's timeframe.
+
+Reference the summary command documentation above for usage of the `bin` function within the `by:` command.
+
+<h2><details>
+    <summary>Click to Expand Solution</summary>
 
 ```
 fetch logs
-| filter matchesPhrase(content, "GET /Payment/Pay")
-| fields timestamp, content
+| fields timestamp, content, log.source, dt.process.name, k8s.container.name
+| filter k8s.container.name == "frontend" AND matchesPhrase(content, "Order placed")
+| summarize `Customer Orders` = count(), by: bin(timestamp, 5m)
 ```
 
-Since each record indicates a booking request, the objective is to display a SUM of total requests for any timeframe.
+</details></h2>
 
-In DQL, to count the records we'll use the `summarize` command and call the `count()` function. In order to include a proper name for this count we'll first need to create a variable:
+### Step 6 - Pin to dashboard
 
-```
-fetch logs
-| filter matchesPhrase(content, "GET /Payment/Pay")
-| fields timestamp, content
-| summarize `Total Bookings` = count()
-```
+Finally, change the visualization type to 'bar' and pin the results to the same 'Unleash Log Analytics Perform 2023' dashboard.
 
-Change the DQL Result visualization to Single Value and pin the result to a new dashboard called "Unleash Log Analytics"
-
-Now, if we would also like to show the total booking requests by some time-based interval, we can add `by:` to the `summarize` command to aggregate the results by a specific field.
-
-From the dashboard you just created click the arrow down of the upper right hand corner of the Total bookings tile and select 'view details' to return to the log viewer results for that DQL Query.
-
-![Total Bookings](../../assets/images/totalbookings.png)
-
-Edit the query to include the `by:` aggregate as shown below:
-
-```
-|summarize `Total Bookings` = count(), by:{bin(timestamp, 5m)}
-```
-
-What is binning? Binning is a way to group a number of more or less continous values into a smaller number of 'bins'.
-
-In the results select the visualization 'Bar' and then click 'Actions' and 'Pin to Dashboard' to create a new tile on the same dashboard you just created.
-
-Your dashboard should now look similar to the image below (your numbers may be different):
-
-![DashboardResults](../../assets/images/lab2dashboard.png)
+![Lab2Dashboard](../../assets/images/lab2dashboard.png)
 
 ## Bonus Exercises
 
-1. Build a DQL query that produces a SUM of all records grouped by status and ensures the status field is not null.
+1. Build a DQL query that produces a count of all records grouped by status and ensures the status field is not null.
 
 _Note that values in the image below are expected to differ from your results_
 
