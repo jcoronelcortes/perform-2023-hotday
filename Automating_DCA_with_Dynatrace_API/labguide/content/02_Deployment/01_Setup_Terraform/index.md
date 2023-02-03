@@ -33,7 +33,7 @@
 3. Enter the dev folder<br/>
 
     ```bash
-    cd ~/deployment/dev
+    cd ~/lab_deployment/dev
     ```
 4. Populate the new tfvars files<br/>
 
