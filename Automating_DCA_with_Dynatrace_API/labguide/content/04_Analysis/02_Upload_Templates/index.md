@@ -9,4 +9,4 @@ Let's get started by creating our dashboard with the Dashboard API endpoints!
 
 4. Click Execute. Make sure you get a 201 back! Copy the returned ID of the dashboard in a notepad for later.
 
-5. Naviage back to your Tenant and find your new Dashboard via the Dashboard page! 
+5. Navigate back to your Tenant and find your new Dashboard via the Dashboard page! 
