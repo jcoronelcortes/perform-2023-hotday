@@ -1,4 +1,4 @@
-## Caculations
+## Calculations
 
 Within your queries there will be cases where you will want to perform some calculations on the different fields within your data (ex. myField1 + myField2). This lab is designed to provide example of how to perform different calculations using DQL.
 
