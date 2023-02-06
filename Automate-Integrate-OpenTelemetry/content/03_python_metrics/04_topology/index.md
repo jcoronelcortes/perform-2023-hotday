@@ -1,15 +1,15 @@
 ## Connecting metrics to Topology
 
-Here we explore how to connect our metrics to the Dynatrace Topology. 
+Here we explore how to connect our metrics to the Dynatrace Topology and view  the custom metrics in the services unified anlaysis screen like so:
 
-1. Create a rule to expand the Dyantrace topology
-1. Find metrics in the Unified Analysis Screen of our python service
+
+![Topology 4](../../../assets/images/03-03-uas_otel_metrics.png)
 
 ---
 
 ## Linking metrics to the Dynatrace Topology
 
-#### 📌 Follow along
+#### 📌 Task
 
 #### 1.  Go to `Settings >  Toplogy model > Generic types > Add type definition` and fill out the feilds as follows:
 
@@ -49,22 +49,16 @@ Here we explore how to connect our metrics to the Dynatrace Topology.
 
    ![Topology 4](../../../assets/images/03-03-topology_4.png)
 
----
-
-## Unified Analysis Screen
-
-#### 👂 Listen & follow in Dynatrace
-
-> 📝 **Note**: 
-> It may take a few minutes for the topology to connect the metrics to the service
-
-Now that we have our topology we can navigate to the Service screen for our python service to see the result
+5. Navigate to our python service to see the metrics connected in the unified anlaysis screen.
 
 In the top search bar type in `pysrvc svc on port 8090` to navigate to the service screen:
 
 ![Topology 4](../../../assets/images/03-03-nav_to_py_service.gif)
 
-Under the Service Metrics if we drop down the menu we can see our OpenTelemetry metrics showing up:
+Under the `Service Metrics` select one of the drop down menus to see the OpenTelemetry metrics:
+
+> 📝 **Note**: 
+> It may take a few minutes for the topology to connect the metrics to the service
 
 ![Topology 4](../../../assets/images/03-03-uas_otel_metrics.png)
 
