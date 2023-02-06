@@ -3,7 +3,7 @@
 Here we look at ad-hock anlysis of metrics connected to our python service and creating alerts on our metrics. 
 
 1. Trigger Davis Exploritory Analysis
-1. Create alerts using auto-adaptive and seasonal baselines 
+1. Create alerts using auto-adaptive baselines 
 
 ---
 
@@ -18,8 +18,7 @@ Highlight an area in the unified anlysis screen until Anlyze is a teal color. Cl
 ![Davis Analysis](../../../assets/images/03-04-davis_adhock.gif)
 
 > 📝 **Note**: 
->- The quality of the results significantly improves when you select a phenomenon correctly.
->- For a spike analysis, a rule of thumb is that the spike itself should cover a third of the reference time series, with one third before and one third after the spike.
+> The quality of the results significantly improves when you select a phenomenon correctly. The spike itself should cover a third of the reference time series, with one third before and one third after the spike.
 
 ---
 
