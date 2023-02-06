@@ -39,6 +39,10 @@ To inject the correct OpenTelemetry Agent in the workload, we need to add annota
 
 1.  Edit `k8Sdemo-nootel.yaml` and add the matching annotation above by `technology`.
 
+    ```bash
+    vi ~/HOT_DAY_SCRIPT/exercise/03_auto-instrumentation/k8Sdemo-nootel.yaml
+    ```
+
 2.  Deploy the application
 
     ```bash
@@ -51,4 +55,4 @@ To inject the correct OpenTelemetry Agent in the workload, we need to add annota
 
    > 1. Navigate to `Distributed traces` via Dynatrace Menu
    > 2. Click on ingested Traces
-   > 3. Click on the produced by the service Frontend-service
+   > 3. Click on a trace produced by the Frontend-service

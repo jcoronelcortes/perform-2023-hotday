@@ -1,0 +1,20 @@
+{
+  "name": "hot-day-analytics",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Best practice, privacy, and performance advice.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "george.teodorescu@dynatrace.com",
+  "license": "ISC",
+  "dependencies": {
+    "coach-core": "^7.1.2",
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "markdown-table": "^3.0.3",
+    "request": "^2.88.2",
+    "webcoach": "^7.0.0"
+  }
+}

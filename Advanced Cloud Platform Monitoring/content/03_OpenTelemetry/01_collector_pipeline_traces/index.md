@@ -180,10 +180,12 @@ kubectl apply -f ~/HOT_DAY_SCRIPT/exercise/02_collector/trace/openTelemetry-mani
 
    ![collector 01](../../../assets/images/collector_metrics.png)
 
+You might need to update the monitoring pod below!
+
 2. Expose the port 8088 locally on the bastion host :
 
    ```bash
-   kubectl port-forward svc/<collector monitoring service name> 8088:8888
+   kubectl port-forward svc/oteld-collector-monitoring 8088:8888
    ```
 
 3. Open another terminal and connect to the bastion host.

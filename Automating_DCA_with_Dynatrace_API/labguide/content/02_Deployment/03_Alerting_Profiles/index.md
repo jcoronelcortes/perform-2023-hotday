@@ -19,7 +19,7 @@
 4. Compile the Terraform Environment<br/>
 
     ```bash
-    terraform plan -var-file=dev/env.tfvars -out=dev/plan.out
+    terraform plan -var-file=dev/dev.tfvars -out=dev/plan.out
     ```
 5. Apply the Terraform Plan<br/>
 
@@ -35,7 +35,7 @@
 8. Compile the Terraform Environment<br/>
 
     ```bash
-    terraform plan -var-file=dev/env.tfvars -out=dev/plan.out
+    terraform plan -var-file=dev/dev.tfvars -out=dev/plan.out
     ```
 9. Apply the Terraform Plan<br/>
 
@@ -51,7 +51,7 @@
 12. Compile the Terraform Environment<br/>
 
     ```bash
-    terraform plan -var-file=test/env.tfvars -out=test/plan.out
+    terraform plan -var-file=test/test.tfvars -out=test/plan.out
     ```
 13. Apply the Terraform Plan<br/>
 
