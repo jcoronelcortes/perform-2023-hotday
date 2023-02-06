@@ -51,14 +51,6 @@ Set the following in the `Monitoring strategy` section:
 
 ![Alert Preview](../../../assets/images/03-04-alert_setup.png)
 
-In the `Alert preview` select `Service=pysrvc svc on port 8090` as the Dimension Value to get the alert preview:
-
-![Alert Preview](../../../assets/images/03-04-alert_preview.png)
-
-By changing the `Number of signal fluctions` to 10 to see how this changes the upper limit - and therefore the senesitivity - of our alert:
-
-![Alert Preview Sensitivity](../../../assets/images/03-04-alert_preview_sensitivity.png)
-
 You can also adjust the sensitivity by modifiying the number of violating samples within a timeframe to trigger/close the alert - you can see this under `Advanced model properties: 
 
 ![Violating Samples](../../../assets/images/03-04-violating_samples.png)
@@ -66,6 +58,14 @@ You can also adjust the sensitivity by modifiying the number of violating sample
 Here is a good visualization of how this works:
 
 ![Sliding Window](../../../assets/images/03-04-sliding-window-example.jpg)
+
+In the `Alert preview` select `Service=pysrvc svc on port 8090` as the Dimension Value to get the alert preview:
+
+![Alert Preview](../../../assets/images/03-04-alert_preview.png)
+
+By changing the `Number of signal fluctions` to 10 to see how this changes the upper limit - and therefore the senesitivity - of our alert:
+
+![Alert Preview Sensitivity](../../../assets/images/03-04-alert_preview_sensitivity.png)
 
 Complete the metric event setup by giving it a Title and optionally set the Event type to be indicitive of the alert being raised and click `Save Changes`.
 
