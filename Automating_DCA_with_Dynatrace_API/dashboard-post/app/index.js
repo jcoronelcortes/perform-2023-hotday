@@ -7,6 +7,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 const DYNATRACE_TENANT_URL = process.env.DYNATRACE_TENANT_URL;
 const DYNATRACE_API_TOKEN = process.env.DYNATRACE_API_TOKEN;
+const DASHBOARD_ID = process.env.DASHBOARD_ID
 
 const url = 'https://easytravel-angular-demo1.internal.dynatracelabs.com';
 
@@ -77,10 +78,11 @@ async function updateMarkdown(advice) {
 
 }
 
-function postDashboard(dashboardJSON) {
+function updateDashboard(dashboardJSON) {
 
-  const DYNATRACE_API_ENDPOINT = DYNATRACE_TENANT_URL + '/api/config/v1/dashboards';
+  const DYNATRACE_API_ENDPOINT = DYNATRACE_TENANT_URL + '/api/config/v1/dashboards/' + DASHBOARD_ID;
 
+  dashboardJSON.id = DASHBOARD_ID
   // convert the modified object back to a JSON string
   const newMarkdown = JSON.stringify(dashboardJSON);
 
@@ -88,7 +90,7 @@ function postDashboard(dashboardJSON) {
   fs.writeFileSync('./assets/dashboard.json', newMarkdown);
 
   const options = {
-    'method': 'POST',
+    'method': 'PUT',
     'url': DYNATRACE_API_ENDPOINT,
     'headers': {
       'Content-Type': 'application/json; charset=utf-8',
@@ -99,11 +101,10 @@ function postDashboard(dashboardJSON) {
   };
   request(options, function (error, response) {
     if (error) throw new Error(error);
-    console.log("Dynatrace Config API (Dashboards): " + JSON.stringify(response.body));
+    console.log("Dynatrace Config API (Dashboards): " + JSON.stringify(response.statusCode) + " " + (response.body));
   });
-  
 }
 
 // MAIN FUNCTION: Execute getAdvice function
 await getAdvice(url);
-postDashboard(dashboardJSON);
+updateDashboard(dashboardJSON);
