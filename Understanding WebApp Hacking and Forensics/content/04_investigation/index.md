@@ -6,8 +6,8 @@ Modify or add new commands to these example queries to perform your investigatio
 #### access log:
 ```
 fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
-| filter dt.entity.host == "HOST-D866B6DD5365DD5B"
-| filter contains(log.source, "localhost_access_log")
+| filter dt.entity.host == "HOST-C6360D34D50CFC64"
+| filter contains(log.source, "insecure-bank-access.log")
 | parse content, "IPADDR:client_ip LD HTTPDATE:event_time LD DQS LD DQS ' ' DQS ' ' LD:session_id EOS"
 | fields event_time, client_ip, session_id, content
 | sort event_time asc
@@ -16,7 +16,7 @@ fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
 #### web application log:
 ```
 fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
-| filter dt.entity.host == "HOST-D866B6DD5365DD5B"
+| filter dt.entity.host == "HOST-C6360D34D50CFC64"
 | filter contains(log.source, "insecure-bank-webapp.log")
 | parse content, "'[' TIMESTAMP('dd/MMM/yyyy:HH:mm:ss.S'):event_time LD '} - ' LD:session_id ' '"
 | fields event_time, content
@@ -26,8 +26,8 @@ fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
 #### database log:
 ```
 fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
-| filter dt.entity.host == "HOST-D866B6DD5365DD5B"
-| filter contains(log.source, "insecure-bank.sql.log")
+| filter dt.entity.host == "HOST-C6360D34D50CFC64"
+| filter contains(log.source, "insecure-bank-sql.log")
 | parse content, "TIMESTAMP('yyyy-MM-dd HH:mm:ss.S'):event_time ' 3 ' LD:statement"
 | fields event_time, statement
 | sort event_time asc
@@ -125,7 +125,7 @@ After that use database and access logs to find the actual sql statement and att
 #### Step 1. Open the Dynatrace instance and go to "Application Security > Attacks" 
 
 You will see all the attacks that Dynatrace detected, since we all use the same Dynatrace instance, you will see the 
-attacks of the other participants. Try to find jndi injection attack which occurred on 11'th January 2023 from IP-address 172.31.24.11
+attacks of the other participants. Try to find jndi injection attack which occurred from IP-address 10.0.1.203
 
 *Hint:* use filtering bar to specify IP-address
 ![img.png](../../assets/images/04_investigation_rap_search.png)
@@ -152,7 +152,7 @@ Quick intro to Linux auditd logs:
 Execute following query:
 ```
 fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
-| filter contains(log.source,"audit") AND matchesValue(dt.entity.host, "HOST-D866B6DD5365DD5B")
+| filter contains(log.source,"audit") AND matchesValue(dt.entity.host, "HOST-C6360D34D50CFC64")
 | parse content, "
    'type=' LD:event_type ' '
    'msg=audit(' TIMESTAMP('s.S'):event_time ':' INT:id '):' ' '?
@@ -180,7 +180,7 @@ executing command `sh`.
 To see more details of each executed command, run following query:
 ```
 fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
-| filter contains(log.source,"audit") AND matchesValue(dt.entity.host, "HOST-D866B6DD5365DD5B")
+| filter contains(log.source,"audit") AND matchesValue(dt.entity.host, "HOST-C6360D34D50CFC64")
 | parse content, "'type=' LD:event_type ' ' 'msg=audit(' TIMESTAMP('s.S'):event_time ':' INT:id"
 | fields event_time, id, content
 | filter in(id, ...) //paste here id’s from previous query

@@ -1,22 +1,32 @@
-## Launch an attack on insecure-bank
+## Explore insecure-bank
 
-Navigate back to the insecure-bank application
-- You can bypass the login using a SQL-injection: enter `'or 1=1--` in the username field
-  - You can add your name (or another identifier) before at the beginning or at the end to see if you can find your attack in Dynatrace
+### Access the environment
 
-
-## See how Dynatrace detected your attack
-Open to the Dynatrace instance and got to *Application Security > Attacks*. 
-
-In Dynatrace University you will find the information on how to access the Environment required for the lab. Please make sure you can:
-- Access the Dynatrace Environment using a web browser
-- Connect to the bastion host using SSH
+In Dynatrace University, open the *Environment* section.
 
 ![Environment](../../assets/images/1-1-environment.png)
 
-### Explore the insecure-bank application
+You should see a section called Ace-Box with SSH credentials. You can use the built-in terminal to access it, we only need to log in to get the details to access the environment. 
 
-Access the insecure-bank application and start to explore it
-- you can login to the application using the following credentials
-  - john / test
-  - doug / test
+Click on *Open Terminal*
+
+![Ace/box](../../assets/images/1-2-ace-box.png)
+
+Navigate to the Dashboard URL (http://dashboard.dtulab.......dynatrace.training) and log in using the provided credentials.
+
+![Dashboard](../../assets/images/1-3-dashboard.png)
+The dashboard contains the links for the Dynatrace environment (you should already have received an invitation for that) and the insecure-bank application. For this hands-on, we will only need to access insecure-bank. We will use the Dynatrace environment later. 
+
+Click on the insecure-bank tab and then on the insecure-bank link. 
+
+### Insecure-bank
+Insecure-bank is a demo application that has several security flaws. Take some time to explore the application and see if you can find a way to bypass the login. 
+
+| Objectif: find a way to access one of the accounts without using the correct credentials.
+
+![](../../assets/images/1-4-insecure-bank.png)
+
+| **HINT**
+| There are two accounts on insecure-bank. You can use the following credentials to access them, but the goal is to get access without providing a password. 
+| - john / test
+| - doug / test
