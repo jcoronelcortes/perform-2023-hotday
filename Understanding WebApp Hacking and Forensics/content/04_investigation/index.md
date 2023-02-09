@@ -125,7 +125,7 @@ After that use database and access logs to find the actual sql statement and att
 #### Step 1. Open the Dynatrace instance and go to "Application Security > Attacks" 
 
 You will see all the attacks that Dynatrace detected, since we all use the same Dynatrace instance, you will see the 
-attacks of the other participants. Try to find jndi injection attack which occurred from IP-address 10.0.1.203
+attacks of the other participants. Try to find jndi injection attack which occurred from IP-address 10.1.43.70
 
 *Hint:* use filtering bar to specify IP-address
 ![img.png](../../assets/images/04_investigation_rap_search.png)
@@ -169,7 +169,7 @@ fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
          cmd=event_attr[comm], exe=event_attr[exe]
          ,content
 | filter event_type=="SYSCALL"
-| filter in(ppid,"36603") //insecure-bank java process id
+| filter in(ppid,"39253") //insecure-bank java process id
 | sort id, event_time
 ```
 

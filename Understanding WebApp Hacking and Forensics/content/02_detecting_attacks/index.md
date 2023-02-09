@@ -1,6 +1,8 @@
-## PART1
+## Detecting Attacks
 
-## Launch an attack on insecure-bank
+### PART 1
+
+#### Launch an attack on insecure-bank
 
 - Navigate back to the insecure-bank application login page.
 
@@ -14,9 +16,9 @@
 
 
 
-## PART2
+### PART 2
 
-## See how Dynatrace detected your attack
+#### See how Dynatrace detected your attack
 
 - Now open the Dynatrace instance and go to *Application Security > Attacks* menu. 
 You will see all the attacks that Dynatrace detected, since we all use the same Dynatrace instance, you will see also the attacks of the other participants.
@@ -31,9 +33,9 @@ As you can observe, your attack has been detected by Dynatrace and... exploited;
 
 
 
-## PART3
+### PART 3
 
-## See how Dynatrace blocks your attack
+#### See how Dynatrace blocks your attack
 
 It is time to block these dangerous attacks, protecting the Insecure Bank application.
 
