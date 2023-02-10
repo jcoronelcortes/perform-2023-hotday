@@ -132,3 +132,5 @@ fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
 | summarize failed=count(), by:username
 | sort failed desc
 ```
+
+

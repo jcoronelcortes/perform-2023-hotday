@@ -125,9 +125,9 @@ After that use database and access logs to find the actual sql statement and att
 #### Step 1. Open the Dynatrace instance and go to "Application Security > Attacks" 
 
 You will see all the attacks that Dynatrace detected, since we all use the same Dynatrace instance, you will see the 
-attacks of the other participants. Try to find jndi injection attack which occurred from IP-address 10.1.43.70
+attacks of the other participants. Use timeframe `Last 7 days` and filter by `Type: JNDI Injection`. 
+Select the first exploited attack, dated `Feb 09 09:33`.
 
-*Hint:* use filtering bar to specify IP-address
 ![img.png](../../assets/images/04_investigation_rap_search.png)
 
 Select the attack details and observe the attack vector:
@@ -174,8 +174,7 @@ fetch logs, from:-90d, samplingRatio:1, scanLimitGBytes:-1
 ```
 
 You should see all `SYSCALL` records executed by insecure bank java process. As you can see they're all executing system 
-call [`execve()`]'(https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiJlLX63s78AhUOiYsKHfvgDVgQFnoECAsQAQ&url=https%3A%2F%2Fman7.org%2Flinux%2Fman-pages%2Fman2%2Fexecve.2.html&usg=AOvVaw2tz4jrlcx0fddRr4wYEjXf), 
-executing command `sh`.
+call [`execve()`](https://man7.org/linux/man-pages/man2/execve.2.html), executing command `sh`.
 
 To see more details of each executed command, run following query:
 ```
