@@ -88,7 +88,7 @@ Navigate in your Dynatrace client to the Metrics Explorer and type in `perform.o
 To summarize what we've done:
 - We configured our MeterProvider to use the Dynatrace Metric Exporter
 - We created a Meter instance and used that to create our Insturments
-- We created a Histogram instrument tyep
+- We created a Histogram instrument
 - We populated measurments in our Instruments using `ot` in our applicaiton code
 
 ```java
