@@ -614,9 +614,6 @@ We will not go into depth about these best practices, as they are covered in the
 }
 ```
 
-- Once entered, we'll need one more modification. Modify the JSON in the Request Body to ensure that the ID in the identifier line is the same as the Application ID you entered in the ID section above it
-
-![API_Deployment2](../../assets/images/API_Deployment2.png)
 
 - Once done, click Execute. The API explorer should return a message like below with no error messages. If successful, the application you created via the detection rules earlier should now be called EasyTravel Demo Application
 

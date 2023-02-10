@@ -7,16 +7,18 @@ This module is an optional module where we will deploy an EasyTravel script that
 
 - Navigate to Synthetic under Digital Experience on the left menu
 
-- Select the checkbox beside your monitor and select Duplicate 
+- Select Create a Synthetic Monitor in the top right 
 
-![Synthetic_Best_Practices_1](../../assets/images/Synthetic_Best_Practices_1.png)
-![Synthetic_Best_Practices_1](../../assets/images/Synthetic_Best_Practices_2.png)
+![Synthetic_Best_Practices_1](../../assets/images/Synthetic_Best_Practices_4.png)
 
-- You’ll be brought into an inactive duplicate script. Click the three dots beside Enable, and select Edit
+- Select Create a Browser Monitor
 
-![Synthetic_Best_Practices_3](../../assets/images/Synthetic_Best_Practices_3.png)
+![Synthetic_Best_Practices_1](../../assets/images/Synthetic_Best_Practices_5.png)
 
-- From here, select Monitor Script
+- On the script creation screen, select Script Mode
+
+![Synthetic_Best_Practices_3](../../assets/images/Synthetic_Best_Practices_6.png)
+
 - You’ll be brought to a JSON for that script. Replace the contents with the JSON file found below
 
 ```
