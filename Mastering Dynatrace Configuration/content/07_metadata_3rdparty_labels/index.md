@@ -1,4 +1,4 @@
-## 3rd Party K8s Labels
+## 3rd Party K8s Labels*
 
 In this module, you will learn more about metadata and how to use 3rd party data (Labels from Kubernetes) as metadata in Dynatrace. We will use labels rom Kubernetes pods to popluate metadata into Dynatrace.
 

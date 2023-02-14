@@ -7,6 +7,7 @@ First you need to find the metadata in Dynatrace.
  ```bash
    Action: Filter by "Tag", pick "pricing" and "All"
    Action: Click the "easyTradePricingService.dll pricingservice-*" group
+   Action: Click on the process instance
    Action: Click "Properties and tags" and review the content
    ```
 
@@ -16,11 +17,13 @@ First you need to find the metadata in Dynatrace.
 
  ```bash
    kubectl -n easytrade describe pod "pricingservice"
+ ```
 
-   OR use the built-in script:
+Or use the built-in script:
 
+ ```bash
    sh ~/perform-2023-mastering-dynatrace-configuration/scripts/describe-pod.sh pricingservice
-   ```
+ ```
 
 The contents should look similiar to the following:
 

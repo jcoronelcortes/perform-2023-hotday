@@ -6,16 +6,18 @@ Now that we know the application is running, we need to switch over to Dynatrace
 
 - Navigate to Infrastructure - Hosts
 
- ```bash
-   Action: Look at the "Hosts" page
-   ```
+```bash
+Action: Look at the "Hosts" page
+```
 - Navigate to Infrastructure - Technologies and processes
 
- ```bash
-   Action: Look at the "Technologies and processes" page
-   ```
+```bash
+Action: Look at the "Technologies and processes" page
+```
 - Navigate to Application & Microservices - Services
 
- ```bash
-   Action: Look at the "Services" page
-   ```
+```bash
+Action: Look at the "Services" page
+Action: Make sure you see "easyTradePricingService" services
+
+```

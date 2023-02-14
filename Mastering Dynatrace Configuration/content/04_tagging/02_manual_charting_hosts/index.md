@@ -10,7 +10,8 @@ Create a custom chart for CPU usage using the manual tag you created in the prev
 
  ```bash
    Action: Look at the "Data explorer" page
-   Action: Type "CPU Usage %" into the field to the right of the "A" metric.
+   Action: Type "host cpu usage %" into the field to the right of the "A" metric.
+   Action: Click listed metric
    Action: Filter by "Host Tag", find your manual "tag key" value and use it, pick "All tag values"
    Action: Click "Run query" to see the results.
    ```
@@ -29,7 +30,7 @@ Create a custom chart for CPU usage using the manual tag you created in the prev
 
  ```bash
    Action: Click "Open dashboard"
-   Action: Click the "blue pencil" icon next to the title to change it.
+   Action: Click the "blue pencil" icon next to the title to change it to "My Dashboard".
    Action: Click the "Done" button on the top right of the screen to save changes.
    ```
 

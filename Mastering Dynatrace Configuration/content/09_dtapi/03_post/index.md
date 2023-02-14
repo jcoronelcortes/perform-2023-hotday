@@ -16,7 +16,7 @@ For this module we will continue to use the Environment API v1, make sure you ar
 ![tspgdocs](../../assets/images/tspgdocs.png)
 
  ```bash
-   Action: Click on "Smartscape & Topology - Process Group" to expand the API
+   Action: Click on "Toplogy & Smartscape - Process Group" to expand the API
    Action: Click on the "POST" api to expand it
    ```
 

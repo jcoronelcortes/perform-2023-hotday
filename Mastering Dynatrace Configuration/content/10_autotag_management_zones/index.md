@@ -1,4 +1,4 @@
-## Automatic Tagging - Use Cases
+## Automatic Tagging - Use Cases*
 
 In this module you'll learn how to use automatic tagging rules to help organize entities into a management zone in Dynatrace, filter distributed traces, create maintenance windows and more. 
 

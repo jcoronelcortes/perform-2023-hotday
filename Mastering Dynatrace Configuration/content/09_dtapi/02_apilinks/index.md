@@ -28,7 +28,7 @@ To start this module select the Environment API v1, it can be found in the profi
 ![tspgdocs](../../assets/images/tspgdocs.png)
 
  ```bash
-   Action: Click on "Smartscape & Topology - Process Group" to expand the API
+   Action: Click on "Topology & Smartscape - Process Group" to expand the API
    Action: Click on the second "GET" api to expand it
    ```
 

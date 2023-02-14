@@ -1,4 +1,4 @@
-## Environment Tags
+## Environment Tags*
 
 In this module, you will learn how to use environment tags in Dynatrace. This extends your knowledge of how Dynatrace uses tags to expand the monitoring capabilities within Dynatrace and provides more options for any tag filtering within Dynatrace.
 

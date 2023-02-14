@@ -17,7 +17,7 @@ To get starting with this automated tagging module you first need to find the se
    Action: Click on "Automatically applied tags"
    ```
 
-- Add an automated tagging rule to the easytrade login service
+- Add an automated tagging rule to the easytrade pricing service
 
  ```bash
    Action: Click "Create tag"
@@ -46,6 +46,6 @@ To get starting with this automated tagging module you first need to find the se
    Action: Look at the "Hosts" page
    Action: Filter by "Tag", pick "pricing" and use it
    ```
-
+   
 **FYI** - It may take a few minutes for your automated tagging rules to propogate, wait a few minutes and try again.
 

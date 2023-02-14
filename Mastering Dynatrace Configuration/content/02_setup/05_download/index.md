@@ -1,14 +1,15 @@
 ## Download scripts
 
-To begin let's start in your Bastion terminal. Let's make sure we start in the right location.  
+To begin let's start in your Bastion terminal. Let's prep for the repo update.  
 
 - Run the following command:
 
  ```
+   rm -fr ~/perform-2023-mastering-dynatrace-configuration
    cd ~
    ```
 
- - Next step is to locally clone the training repository from github:
+ - Next step is to update the training repository from github:
 
  ```bash
    git clone https://github.com/stratuscoder/perform-2023-mastering-dynatrace-configuration.git
@@ -33,9 +34,3 @@ The contents should look similiar to the following:
 ```
 
 Now you have a local copy of the tools required for this training.
-
-- Finally, let's run a local setup script to finish the setup process
-
-```bash
-sh ~/perform-2023-mastering-dynatrace-configuration/scripts/dt-setup-k8s.sh
-```

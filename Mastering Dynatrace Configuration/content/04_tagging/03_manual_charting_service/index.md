@@ -10,7 +10,8 @@ Create a custom chart for Response time using the manual tag you created in the 
 
  ```bash
    Action: Look at the "Data explorer" page
-   Action: Type "Response time" into the field to the right of the "A" metric.
+   Action: Type "service response time" into the field to the right of the "A" metric.
+   Action: Click listed metric
    Action: Filter by "Service Tag", find your manual tag key value and use it, pick "All tag values"
    Action: Click "Run query" to see the results.
    ```

@@ -1,4 +1,4 @@
-## Host Groups - Network Zones
+## Host Groups - Network Zones*
 
 In this module, you will learn how to use host groups and network zones in Dynatrace. This extends your knowledge of how Dynatrace helps organize the entities in your environment, enables more efficient modification processes and provides an expansion on the architecture of Dynatrace traffic routing.
 
