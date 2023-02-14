@@ -33,18 +33,18 @@ In this step, we will annotate the exporters so that the OneAgents running on th
 We will follow a similar pattern for the node-exporter
 - First we need to get the pod name:
       
-      ```
-      kubectl get pods
-      ```
+```
+kubectl get pods
+```
 
 ![Node Exporter](../../../assets/images/node_exporter_annotations.png)
 
 - Next we will replace **node-exporter** with the pod name in the commands below and run them to annotate the pod:
 
-      ```
-      kubectl annotate pod node-exporter metrics.dynatrace.com/scrape=true --namespace=default
-      kubectl annotate pod node-exporter metrics.dynatrace.com/port=9100 --namespace=default
-      ```
+```
+kubectl annotate pod node-exporter metrics.dynatrace.com/scrape=true --namespace=default
+kubectl annotate pod node-exporter metrics.dynatrace.com/port=9100 --namespace=default
+```
 
 ### View metrics in Dynatrace
 - Navigate to the **Metrics** page in Dynatrace.

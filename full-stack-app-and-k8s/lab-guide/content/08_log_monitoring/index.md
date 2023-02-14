@@ -2,7 +2,6 @@
 
 In this section we will:
 
-- Enable log ingestion
 - Create log processing rule
 - Create log custom attribute
 - Create Log metric

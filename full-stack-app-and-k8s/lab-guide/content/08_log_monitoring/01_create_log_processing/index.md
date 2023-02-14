@@ -10,6 +10,10 @@ In this step, we will create a log processing rule based on log content.
 
 ![Create Log Metric](../../../assets/images/log_processing_filters.png)
 
+3. When expanding out on single log row, you can click view log entries that are linked to user sessions and traces. Click on **View user session** and **View trace** to explore. 
+
+![Create Log Metric](../../../assets/images/log-tracing.png)
+
 3. Click on the **Create Processing Rule** button
 
 4. Under the Processor name, enter in **Place Order**

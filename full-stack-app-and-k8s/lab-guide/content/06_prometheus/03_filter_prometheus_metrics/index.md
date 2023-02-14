@@ -5,17 +5,17 @@ In this step, we will annotate the exporters so that the OneAgents only pull spe
 By default, all of the metrics collected by the annotated exporter(s) will be pulled into Dynatrace. 
 - However, you can limit the metrics by annotating the pod with an optional filter key as below:
 
-      ```
-      metrics.dynatrace.com/filter: |
-          {
-            "mode": "include",
-            "names": [
-                "metrics-name-1",
-                "metrics-name-2",
-                "metrics-name...n"
-            ]
-        }
-      ```
+```
+metrics.dynatrace.com/filter: |
+      {
+      "mode": "include",
+      "names": [
+            "metrics-name-1",
+            "metrics-name-2",
+            "metrics-name...n"
+      ]
+      }
+```
       - **Note**: Replace the metrics-name-1, metrics-name-2, etc. with the appropriate key of the metrics you would like pulled in by Dynatrace.
   
 - Now, let's annotate our mongodb-exporter to limit our collection of metrics to two:
@@ -29,16 +29,16 @@ By default, all of the metrics collected by the annotated exporter(s) will be pu
       ```
 - Add the below section to the pod's yaml (be careful with spacing here):
 
-      ```
-      metrics.dynatrace.com/filter: |
+```
+metrics.dynatrace.com/filter: |
       {
-           "mode": "include",
-           "names": [
-                "mongodb_dbstats_indexSize",
-                "mongodb_dbstats_objects"
-           ]
+            "mode": "include",
+            "names": [
+                  "mongodb_dbstats_indexSize",
+                  "mongodb_dbstats_objects"
+            ]
       }
-      ```
+```
 
 ![Filter](../../../assets/images/filter_annotation.png)
 
