@@ -62,3 +62,7 @@ fetch bizevents
 
 1. In the main menu, open group "Observe and explore"
 1. Click on "Data explorer"
+1. Type `bizevents.easyTrade.trading_volume` in "Select metric" field
+1. Click on "Run query"
+1. Wait for the first data points to appear
+1. Click on "Pin to dashboard"
