@@ -1,0 +1,9 @@
+---
+easytravel_classic_download_location: "{{ role_path }}/files/dynatrace-easytravel-linux-x86_64.jar"
+easytravel_classic_install_location: "{{ role_path }}/files/easytravel-2.0.0-x64"
+easytravel_classic_apache_port: 8079
+easytravel_classic_launcher_port: 8094
+easytravel_classic_domain: "easytravel-classic.{{ ingress_domain }}"
+easytravel_classic_launcher_domain: "easytravel-launcher.{{ ingress_domain }}"
+easytravel_classic_namespace: "easytravel-classic"
+easytravel_classic_release_stage: "easytravel-classic"

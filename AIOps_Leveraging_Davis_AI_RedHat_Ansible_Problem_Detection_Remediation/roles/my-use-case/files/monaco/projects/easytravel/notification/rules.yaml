@@ -1,0 +1,10 @@
+config:
+  - notification: "config.json"
+
+notification:
+  - name: "{{.Env.REMEDIATION_NAME}}"
+  - alertingProfile: "/easytravel/alerting-profile/alerting-profile-easytravel-classic.id"
+  - ansibleTemplate: "{{.Env.ANSIBLE_TEMPLATE}}"
+  - ansibleTemplateId: "{{.Env.ANSIBLE_TEMPLATEID}}"
+  - ansibleUser: "{{ .Env.ANSIBLE_USER }}"
+  - ansiblePassword: "{{ .Env.ANSIBLE_PASSWORD }}"

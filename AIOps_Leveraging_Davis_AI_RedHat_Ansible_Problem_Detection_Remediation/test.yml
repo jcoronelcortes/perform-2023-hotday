@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Source private IP google
+      shell: "ip addr show dev ens4 | grep 'inet ' | grep -o '[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}\\.[0-9]\\{1,3\\}'"
+      register: private_output_google
+      ignore_errors: true
+    - name: Set facts google
+      when: private_output_google.stdout != ""
+      set_fact:
+        ace_box_private_ip: "{{ private_output_google.stdout }}"
+
+    - name: Source private IP AWS
+      shell: "curl -s http://169.254.169.254/latest/meta-data/local-ipv4"
+      when: private_output_google.stdout == ""
+      register: private_output_aws
+    - name: Set facts aws
+      when: private_output_google.stdout == ""
+      set_fact:
+        ace_box_private_ip: "{{ private_output_aws.stdout }}"
+    - name: debug customproperties
+      debug:
+        msg: "private ip is {{ ace_box_private_ip }} "

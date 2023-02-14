@@ -1,0 +1,4 @@
+delete:
+        - "app-detection-rule/app.easytravel.classic"
+        - "application-web/app.easytravel.classic"
+        - "management-zone/easytravel-classic"

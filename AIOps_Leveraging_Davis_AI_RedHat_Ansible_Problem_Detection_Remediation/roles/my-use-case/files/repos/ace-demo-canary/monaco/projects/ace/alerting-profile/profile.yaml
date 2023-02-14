@@ -1,0 +1,6 @@
+config:
+  - simplenode.canary: "profile.json"
+
+simplenode.canary:
+  - name: "ace-demo-canary"
+  - managementZoneId: "/ace/management-zone/management-zone-canary.id"

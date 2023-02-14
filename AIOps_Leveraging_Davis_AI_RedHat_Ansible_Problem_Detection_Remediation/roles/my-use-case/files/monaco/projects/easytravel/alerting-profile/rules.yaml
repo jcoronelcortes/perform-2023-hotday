@@ -1,0 +1,7 @@
+
+config:
+  - alerting-profile-easytravel-classic: "easytravel-profile.json"
+  
+alerting-profile-easytravel-classic:
+  - name: "EasyTravel Classic"
+  - managementZoneId: "/easytravel/management-zone/management-zone-easytravel.id"

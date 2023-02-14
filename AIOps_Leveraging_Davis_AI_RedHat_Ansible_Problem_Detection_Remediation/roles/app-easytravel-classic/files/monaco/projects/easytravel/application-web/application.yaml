@@ -1,0 +1,5 @@
+config:
+    - app-easytravel-classic: "easytravel.json"
+  
+app-easytravel-classic:
+    - name: "app.easytravel.classic"

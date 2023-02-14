@@ -1,0 +1,17 @@
+- include: roles/app-easytravel-classic/tasks/source-private-ip.yml
+
+- name: Deploy Easytravel Ingress
+  kubernetes.core.helm:
+    name: easytravel-classic-ingress
+    chart_ref: "{{ role_path }}/files/helm/easytravel-classic-ingress"
+    release_namespace: "{{ easytravel_classic_namespace }}"
+    create_namespace: true
+    wait: true
+    wait_timeout: 10m
+    values:
+      private_ip: "{{ ace_box_private_ip }}"
+      easytravel_classic_apache_port: 8079
+      easytravel_classic_launcher_port: 8094
+      ingress:
+        domain: "{{ easytravel_classic_domain }}"
+        launcher_domain: "{{ easytravel_classic_launcher_domain }}"

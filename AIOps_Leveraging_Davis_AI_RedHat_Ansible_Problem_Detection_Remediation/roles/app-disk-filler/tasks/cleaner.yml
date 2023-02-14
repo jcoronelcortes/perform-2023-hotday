@@ -1,0 +1,10 @@
+---
+- name: cleaning application
+  debug:
+    msg: "Cleaning log files"
+- name: "Cleaning files"
+  become: true
+  become_user: root
+  shell: |
+    chmod +rx /home/dtu_training/ansible/roles/app-disk-filler/files/disk-cleaner.sh
+    /home/dtu_training/ansible/roles/app-disk-filler/files/disk-cleaner.sh /home/dtu_training/storage

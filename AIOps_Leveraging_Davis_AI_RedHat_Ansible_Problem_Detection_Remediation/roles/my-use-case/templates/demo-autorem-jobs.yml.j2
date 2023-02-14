@@ -1,0 +1,107 @@
+controller:
+  JCasC:
+    configScripts:
+      demo-autorem-jobs-config: |
+        jobs:            
+        - script: >
+            folder('{{ demo_jenkins_folder }}')
+        - script: >
+            pipelineJob('{{ demo_jenkins_folder }}/1. Build images') {
+              definition {
+                cpsScm {
+                  scriptPath('jenkins/canary/01_build_images.Jenkinsfile')
+                  scm {
+                    git {
+                        remote { 
+                          url('{{ ingress_protocol }}://{{ git_domain }}/{{ demo_org }}/{{ demo_repo }}')
+                          credentials('git-creds-ace')
+                        }
+                        branch('*/main')
+                    }
+                  }
+                  lightweight()
+                }
+              }
+            }
+        - script: >
+            pipelineJob('{{ demo_jenkins_folder }}/2. Monaco') {
+              definition {
+                cpsScm {
+                  scriptPath('jenkins/canary/02_monaco.Jenkinsfile')
+                  scm {
+                    git {
+                        remote { 
+                          url('{{ ingress_protocol }}://{{ git_domain }}/{{ demo_org }}/{{ demo_repo }}')
+                          credentials('git-creds-ace')
+                        }
+                        branch('*/main')
+                    }
+                  }
+                  lightweight()
+                }
+              }
+            }
+        - script: >
+            pipelineJob('{{ demo_jenkins_folder }}/3. Deploy') {
+              parameters {
+                stringParam('IMAGE_NAME', 'ace/simplenodeservice', 'The image name of the service to deploy.')
+                stringParam('IMAGE_TAG', '', 'The image tag of the service to deploy.')
+                stringParam('CANARY_WEIGHT', '0', 'Weight of traffic that will be routed to service.')
+                booleanParam('IS_CANARY', false, 'Is canary version of service?')
+              }
+              definition {
+                cpsScm {
+                  scriptPath('jenkins/canary/03_deploy.Jenkinsfile')
+                  scm {
+                    git {
+                        remote { 
+                          url('{{ ingress_protocol }}://{{ git_domain }}/{{ demo_org }}/{{ demo_repo }}')
+                          credentials('git-creds-ace')
+                        }
+                        branch('*/main')
+                    }
+                  }
+                  lightweight()
+                }
+              }
+            }
+        - script: >
+            pipelineJob('{{ demo_jenkins_folder }}/4. Generate Load') {
+              definition {
+                cpsScm {
+                  scriptPath('jenkins/canary/04_generate_load.Jenkinsfile')
+                  scm {
+                    git {
+                        remote { 
+                          url('{{ ingress_protocol }}://{{ git_domain }}/{{ demo_org }}/{{ demo_repo }}')
+                          credentials('git-creds-ace')
+                        }
+                        branch('*/main')
+                    }
+                  }
+                  lightweight()
+                }
+              }
+            }
+        - script: >
+            pipelineJob('{{ demo_jenkins_folder }}/5. Shift traffic') {
+              parameters {
+                stringParam('CANARY_WEIGHT', '0', 'Weight of traffic that will be routed to service.')
+                stringParam('REMEDIATION_URL', '0', 'Remediation script to call if canary release fails.')
+              }
+              definition {
+                cpsScm {
+                  scriptPath('jenkins/canary/05_canary.Jenkinsfile')
+                  scm {
+                    git {
+                        remote { 
+                          url('{{ ingress_protocol }}://{{ git_domain }}/{{ demo_org }}/{{ demo_repo }}')
+                          credentials('git-creds-ace')
+                        }
+                        branch('*/main')
+                    }
+                  }
+                  lightweight()
+                }
+              }
+            }

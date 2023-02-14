@@ -1,0 +1,4 @@
+apiVersion: v1
+description: EasyTravel Classic Ingress for ACE demo
+name: easytravel-classic-ingress
+version: 1

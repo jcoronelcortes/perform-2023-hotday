@@ -1,0 +1,35 @@
+---
+- name: disk remediation playbook
+  hosts: disk_remediation_host
+  gather_facts: no
+  vars:
+    relative_time: "day"
+
+  tasks:
+    - name: push comment to dynatrace
+      uri:
+        url: "{{dtcommentapiurl}}"
+        method: POST
+        body_format: json
+        body: '{ "comment": "Disk remediation playbook started.", "user": "{{commentuser}}", "context": "Ansible Tower" }'
+      when: state is defined and state == "OPEN"
+
+    - name: cleaning application
+      debug:
+        msg: "Cleaning log files"
+    - name: "Cleaning files"
+      become: true
+      become_user: root
+      shell: |
+        chmod +rx /home/dtu_training/ansible/roles/app-disk-filler/files/disk-cleaner.sh
+        /home/dtu_training/ansible/roles/app-disk-filler/files/disk-cleaner.sh /home/dtu_training/storage
+      register: result
+    - debug: msg="{{ result.stdout }}"
+
+    - name: push comment to dynatrace
+      uri:
+        url: "{{dtcommentapiurl}}"
+        method: POST
+        body_format: json
+        body: '{ "comment": "Disk remediation successful.", "user": "{{commentuser}}", "context": "Ansible Tower" }'
+      when: state is defined and state == "OPEN"

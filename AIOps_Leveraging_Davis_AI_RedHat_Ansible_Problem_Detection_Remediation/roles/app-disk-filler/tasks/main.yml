@@ -1,0 +1,24 @@
+---
+- name: starting app installation
+  debug:
+    msg: "APP INSTALLATION STARTED"
+- name: "Launch app"
+  become: true
+  become_user: root
+  shell: |
+    cd {{ role_path }}/files/source
+    docker build -t app-disk-filler .
+    docker run -p 4010:4010 -d -v /home/dtu_training/storage:/storage -v /home/dtu_training/storage2:/storage2 app-disk-filler:latest
+    sleep 30s
+    cd ..
+    curl -i localhost:4010
+
+- name: "Generate some files"
+  become: true
+  become_user: root
+  shell: |
+    echo "ok"
+    chmod +rx {{ role_path }}/files/disk-cleaner.sh
+    chmod +rx {{ role_path }}/files/generator.sh
+     chmod +rx {{ role_path }}/files/generator-full.sh
+    {{ role_path }}/files/generator.sh 20

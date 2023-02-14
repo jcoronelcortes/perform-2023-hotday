@@ -1,0 +1,61 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-web
+  labels:
+    app: nginx-web
+spec:
+  selector:
+    matchLabels:
+      app: nginx-web
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-web
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+          - containerPort: 80
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: easytravelweb-config
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-launcher
+  labels:
+    app: nginx-launcher
+spec:
+  selector:
+    matchLabels:
+      app: nginx-launcher
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-launcher
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+          - containerPort: 80
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: easytravellauncher-config

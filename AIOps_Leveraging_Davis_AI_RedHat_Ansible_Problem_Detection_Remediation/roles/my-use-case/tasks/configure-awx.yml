@@ -1,0 +1,444 @@
+---
+- include_role:
+    name: awx
+    tasks_from: source-secrets
+
+- include_role:
+    name: awx
+    tasks_from: source-configuration
+
+- name: set fact for ansible AWX URL
+  set_fact:
+    awx_url: "{{ awx_internal_endpoint }}"
+    awx_user: "{{ awx_admin_username }}"
+    awx_password: "{{ awx_admin_password }}"
+
+- name: AWX - Source Gitea secrets
+  include_role:
+    name: gitea
+    tasks_from: source-secret
+
+- name: AWX - Set Git fact
+  set_fact:
+    git_url: "{{ ingress_protocol }}://gitea.{{ ingress_domain }}"
+    git_password: "{{ gitea_password }}"
+    git_username: "{{ gitea_username }}"
+
+- name: AWX - Wait for API to be up
+  uri:
+    url: "{{ awx_internal_endpoint }}/api/v2/ping/"
+    status_code: 200
+    validate_certs: no
+  register: result
+  retries: 60
+  delay: 5
+  until: result.status == 200
+
+- name: Create default organization
+  awx.awx.organization:
+    name: "{{ awx_org }}"
+    description: "Default organization"
+    state: present
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: organization
+  retries: 60
+  delay: 5
+  until: organization is not failed
+
+- name: Create DT credential type
+  awx.awx.credential_type:
+    name: "Dynatrace API Token"
+    description: ""
+    kind: cloud
+    inputs:
+      fields:
+        - id: dt_api_token
+          type: string
+          label: Dynatrace API Token
+          secret: true
+      required:
+        - dt_api_token
+    injectors:
+      extra_vars:
+        DYNATRACE_API_TOKEN: "{% raw %}{{ dt_api_token }}{% endraw %}"
+    state: present
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: credential_type_dt_api_token
+
+- name: Create DT credentials
+  awx.awx.credential:
+    name: "{{ dynatrace_tenant_url }} API Token"
+    organization: "{{ organization.id }}"
+    state: present
+    credential_type: "{{ credential_type_dt_api_token.id }}"
+    inputs:
+      dt_api_token: "{{ dynatrace_api_token }}"
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: credential_dt_api_token
+
+- name: Create Git credentials
+  awx.awx.credential:
+    name: "{{ git_url }} Credentials"
+    organization: "{{ organization.id }}"
+    state: present
+    credential_type: "Source Control"
+    inputs:
+      password: "{{ git_password }}"
+      username: "{{ git_username }}"
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: credential_git
+
+- name: Create Easytravel credentials
+  awx.awx.credential:
+    name: "easyTravel SSH creds"
+    organization: "{{ organization.id }}"
+    state: present
+    credential_type: "Machine"
+    inputs:
+      username: "{{ ansible_user }}"
+      #password: "{{ ace_box_user }}"
+      ssh_key_data: "{{ lookup('file', '/tmp/ansible_id_rsa') }}"
+      become_method: sudo
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: credential_easytravel
+
+- name: memory-leak-deployment
+  debug:
+    msg: "############## Memory leak use case configurations for AWX ##############"
+### Memory leak use case ###
+- name: Add project memory leak
+  awx.awx.project:
+    #name: "self-healing"
+    name: "{{ awx_project }}"
+    description: ""
+    organization: "{{ organization.id }}"
+    state: present
+    scm_type: git
+    scm_url: "{{ git_url }}/{{ demo_auto_remediation_org }}/{{ demo_auto_remediation_repo_name }}"
+    scm_branch: main
+    scm_clean: true
+    scm_delete_on_update: false
+    credential: "{{ credential_git.id }}"
+    wait: true
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: project
+
+- name: Create remediation inventory
+  awx.awx.inventory:
+    name: "Memory leak Auto Remediation Inventory"
+    description: ""
+    organization: "{{ organization.id }}"
+    variables:
+      dynatrace_environment_url: "{{ dynatrace_tenant_url }}"
+      commentuser: Ansible Playbook
+      tower_user: "{{ awx_admin_username }}"
+      tower_password: "{{ awx_admin_password }}"
+      dtcommentapiurl: "{% raw %}{{ tenant }}/api/v1/problem/details/{{ pid }}/comments?Api-Token={{ DYNATRACE_API_TOKEN }}{% endraw %}"
+      dteventapiurl: "{% raw %}{{ tenant }}/api/v1/events/?Api-Token={{ DYNATRACE_API_TOKEN }}{% endraw %}"
+      dt_comments_api: /api/v2/problems/
+      dt_events_api: /api/v1/events
+      dt_infrastructure_api: /api/v1/entity/infrastructure/
+      dt_metrics_api: /api/v2/metrics/
+      dt_comment_user: "ansible"
+      dt_comment_context: "ansible AWX"
+      awx_dns_name: "awx.{{ ingress_domain }}"
+    state: present
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: inventory
+
+- name: Add host easyTravel to inventory
+  awx.awx.host:
+    name: easyTravel
+    description: "EasyTravel Host"
+    inventory: "{{ inventory.id }}"
+    state: present
+    variables:
+      ansible_host: "{{ ace_box_private_ip }}"
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: easytravel_host
+
+- name: Add host localhost to inventory
+  awx.awx.host:
+    name: localhost
+    description: "EasyTravel Host"
+    inventory: "{{ inventory.id }}"
+    state: present
+    variables:
+      ansible_connection: local
+      ansible_python_interpreter: "{{ '{{' }} ansible_playbook_python {{ '}}' }}"
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: easytravel_host
+
+- name: Create remediation template
+  awx.awx.job_template:
+    name: "Dynatrace Automated Remediation for Memory Leak"
+    job_type: "run"
+    organization: "{{ organization.id }}"
+    inventory: "{{ inventory.id }}"
+    project: "{{ project.id }}"
+    playbook: "playbooks/remediation.yml"
+    verbosity: 0
+    ask_variables_on_launch: true
+    credentials:
+      - "{{ credential_dt_api_token.id }}"
+      - "{{ credential_easytravel.id }}"
+    extra_vars:
+      awx_template_name: "Dynatrace Automated Remediation for Memory Leak"
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: remediation_template
+
+- name: Create problem trigger template
+  awx.awx.job_template:
+    name: "Trigger Memory Leak on Backend"
+    job_type: "run"
+    organization: "{{ organization.id }}"
+    inventory: "{{ inventory.id }}"
+    project: "{{ project.id }}"
+    playbook: "playbooks/trigger_memory_leak.yml"
+    verbosity: 0
+    ask_variables_on_launch: false
+    credentials:
+      - "{{ credential_dt_api_token.id }}"
+      - "{{ credential_easytravel.id }}"
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: problem_template
+
+- name: print remediation template id
+  debug:
+    msg: "Remediation template ID: {{ remediation_template.id }}"
+
+- name: Canary-deployment
+  debug:
+    msg: "############## Canary deployment configurations for AWX ##############"
+####### Canary deployment ######
+- name: Add project2
+  awx.awx.project:
+    name: "Canary Auto Remediation"
+    description: ""
+    organization: "{{ organization.id }}"
+    state: present
+    scm_type: git
+    scm_url: "{{ git_url }}/{{ demo_auto_remediation_org }}/{{ demo_auto_remediation_repo_name2 }}-awx"
+    scm_branch: main
+    scm_clean: true
+    scm_delete_on_update: false
+    credential: "{{ credential_git.id }}"
+    wait: true
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: project2
+
+- name: Create remediation inventory
+  awx.awx.inventory:
+    name: "Canary Auto Remediation Inventory"
+    description: ""
+    organization: "{{ organization.id }}"
+    variables:
+      tenant: "{{ dynatrace_tenant_url }}"
+      commentuser: Ansible Playbook
+      tower_user: "{{ awx_admin_username }}"
+      tower_password: "{{ awx_admin_password }}"
+      jenkins_user: "{{ jenkins_username }}"
+      jenkins_token: "{{ jenkins_api_token }}"
+      dtcommentapiurl: "{% raw %}{{ tenant }}/api/v1/problem/details/{{ pid }}/comments?Api-Token={{ DYNATRACE_API_TOKEN }}{% endraw %}"
+      dteventapiurl: "{% raw %}{{ tenant }}/api/v1/events/?Api-Token={{ DYNATRACE_API_TOKEN }}{% endraw %}"
+    state: present
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: inventory2
+
+- name: Create remediation template
+  awx.awx.job_template:
+    name: "Remediation"
+    job_type: "run"
+    organization: "{{ organization.id }}"
+    inventory: "{{ inventory2.id }}"
+    project: "{{ project2.id }}"
+    playbook: "playbooks/remediation.yaml"
+    verbosity: 0
+    ask_variables_on_launch: true
+    credentials:
+      - "{{ credential_dt_api_token.id }}"
+      - "{{ credential_easytravel.id }}"
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: remediation_template
+
+- name: AWX - Retrieve Jenkins URL
+  set_fact:
+    jenkins_url: "{{ ingress_protocol }}://jenkins.{{ ingress_domain }}"
+
+- set_fact:
+    remediation_template_url: "{{ awx_external_endpoint }}/#/templates/job_template/{{ remediation_template.id }}"
+    jenkins_pipeline_url_shift_traffic: "{{ jenkins_url }}/job/{{ 'demo-auto-remediation' | urlencode() }}/job/{{ '5. Shift traffic' | urlencode() }}/build?delay=0sec"
+
+- name: Create Canary Reset template
+  awx.awx.job_template:
+    name: "Canary Reset"
+    job_type: "run"
+    organization: "{{ organization.id }}"
+    inventory: "{{ inventory2.id }}"
+    project: "{{ project2.id }}"
+    playbook: "playbooks/canary.yaml"
+    verbosity: 0
+    ask_variables_on_launch: false
+    job_tags: canary_reset
+    extra_vars:
+      jenkins_url: "{{ jenkins_pipeline_url_shift_traffic }}"
+      remediation_url: ""
+    credentials:
+      - "{{ credential_dt_api_token.id }}"
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: canary_reset_template
+
+- name: Create Canary Shift template
+  awx.awx.job_template:
+    name: "Canary Shift"
+    job_type: "run"
+    organization: "{{ organization.id }}"
+    inventory: "{{ inventory2.id }}"
+    project: "{{ project2.id }}"
+    playbook: "playbooks/canary.yaml"
+    verbosity: 0
+    ask_variables_on_launch: true
+    skip_tags: canary_reset
+    extra_vars:
+      jenkins_url: "{{ jenkins_pipeline_url_shift_traffic }}"
+      remediation_url: "{{ awx_external_endpoint }}/api/v2/job_templates/{{ canary_reset_template.id }}/launch/"
+    credentials:
+      - "{{ credential_dt_api_token.id }}"
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+
+- name: Create remediation meta configmap
+  kubernetes.core.k8s:
+    name: "awx-meta-canary"
+    api_version: v1
+    kind: ConfigMap
+    state: present
+    namespace: "{{ awx_namespace }}"
+    resource_definition:
+      data:
+        remediation_template_id: "{{ remediation_template.id }}"
+        remediation_template_url: "{{ remediation_template_url }}"
+
+### Disk remediation ####
+- debug:
+    msg: "Configuring use case disk remediation"
+- name: Add project3 - disk remediation
+  awx.awx.project:
+    name: "Disk remediation"
+    description: "Project disk remediation"
+    organization: "{{ organization.id }}"
+    state: present
+    scm_type: git
+    scm_url: "{{ git_url }}/{{ demo_auto_remediation_org }}/{{ demo_disk_auto_remediation }}"
+    scm_branch: main
+    scm_clean: true
+    scm_delete_on_update: false
+    credential: "{{ credential_git.id }}"
+    wait: true
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: project_disk_remediation
+
+- name: Create Disk Remediation credentials
+  awx.awx.credential:
+    name: "disk SSH creds"
+    organization: "{{ organization.id }}"
+    state: present
+    credential_type: "Machine"
+    inputs:
+      username: "{{ ansible_user }}"
+      #password: "{{ ace_box_user }}"
+      ssh_key_data: "{{ lookup('file', '/tmp/ansible_id_rsa') }}"
+      become_method: sudo
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: credential_disk_remediation
+
+- name: Create disk remediation inventory
+  awx.awx.inventory:
+    name: "Disk Auto Remediation Inventory"
+    description: ""
+    organization: "{{ organization.id }}"
+    variables:
+      tenant: "{{ dynatrace_tenant_url }}"
+      commentuser: Ansible Playbook
+      tower_user: "{{ awx_admin_username }}"
+      tower_password: "{{ awx_admin_password }}"
+      jenkins_user: "{{ jenkins_username }}"
+      jenkins_token: "{{ jenkins_api_token }}"
+      dtcommentapiurl: "{% raw %}{{ tenant }}/api/v1/problem/details/{{ pid }}/comments?Api-Token={{ DYNATRACE_API_TOKEN }}{% endraw %}"
+      dteventapiurl: "{% raw %}{{ tenant }}/api/v1/events/?Api-Token={{ DYNATRACE_API_TOKEN }}{% endraw %}"
+    state: present
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: inventory_disk_remediation
+
+- name: Add host disk to inventory
+  awx.awx.host:
+    name: disk_remediation_host
+    description: "Disk remediation Host"
+    inventory: "{{ inventory_disk_remediation.id }}"
+    state: present
+    variables:
+      ansible_host: "{{ ace_box_private_ip }}"
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: disk_remediation_host
+
+- name: Create disk remediation template
+  awx.awx.job_template:
+    name: "Low disk remediation"
+    job_type: "run"
+    organization: "{{ organization.id }}"
+    inventory: "{{ inventory_disk_remediation.id }}"
+    project: "{{ project_disk_remediation.id }}"
+    playbook: "playbooks/remediation.yaml"
+    verbosity: 0
+    ask_variables_on_launch: true
+    credentials:
+      - "{{ credential_dt_api_token.id }}"
+      - "{{ credential_disk_remediation.id }}"
+    controller_host: "{{ awx_internal_endpoint }}"
+    controller_password: "{{ awx_admin_password }}"
+    controller_username: "{{ awx_admin_username }}"
+  register: remediation_template
+
+##################
+
+- debug:
+    msg: "Ansible has been configured successfully! Copy the following URL to set it as an Ansible Job URL in the Dynatrace notification settings: {{ remediation_template_url }}"

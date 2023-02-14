@@ -1,0 +1,5 @@
+---
+- name: Set facts
+  set_fact:
+    easytravel_classic_endpoint: "http://{{ easytravel_classic_domain }}"
+    easytravel_classic_launcher_endpoint: "http://{{ easytravel_classic_launcher_domain }}"

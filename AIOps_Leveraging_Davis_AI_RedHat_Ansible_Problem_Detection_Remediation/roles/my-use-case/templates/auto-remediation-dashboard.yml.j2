@@ -1,0 +1,18 @@
+---
+useCases:
+  auto-remediation-easytravel:
+    previews:
+    - section: easytravel-classic-web
+      description: EasyTravel Web
+      url: "{{ easytravel_classic_endpoint }}"
+    guides:
+    - description: "Automated Remediation using Dynatrace and Ansible"
+      url: "{{ ingress_protocol }}://gitea.{{ ingress_domain }}/{{ demo_auto_remediation_org }}/{{ demo_auto_remediation_repo_name }}"
+
+extRefs:
+  EasyTravel Launcher:
+    url: "{{ easytravel_classic_launcher_endpoint }}"
+    description: "EasyTravel Launcher App is available at {{ easytravel_classic_launcher_endpoint }}"
+  EasyTravel Web:
+    url: "{{ easytravel_classic_endpoint }}"
+    description: "EasyTravel Web is available at {{ easytravel_classic_endpoint }}. Note: you need to launch it first using the EasyTravel Launcher"

@@ -1,0 +1,102 @@
+---
+- name: Install apt packages
+  become: true
+  become_user: root
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+    - openjdk-8-jre
+    - apt-transport-https
+    - software-properties-common
+    - jq
+    - net-tools
+
+- file:
+    path: "{{ role_path }}/files"
+    state: directory
+
+- name: Download Easytravel installer
+  get_url:
+    url: "https://etinstallers.demoability.dynatracelabs.com/latest/dynatrace-easytravel-linux-x86_64.jar"
+    dest: "{{ easytravel_classic_download_location }}"
+    timeout: 300
+  when: not easytravel_classic_download_location is exists
+
+- block:
+  - name: Create custom Easytravel config file
+    file:
+      path: "/home/{{ ace_box_user }}/.dynaTrace/easyTravel 2.0.0/easyTravel/config"
+      state: directory
+  - copy:
+      content: |-
+        config.weblauncherPort={{ easytravel_classic_launcher_port}}
+        config.apacheWebServerPort={{ easytravel_classic_apache_port }}
+        config.nginxWebServerPort={{ easytravel_classic_apache_port }}
+        # Make sure port 8080 is free for HAProxy
+        #config.frontendPortRangeStart=8050
+        #config.frontendPortRangeEnd=8060
+        # Override host
+        config.apacheFrontendPublicUrl={{ ingress_protocol }}://{{ easytravel_classic_domain }}
+        config.angularFrontendPublicUrl={{ ingress_protocol }}://{{ easytravel_classic_domain }}
+        # Set stage for Release Inventory
+        config.dtReleaseStage = {{ easytravel_classic_release_stage }}
+      dest: "/home/{{ ace_box_user }}/.dynaTrace/easyTravel 2.0.0/easyTravel/config/easyTravelLocal.properties"
+
+- name: Run installer
+  block:
+  - shell: 
+      cmd: "java -jar {{ easytravel_classic_download_location }} -y"
+      chdir: "{{ role_path }}/files"
+    when: not easytravel_classic_install_location is exists
+  - become: true
+    become_user: root
+    shell: 
+      cmd: "/bin/bash installChromeDeps.sh"
+      chdir: "{{ easytravel_classic_install_location }}/resources"
+  - become: true
+    become_user: root
+    copy:
+      content: |-
+        [Unit]
+        Description=easytravel launcher
+        Requires=network-online.target
+        After=network-online.target
+        [Service]
+        User={{ ace_box_user }}
+        Group={{ ace_box_user }}
+        Restart=on-failure
+        ExecStart={{ easytravel_classic_install_location }}/weblauncher/weblauncher.sh
+        ExecReload=/bin/kill -HUP $MAINPID
+        [Install]
+        WantedBy=multi-user.target
+      dest: "/etc/systemd/system/easytravel.service"
+
+- name: Enable service easytravel
+  become: true
+  become_user: root
+  ansible.builtin.systemd:
+    name: easytravel.service
+    enabled: yes
+    masked: no
+
+- name: Make sure a easytravel is running
+  become: true
+  become_user: root
+  ansible.builtin.systemd:
+    state: started
+    name: easytravel
+
+- name: Wait for Easytravel Web Launcher to be up
+  uri:
+    url: "http://localhost:{{ easytravel_classic_launcher_port}}/main"
+    status_code: 200
+    validate_certs: no
+  register: result
+  retries: 60
+  delay: 5
+  until: result.status == 200
+
+  

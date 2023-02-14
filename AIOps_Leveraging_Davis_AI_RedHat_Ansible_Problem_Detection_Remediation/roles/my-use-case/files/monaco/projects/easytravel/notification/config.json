@@ -1,0 +1,12 @@
+{
+  "acceptAnyCertificate": false,
+  "active": true,
+  "alertingProfile": "{{ .alertingProfile }}",
+  "customMessage": "",
+  "jobTemplateID": "{{ .ansibleTemplateId }}",
+  "jobTemplateURL": "{{ .ansibleTemplate }}",
+  "name": "{{.name}}",
+  "password": "{{.ansiblePassword}}",
+  "type": "ANSIBLETOWER",
+  "username": "{{.ansibleUser}}"
+}

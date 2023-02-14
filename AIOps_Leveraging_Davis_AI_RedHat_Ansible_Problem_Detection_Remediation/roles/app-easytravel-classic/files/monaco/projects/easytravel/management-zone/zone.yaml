@@ -1,0 +1,10 @@
+---
+config:
+  - management-zone-easytravel: "management-zone.json"
+
+management-zone-easytravel:
+  - name: "easytravel-classic"
+  - etReleaseStage: "{{ .Env.EASYTRAVEL_RELEASE_STAGE }}"
+  - applicationEntityName: "/easytravel/application-web/app-easytravel-classic.name"
+  # - httpCheckEntityName: "webcheck.easytravel.{{ .Env.HOST_GROUP_NAME }}"
+  # - browserMonEntityName: "browser.easytravel.{{ .Env.HOST_GROUP_NAME }}"

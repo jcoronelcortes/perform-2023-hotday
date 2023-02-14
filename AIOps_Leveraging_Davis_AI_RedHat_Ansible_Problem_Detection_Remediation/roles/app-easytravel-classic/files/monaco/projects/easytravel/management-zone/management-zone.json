@@ -1,0 +1,38 @@
+{
+  "name": "{{ .name }}",
+  "rules": [
+    {
+      "type": "PROCESS_GROUP",
+      "enabled": true,
+      "propagationTypes": [
+        "PROCESS_GROUP_TO_HOST",
+        "PROCESS_GROUP_TO_SERVICE"
+      ],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "PROCESS_GROUP_TAGS",
+            "type": "STATIC"
+          },
+          "comparisonInfo": {
+            "type": "TAG",
+            "operator": "EQUALS",
+            "value": {
+              "context": "ENVIRONMENT",
+              "key": "DT_RELEASE_STAGE",
+              "value": "{{ .etReleaseStage  }}"
+            },
+            "negate": false
+          }
+        }
+      ]
+    }
+  ],
+  "dimensionalRules": [],
+  "entitySelectorBasedRules": [
+    {
+      "enabled": true,
+      "entitySelector": "type(\"APPLICATION\"),entityName(\"{{ .applicationEntityName }}\")"
+    }
+  ]
+}

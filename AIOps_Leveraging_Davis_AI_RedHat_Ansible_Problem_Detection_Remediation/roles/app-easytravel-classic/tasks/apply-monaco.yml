@@ -1,0 +1,15 @@
+---
+- set_fact:
+    monaco_projects_folder: "{{ role_path }}/files/monaco/projects"
+
+- name: Easytravel - Apply Monitoring as Code
+  include_role:
+    name: monaco
+    tasks_from: apply-monaco
+    apply:
+      environment:
+        EASYTRAVEL_RELEASE_STAGE: "{{ easytravel_classic_release_stage }}"
+        INGRESS_DOMAIN: "{{ ingress_domain }}"
+  vars:
+    monaco_project: "easytravel"
+    monaco_projects_root: "{{ monaco_projects_folder }}" 

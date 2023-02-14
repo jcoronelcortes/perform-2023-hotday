@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: trigger jenkins pipeline
+    vars:
+      payload: {"parameter": [{"name":"CANARY_WEIGHT", "value":"{{ item.canaryWeight }}"}, {"name":"REMEDIATION_URL", "value":"{{ remediation_url }}"}]}
+    command:  curl -k -X POST {{ jenkins_url }} --user {{ jenkins_user }}:{{ jenkins_token }} --data-urlencode json='{{ payload | to_json }}'   
+    loop:
+      - canaryWeight: 30
+      - canaryWeight: 70
+      - canaryWeight: 100
+    loop_control:
+      pause: 120
+
+  - name: reset load balancing to 100/0
+    vars:
+      payload: {"parameter": [{"name":"CANARY_WEIGHT", "value":"0"}]}
+    command:  curl -k -X POST {{ jenkins_url }} --user {{ jenkins_user }}:{{ jenkins_token }} --data-urlencode json='{{ payload | to_json }}'   
+    tags:
+      - canary_reset

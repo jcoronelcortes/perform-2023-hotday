@@ -1,0 +1,7 @@
+private_ip: "127.0.0.1"
+easytravel_classic_apache_port: 8079
+easytravel_classic_launcher_port: 8094
+ingress:
+  class: public
+  domain: "easytravel-classic.mydomain.com"
+  launcher_domain: "easytravel-launcher.mydomain.com"

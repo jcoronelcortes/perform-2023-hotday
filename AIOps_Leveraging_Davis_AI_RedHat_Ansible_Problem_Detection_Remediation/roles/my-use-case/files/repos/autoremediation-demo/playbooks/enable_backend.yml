@@ -1,0 +1,35 @@
+---
+- hosts: localhost
+  become: yes
+  gather_facts: no
+
+  tasks:
+
+  - name: set fact for public ip used for ha proxy lb
+    set_fact:
+      et_host_ip: "{{ hostvars['easyTravel']['ansible_host'] }}"
+
+  - name: Add backend to haproxy config
+    template:
+      src: "haproxycfg.j2"
+      dest: "/etc/haproxy/{{ et_host_ip }}.cfg"
+      owner: root
+      group: root
+      mode: '0644'
+    delegate_to: haproxy
+
+  - name: Set haproxy config dir
+    command: /usr/sbin/haproxy -f /etc/haproxy
+    delegate_to: haproxy
+
+  - name: Restart haproxy service
+    service:
+      name: haproxy
+      state: restarted
+    delegate_to: haproxy
+
+  - name: Print haproxy stats URL
+    debug:
+      msg: 
+        - "easyTravel behind HAProxy can be reached on this URL http://{{ hostvars['haproxy']['ansible_host'] }}"
+        - "HAProxy stats page can be reached on this URL http://{{ hostvars['haproxy']['ansible_host'] }}/haproxy?stats"

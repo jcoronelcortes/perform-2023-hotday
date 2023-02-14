@@ -1,0 +1,60 @@
+{
+    "name": "{{ .name }}",
+    "description": null,
+    "rules": [
+      {
+        "type": "SERVICE",
+        "enabled": true,
+        "valueFormat": "{Host:Environment:supportgroup}",
+        "normalization": "LEAVE_TEXT_AS_IS",
+        "propagationTypes": [
+          "SERVICE_TO_PROCESS_GROUP_LIKE"
+        ],
+        "conditions": [
+          {
+            "key": {
+              "attribute": "HOST_CUSTOM_METADATA",
+              "dynamicKey": {
+                "source": "ENVIRONMENT",
+                "key": "supportgroup"
+              },
+              "type": "HOST_CUSTOM_METADATA_KEY"
+            },
+            "comparisonInfo": {
+              "type": "STRING",
+              "operator": "EXISTS",
+              "value": null,
+              "negate": false,
+              "caseSensitive": null
+            }
+          }
+        ]
+      },
+      {
+        "type": "PROCESS_GROUP",
+        "enabled": true,
+        "valueFormat": "easyTravel-Support",
+        "normalization": "LEAVE_TEXT_AS_IS",
+        "propagationTypes": [],
+        "conditions": [
+          {
+            "key": {
+              "attribute": "PROCESS_GROUP_TAGS",
+              "type": "STATIC"
+            },
+            "comparisonInfo": {
+              "type": "TAG",
+              "operator": "EQUALS",
+              "value": {
+                "context": "ENVIRONMENT",
+                "key": "DT_RELEASE_STAGE",
+                "value": "easytravel-classic"
+              },
+              "negate": false
+            }
+          }
+        ]
+      }
+    ],
+    "entitySelectorBasedRules": []
+  }

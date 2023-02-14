@@ -1,0 +1,6 @@
+
+config:
+  - supportgroup: "supportgroup.json"
+  
+supportgroup:
+  - name: "support_group"

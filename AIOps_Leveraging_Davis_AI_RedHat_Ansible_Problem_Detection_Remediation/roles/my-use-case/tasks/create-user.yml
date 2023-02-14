@@ -1,0 +1,40 @@
+---
+- name: Generate ssh
+  shell: "ssh-keygen -q -t rsa -N '' -f /tmp/ansible_id_rsa <<<y >/dev/null 2>&1"
+  args:
+    executable: /bin/bash
+
+- name: "Ensure group {{ ansible_user_group }} exists"
+  ansible.builtin.group:
+    name: "{{ ansible_user_group }}"
+    state: present
+  become: true
+  become_user: root
+
+- name: "Ensure user {{ ansible_user }} exists"
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    state: present
+    shell: /bin/bash
+    groups: "{{ ansible_user_group }}"
+    append: yes
+  become: true
+  become_user: root
+
+- name: Deploy SSH Public Key
+  ansible.posix.authorized_key:
+    user: "{{ ansible_user }}"
+    state: present
+    key: "{{ lookup('file', '/tmp/ansible_id_rsa.pub') }}"
+  become: true
+  become_user: root
+
+- name: Give sudo access to devops user
+  become: true
+  become_user: root
+  blockinfile:
+    path: /etc/sudoers
+    insertafter: "root    ALL=(ALL:ALL) ALL"
+    block: |
+      # Gives sudo access to the devops group
+      %{{ ansible_user }}  ALL=(ALL)       NOPASSWD: ALL

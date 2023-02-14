@@ -1,0 +1,13 @@
+---
+demo_auto_remediation_org: "demo"
+demo_auto_remediation_repo_name: "memory-leak-auto-remediation"
+demo_auto_remediation_repo_name2: "canary-deployment-auto-remediation"
+demo_disk_auto_remediation: "disk-auto-remediation"
+demo_auto_remediation_folder: "demo-auto-remediation"
+ansible_user: "ansible"
+ansible_user_group: "ansible"
+awx_org: "DynatraceOrg"
+awx_project: "Automated Remediation"
+easytravel_release_stage_: "easytravel-classic"
+jenkins_username: dynatrace
+jenkins_password: dynatrace
